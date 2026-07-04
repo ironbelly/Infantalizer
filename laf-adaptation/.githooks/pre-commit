@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Pre-commit hook for laf-adaptation — the boundary-contract enforcement gate.
+# Adopts the upstream CWS opt-in hook PATTERN, but runs LAF's single validation
+# tool (scripts/check_boundary.py) instead of the cw/ sync checks.
+#
+# Enable once per clone:  git config core.hooksPath laf-adaptation/.githooks
+#                         (or, if laf-adaptation/ is the git root: git config core.hooksPath .githooks)
+# Bypass a single commit: git commit --no-verify
+
+set -uo pipefail
+
+fail=0
+
+# laf-adaptation/ is nested below the git root here (repo root = the toplevel,
+# laf-adaptation/ is a subdir). cd into it so `scripts/check_boundary.py` resolves.
+# (The script also self-roots via Path(__file__).resolve().parents[1], so this cd is
+# belt-and-suspenders — it keeps the invocation identical whether laf-adaptation/ is
+# the git root or a subdirectory.)
+repo_root="$(git rev-parse --show-toplevel)"
+if [ -d "$repo_root/laf-adaptation" ]; then
+  cd "$repo_root/laf-adaptation" || { echo "pre-commit: cannot cd to laf-adaptation" >&2; exit 1; }
+else
+  cd "$repo_root" || exit 1
+fi
+
+echo "pre-commit: boundary contract (uv run python scripts/check_boundary.py)..."
+if ! uv run python scripts/check_boundary.py; then
+  fail=1
+fi
+
+if [ "$fail" -ne 0 ]; then
+  echo >&2
+  echo "pre-commit: boundary contract FAILED. An adopted file drifted, a manifest row is" >&2
+  echo "missing, or a native/build-new file collides with upstream. Fix the above (never" >&2
+  echo "edit an adopted body — add a skill instead), or bypass with 'git commit --no-verify'." >&2
+  exit 1
+fi
+
+echo "pre-commit: boundary contract ok."

@@ -1,0 +1,38 @@
+# Step 1 — analyst (NATIVE) output. Produced by executing /source-fidelity v2.0 on source/tolkien/ch-01.txt.
+# SOURCE ACCESS: FULL (file exists, readable, non-empty) — analysis proceeds; NOT ABORTED.
+status: OK
+metadata:
+  work: tolkien
+  chapter: "01"
+  source_access: FULL
+  confidence: PROBABLE     # overall = worst-case across essentials (one essential is PROBABLE)
+essentials:
+  title:            {value: "The Lord of the Rings", confidence: PROBABLE}   # inferred from work-mapping context; not stated in-chapter
+  chapter_title:    {value: "The Siege at the Grey City", confidence: CERTAIN}
+  opening_sentence: {value: "Dawn never came to the plain that morning; the dark lord's shadow lay over the world like a drawn curtain, and under it his host advanced upon the Grey City in a tide of iron.", confidence: CERTAIN}
+  closing_sentence: {value: "The sun, when at last it climbed above the smoke, found the Grey City still standing.", confidence: CERTAIN}
+characters:
+  - {name: "Sauron (the dark lord)", role: "antagonist — absent in person; his will presses on the host from the black tower", confidence: CERTAIN}
+  - {name: "Denethor (the Steward)", role: "leader who has despaired; turns his face to the wall", confidence: CERTAIN}
+  - {name: "Théoden (the old king)", role: "leads the mountain-riders; struck down and falls", confidence: CERTAIN}
+  - {name: "Éowyn", role: "hero — stands over the fallen king and strikes down the rider", confidence: CERTAIN}
+  - {name: "the Nazgûl (a rider of the host)", role: "shadow-rider whose cry unmans brave men; slain by Éowyn", confidence: CERTAIN}
+events:
+  - {seq: 1, event: "The dark lord's shadow covers the plain; his iron host advances on the Grey City.", confidence: CERTAIN}
+  - {seq: 2, event: "Sauron's will presses on the host from the black tower to the east (he does not ride).", confidence: CERTAIN}
+  - {seq: 3, event: "The Steward Denethor, already broken by despair, turns away and will not answer.", confidence: CERTAIN}
+  - {seq: 4, event: "Théoden leads the mountain-riders down against the host.", confidence: CERTAIN}
+  - {seq: 5, event: "A Nazgûl strikes the king from his horse; Théoden falls and does not rise again.", confidence: CERTAIN}
+  - {seq: 6, event: "Éowyn stands over the fallen king and strikes down the rider; its shadow screams and is gone.", confidence: CERTAIN}
+  - {seq: 7, event: "Many soldiers have fallen; the field is heavy with grief, but the city holds and the host draws back east.", confidence: CERTAIN}
+  - {seq: 8, event: "The sun rises above the smoke; the Grey City still stands.", confidence: CERTAIN}
+summary:
+  text: "Under the dark lord's shadow, an iron host besieges the Grey City. Sauron does not ride but bends his will on the assault from afar. The Steward Denethor has already collapsed into despair and withdraws. The old king Théoden leads the mountain-riders in a terrible clash and is struck down by a Nazgûl, whose cry unmans brave men. Éowyn refuses to flee: she stands over the fallen king and destroys the rider. Though many soldiers fall and the field is heavy with grief, the city holds, the host recedes eastward, and dawn finally breaks over a city still standing."
+  confidence: PROBABLE
+transformation_flags:
+  violence:  {instances: 4, severity: high}    # siege, clash, king struck down, rider slain
+  death:     {instances: 2, severity: high}    # king falls; "many good soldiers had fallen and would not rise"
+  emotional: {instances: 3, severity: high}    # Denethor's despair, the Nazgûl's unmanning cry, grief for the fallen
+  abstract:  {instances: 1, severity: low}     # the dark lord's "will" pressing on the host
+uncertainties:
+  - "The work title is inferred from the work-mapping (tolkien), not stated within the chapter text (tagged PROBABLE)."

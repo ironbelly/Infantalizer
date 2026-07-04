@@ -1,0 +1,27 @@
+name: Boundary Contract
+
+# The ONLY CI this framework ships (ADR-006: prompt + YAML-config, not software —
+# no test/build matrix). It runs the boundary-contract gate in verify mode, which
+# needs NO --upstream checkout: rules A (adopted-hash match) / D (quartet intact) /
+# E (no name collision) / F (manifest coverage) work on the vendored tree + the
+# VENDOR.md manifest alone. Blocking: a failure fails the PR / push.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Boundary contract (verify)
+        working-directory: laf-adaptation
+        run: uv run python scripts/check_boundary.py

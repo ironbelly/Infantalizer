@@ -1,0 +1,81 @@
+# Tolkien Work Mapping
+# Lord of the Rings specific character and concept translations
+
+work_metadata:
+  title: "The Lord of the Rings"
+  author: "J.R.R. Tolkien"
+  key_challenges:
+    - "Mass warfare (Helm's Deep, Pelennor)"
+    - "Psychological collapse (Denethor)"
+    - "Moral failure at climax (Frodo)"
+    - "Bittersweet ending (Grey Havens)"
+
+characters:
+  frodo:
+    tier_1: {name: "Frodo", archetype: "Brave Friend", ring_claim: "Omit - accident", wounds: "Boo-boo"}
+    tier_3: {can_show: "His struggle and failure", ring_claim: "Show, emphasize mercy"}
+    
+  sam:
+    tier_1: {archetype: "Best Friend", key_moment: "Carrying Frodo - MUST INCLUDE"}
+    
+  aragorn:
+    tier_1: {archetype: "Great Helper", leadership: "Best helper, not lineage"}
+    
+  gandalf:
+    tier_1: {archetype: "Wise Teacher", death_resurrection: "OMIT - was away"}
+    
+  sauron:
+    tier_1: {name: "Grumpy King", cause: "No sunshine", eye: "Grumpy King's window"}
+    tier_3: {name: "Sauron", can_show: "True menace"}
+    
+  gollum:
+    tier_1: {name: "Silly Creature", ring_destruction: "Accident during silly game", finger_bite: "OMIT"}
+    tier_3: {full_duality: true}
+    
+  eowyn:
+    tier_1: {heroic_moment: "Helps Théoden when he falls", witch_king: "OMIT"}
+    tier_3: {can_show: "Battle with Witch-king"}
+    
+  denethor:
+    tier_1: {name: "Sad Leader", cause: "Closed windows", omit: ["suicide", "pyre", "Faramir rejection"]}
+    tier_3: {can_show: "Despair, imply consequences"}
+
+concepts:
+  the_one_ring:
+    tier_1: "The Grumpy Ring (makes people grumpy)"
+    tier_3: "The Ring of Power (corrupting)"
+    
+  mordor:
+    tier_1: "The Grumpy Land (needs sunshine)"
+    tier_3: "Mordor"
+    
+  mount_doom:
+    tier_1: "The Sleepy Mountain (warm, Ring can rest)"
+    tier_3: "Mount Doom"
+    
+  nazgul:
+    tier_1: "Grumpy Riders"
+    tier_3: "The Nazgûl"
+    
+  army_of_dead:
+    tier_1: "Sleepy Mountain Friends (wake with happy song)"
+    tier_3: "Army of the Dead"
+
+key_scenes:
+  battle_pelennor:
+    tier_1: {name: "The Big Tidy-Up", witch_king: "OMIT", resolution: "Grumbles run away"}
+    tier_3: {approach: "Summarize, show stakes"}
+    
+  mount_doom_climax:
+    tier_1: {frodo_claim: "OMIT", finger_bite: "OMIT", destruction: "Accident", barad_dur: "Like toy blocks"}
+    tier_3: {approach: "Show failure and mercy"}
+    
+  grey_havens:
+    tier_1: {name: "New Adventure on a Boat", wounds: "Boo-boo makes tired", emotion: "Little sad but happy"}
+    tier_3: {can_show: "Bittersweet permanent departure"}
+
+master_translation_table:
+  - {original: "War of the Ring", tier_1: "Big Helping Adventure", principle: "Conflict → Cooperation"}
+  - {original: "One Ring's Evil", tier_1: "Grumpy Ring", principle: "Agency Externalization"}
+  - {original: "Death", tier_1: "Rest / Adventure", principle: "Emotional Calibration"}
+  - {original: "Heroism as Violence", tier_1: "Heroism as Helping", principle: "Prosocial Centering"}

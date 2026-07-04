@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.log
+drafts/
+output/
+*.draft.md
+.env
+
+# Upstream CWS vendoring checkout (Phase 0 — must never be committed / scanned by Rule F)
+.upstream-cws/
+# Pre-existing embedded CWS checkout (nested git repo; used as upstream source, never committed)
+.dev/releases/current/0.1/creative-writing-skills/

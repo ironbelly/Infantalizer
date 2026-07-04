@@ -1,0 +1,60 @@
+# Work Mapping Template
+# Copy this to create mappings for new literary works
+
+work_metadata:
+  title: "[Work Title]"
+  author: "[Author Name]"
+  key_challenges:
+    - "[Challenge 1]"
+    - "[Challenge 2]"
+
+characters:
+  protagonist_name:
+    original:
+      name: "[Original Name]"
+      role: "[Role]"
+      complexity: "[Description]"
+    tier_1:
+      name: "[Simplified name]"
+      archetype: "Brave Friend on a Special Job"
+      traits: ["brave", "kind"]
+    tier_3:
+      can_show: "[What complexity to restore]"
+    tier_4_5:
+      approach: "preserve_original"
+      
+  antagonist_name:
+    original:
+      name: "[Name]"
+      role: "[Role]"
+    tier_1:
+      name: "[Grumpy equivalent]"
+      archetype: "Grumpy/Messy Character"
+      cause: "[External cause]"
+    tier_3:
+      can_show: "[Internal motivation]"
+    tier_4_5:
+      approach: "preserve_original"
+
+concepts:
+  concept_name:
+    original: "[Description]"
+    tier_1: "[Grumpy/Sad equivalent]"
+    tier_2: "[Trouble/Problem equivalent]"
+    tier_3: "[Named with explanation]"
+    tier_4_5: "[preserve]"
+
+key_scenes:
+  scene_name:
+    challenges: ["violence", "death"]
+    tier_1:
+      name: "[Adapted name]"
+      framing: "[How to reframe]"
+      omit: ["[element1]"]
+    tier_3:
+      approach: "[What to preserve]"
+
+master_translation_table:
+  - original: "[Original]"
+    tier_1: "[Tier 1]"
+    principle: "[Governing principle]"
