@@ -1,0 +1,2 @@
+config/concept_mapping/templates/tolkien_mapping.yaml 914a85b8db7573149b2b3118561d9db93ba37ad94b2f193035183991d29a707f
+laf-adaptation/kb/adaptation-mapping/tolkien-mapping.yaml 914a85b8db7573149b2b3118561d9db93ba37ad94b2f193035183991d29a707f

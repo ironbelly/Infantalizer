@@ -77,9 +77,20 @@ transformation_flags:
   death:     {instances: N, severity: low|med|high}
   emotional: {instances: N, severity: low|med|high}
   abstract:  {instances: N, severity: low|med|high}
+meaning:                                # R10 — meaning to preserve (the allegory/theme to neither add nor strip); grounded in /thematic-fidelity
+  value: "..."
+  confidence: CERTAIN | PROBABLE | UNCERTAIN
+compound_scene: true | false            # R11 — true iff >=2 HIGH-severity transformation_flags co-occur in one scene
+compound_scenes:                        # present only when compound_scene: true; one entry per flagged scene
+  - {scene: "...", cooccurring_flags: [...], severity: high}
 uncertainties:
   - "list of items the analyst could not verify"
 ```
+
+The three additive fields above (`meaning`, `compound_scene`, `compound_scenes`) are the **R10/R11
+meaning-preservation extensions** to the v2.0 schema, grounded in `/thematic-fidelity` as the concept
+source (the allegory/theme to neither add nor strip). They are additive to the BASE v2.0 fields and do
+not alter any existing field's shape.
 
 ## Overall confidence derivation
 The `metadata.confidence` field (and Phase 2's "overall confidence") is **not** a fresh judgment — it is

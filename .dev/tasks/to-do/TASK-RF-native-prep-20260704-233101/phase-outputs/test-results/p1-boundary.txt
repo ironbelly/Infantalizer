@@ -1,0 +1,17 @@
+# P1 Boundary + Adopted-Body Gate (raw output)
+
+Captured after the P1 body edits (analyst.md + tier-coordinator.md additive diffs), from repo root.
+
+## Command 1: `uv run python laf-adaptation/scripts/check_boundary.py 2>&1` (Mode V)
+
+```
+NOTE: verify running without --upstream — Rules B and C (upstream-diff checks) skipped; Rule A hash-match covers adopted-file integrity against the recorded manifest, plus Rules D/E/F.
+BOUNDARY CONTRACT: PASS — all rules (A-F) satisfied.
+```
+Exit 0.
+
+## Command 2: `git diff --stat -- laf-adaptation/agents/writer.md laf-adaptation/agents/muse.md 2>&1`
+
+```
+(empty)
+```

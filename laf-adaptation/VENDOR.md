@@ -6,10 +6,42 @@ vendored_on:   2026-07-03
 license:       Apache-2.0 (upstream) — attribution retained per NOTICE
 prefix_rewrite: "creative-writing-skills:" -> "laf-adaptation:"   # uniform, deterministic
 
+## Hash semantics
+- `upstream_sha256` is the hash of the **RAW upstream blob** (what `--init` records via
+  `sha256_text(up_raw)` over the un-rewritten upstream bytes). It is upstream-derived and is the
+  trust root for adopted-file integrity in verify mode (Rule A′, CH-1): the checker applies the
+  INVERSE prefix rewrite (`laf-adaptation:` → `creative-writing-skills:`) to the on-disk adopted body
+  and asserts the result hashes to this pinned value. A committer cannot hide an adopted-body edit by
+  rewriting only `laf_sha256`; forging `upstream_sha256` is a loud, review-visible change to a field
+  documented as upstream-derived.
+- `laf_sha256` is the hash of the on-disk (already-prefix-rewritten) file. Still asserted by Rule A.
+- NATIVE / BUILD-NEW rows carry `—` (NO_HASH) for both columns; an adopted row missing either hash is
+  a parse error (CH-6).
+
+### What Mode V catches — and what it does NOT (documented honestly, no over-claim)
+Mode V is a **single-field `laf_sha256`-forgery gate**: it catches a malicious PR that edits an
+adopted body AND rewrites only its `laf_sha256` row (the body no longer inverts to the pinned
+`upstream_sha256`). Mode V does **NOT** catch a **two-field forgery** — an attack that edits an
+adopted body AND rewrites BOTH `laf_sha256` AND `upstream_sha256` to be self-consistent. By
+construction the PR controls both manifest fields, so any manifest-only re-hash is self-consistent.
+The two-field forgery is caught only by:
+1. **Mode U** (Rules B/C against a pinned-SHA upstream checkout) — the mutated body diverges from the
+   real upstream blob at the pinned SHA, so Rule B fails loud.
+2. **Branch protection** — any `upstream_sha256` diff is review-visible.
+3. **Mandatory human review of any `upstream_sha256` diff in a PR** — a field documented as
+   upstream-derived must not change silently; a reviewer rejects a body+both-hashes change unless it
+   arrives via the documented `--init` re-vendor flow (see the re-vendor block below).
+
+## Format constraint
+Paths and hashes must not contain a literal `|` (the table delimiter). A `|`-in-cell row shifts
+columns and is rejected loud by the parser (CH-6) rather than silently dropped.
+
 ## Invariants (asserted by check_boundary.py)
 - G3 quartet-intact: agents/{critic,editor,reader-sim,continuity-checker}.md are ADOPTED-CLEAN and present.
 - editor.md is NEVER folded, NEVER modified.
 - No NATIVE/BUILD-NEW file name collides with an upstream file name.
+- ADOPTED-PATCHED is reserved for agents/writer.md only (CH-3).
+- Every file under an adopted skill's resources/** is manifested (CH-2).
 
 <!-- Re-vendor / refresh: to re-vendor at a new upstream_sha, run
      `uv run python scripts/check_boundary.py --init --upstream <checkout>` then commit the manifest diff
@@ -81,6 +113,9 @@ prefix_rewrite: "creative-writing-skills:" -> "laf-adaptation:"   # uniform, det
 | skills/adaptation-rules/** | NATIVE | — | — |
 | skills/adaptation-tiers/** | NATIVE | — | — |
 | skills/source-fidelity/** | NATIVE | — | — |
+| agents/prep-cordinator.md | NATIVE | — | — |
+| skills/prep/** | NATIVE | — | — |
+| skills/thematic-fidelity/** | NATIVE | — | — |
 | agents/chronicler.md | BUILD-NEW | — | — |
 | agents/tier-coordinator.md | BUILD-NEW | — | — |
 | skills/adaptation-safety/** | BUILD-NEW | — | — |

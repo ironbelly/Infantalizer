@@ -1,0 +1,75 @@
+# 20-analysis-work-level.yaml — analyst work-mode output (text track)
+# Source: laf-adaptation/source/tolkien/ch-01.txt (259 words, FULL access, Phase-0 PASSED)
+# Schema: /source-fidelity v2.0 + package-schemas.md §3 (meaning, compound_scene)
+
+status: OK
+metadata:
+  work: tolkien
+  granularity: work
+  source_access: FULL                 # Phase-0 verdict — text track grounded in readable fixture
+  confidence: PROBABLE                # min across essentials; work-level synthesis is PROBABLE
+
+essentials:
+  title:   {value: "The Lord of the Rings", confidence: CERTAIN}      # declared input
+  author:  {value: "J.R.R. Tolkien", confidence: CERTAIN}             # declared input
+  structure: {value: "single-chapter fixture (siege scene)", confidence: CERTAIN}
+
+characters:
+  - {name: "Sauron",        role: "offstage antagonist whose will presses on the host", confidence: CERTAIN}
+  - {name: "Denethor",      role: "Steward of the Grey City; psychological collapse",   confidence: CERTAIN}
+  - {name: "Théoden",       role: "old king of the mountain-riders; dies in battle",    confidence: CERTAIN}
+  - {name: "Éowyn",         role: "stands over Théoden; strikes down the Nazgûl",       confidence: CERTAIN}
+  - {name: "Nazgûl",        role: "dark rider whose cry unmen brave men; slays Théoden", confidence: CERTAIN}
+
+events:
+  - {seq: 1, event: "Sauron's host advances on the Grey City under shadow",                    confidence: CERTAIN}
+  - {seq: 2, event: "Denethor breaks and turns his face to the wall ('All is ended')",          confidence: CERTAIN}
+  - {seq: 3, event: "Théoden leads the mountain-riders' charge; the battle is terrible",        confidence: CERTAIN}
+  - {seq: 4, event: "A Nazgûl strikes Théoden from his horse; he falls and does not rise",      confidence: CERTAIN}
+  - {seq: 5, event: "Éowyn stands over Théoden and strikes the Nazgûl down; its shadow screams", confidence: CERTAIN}
+  - {seq: 6, event: "Many soldiers fall; the city holds; the tide breaks and recedes east",     confidence: CERTAIN}
+  - {seq: 7, event: "The sun rises over the smoke and finds the Grey City still standing",      confidence: CERTAIN}
+
+summary:
+  text: >
+    A siege of the Grey City by Sauron's host. On the walls, the Steward Denethor has already
+    broken under despair and will not answer. The old king Théoden rides out and falls to a
+    Nazgûl; Éowyn stands over him and slays the rider. Many die, but the city holds, the tide
+    recedes, and the sun rises on the city still standing — hope against despair.
+  confidence: PROBABLE
+
+transformation_flags:
+  violence:
+    instances: 5              # host advances; battle is terrible; spears splinter; Théoden struck; Éowyn strikes the rider
+    severity: high            # mass battlefield violence with named casualties
+  death:
+    instances: 2              # Théoden dies; many soldiers fall (mass)
+    severity: high
+  emotional:
+    instances: 3              # Denethor's despair; grief over Théoden; grief across the field
+    severity: high
+  abstract:
+    instances: 1              # Sauron's will pressing down cold and patient (abstract dread)
+    severity: med
+
+meaning:                                # R10 — work-level meaning to preserve
+  value: >
+    Hope against despair — the city holds and the sun returns even when the steward has broken,
+    the king has fallen, and the field is heavy with grief. Coupled with redemptive courage:
+    Éowyn's stand over the fallen king is self-sacrificial interposition, not conquest.
+    Neither add nor strip this meaning at any tier.
+  confidence: PROBABLE                  # text-grounded; wider allegorical reading capped at PROBABLE
+
+compound_scene: true                    # R11 — siege co-occurs death + emotional + violence (all high)
+compound_scenes:
+  - scene: "Siege of the Grey City"
+    cooccurring_flags: [death, emotional, violence]
+    severity: high
+  - scene: "Théoden's fall and Éowyn's stand"
+    cooccurring_flags: [death, emotional, violence]
+    severity: high
+
+uncertainties:
+  - "Whether the fixture's 'Grey City' is intended as Gondor/Minas Tirith — text-grounded as 'Grey City' only; wider identification is context-track inference (PROBABLE)."
+  - "Whether Éowyn's stand should be typed as sacrifice-and-return (she does not die in the fixture) — typed here as mass-warfare + heroism; the death-honor challenge attaches to Théoden."
+  - "Allegory-stance is left to the gate: the fixture is too short to deterministically settle Tolkien's anti-allegory Foreword position; the prep-brief records the stance decision."

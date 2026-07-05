@@ -92,6 +92,26 @@ for element shared across ≥2 tiers:
 (`mandatory`-transform < `optional`-transform < `preserve`), plus the tier's violence/moral-ambiguity
 threshold levels. A coarse ordinal comparison, not a score — enough to catch an inverted rendering.
 
+### Check D — Meaning preservation (R10; /thematic-fidelity)
+Every tier's rendering must **preserve the work-level `meaning`** while its surface transforms. Read the
+top-level `meaning:` from the **6-key kb copy** at `kb/adaptation-mapping/<slug>-mapping.yaml` (the hyphen
+copy that KEEPS `meaning:` — the root underscore `<work>_mapping.yaml` copy strips it; see
+`resources/path-contract.md` §3), and the per-unit `meaning` in `shared_analysis`. For each element shared
+across tiers, assert the tier's rendering still carries that meaning — the allegory/theme is neither added
+where the source withholds it nor stripped where the source asserts it.
+```
+for element shared across tiers:
+    m = meaning_of(element, shared_analysis | mapping)
+    for tier in tiers:
+        if not preserves_meaning(render(element, tier), m):
+            conflicts += {type: "meaning_diff", tier, element, meaning: m}
+status_meaning: Meaning-PRESERVED | Meaning-DIFF
+```
+`preserves_meaning()` is an ordinal judgment, not a score: does the transformed surface still *mean* what
+the source unit means at the target tier's altitude? A tier-1 "Grumpy King" preserves the meaning "an
+external corrupting force, not innate evil" (Agency Externalization is meaning-preserving); a rendering that
+silently drops the allegory, or invents one the source never had, is `Meaning-DIFF`.
+
 ## Operational reading — grounding `maturity()`, `permitted_at`, and `disclosures`
 
 *(Operational-reading note, additive; the Check A/B/C pseudocode above is the spec-carried contract and
@@ -146,6 +166,7 @@ tiers: [1, 3, 5]     mode: parallel     source: work/analysis/ch-<NN>.yaml
 - A source-fidelity: PASS (all renderings trace to shared anchors)
 - B disclosure-leak:  PASS (no tier discloses beyond its threshold)
 - C monotonicity:     PASS (T1 ≤ T3 ≤ T5 maturity for every shared element)
+- D meaning-preserved: PASS (every shared element preserves work-level meaning across tiers)
 
 status: RECONCILED
 conflicts: []
@@ -153,6 +174,13 @@ conflicts: []
 On `CONFLICT`, `conflicts:` is non-empty and lists `{type, tier, element/disclosure, detail}`. The caller
 (muse) must resolve — by re-dispatching the offending tier's writer with the conflict as a revision note
 — **before** `chronicler` promotes anything (constraint #5: no promotion of inconsistent canon).
+
+**Meaning-DIFF rides this same gate (R10).** A `Meaning-DIFF` from Check D contributes a
+`{type: "meaning_diff", tier, element, meaning}` entry to the existing `conflicts:` list above — so a
+meaning divergence blocks `chronicler` exactly as an A/B/C conflict does. No new control flow: Check D rides
+the existing `RECONCILED | CONFLICT` gate. The coordinator already loads `/adaptation-tiers`,
+`/source-fidelity`, `/kb-management`; Check D reads `meaning` as **data** from the mapping/analysis, so no
+new skill line is required.
 
 ## Interaction with chronicler (never writes canon)
 You run **before** `chronicler` (step 10 → step 11). You **never write canon** — you only reconcile and
