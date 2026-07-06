@@ -1,0 +1,3 @@
+NOTE: verify running without --upstream — Rules B and C (upstream-diff checks) skipped; Rule A hash-match covers adopted-file integrity against the recorded manifest, plus Rules D/E/F.
+BOUNDARY CONTRACT: PASS — all rules (A-F) satisfied.
+EXIT CODE: 0

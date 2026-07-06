@@ -1,0 +1,3 @@
+reflect: degraded (degraded-tier1)
+  report: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-RF-laf-hybrid-build-20260703-115948/reflect/post/bf8d8b1a9ced/t2-swarm/reflect-review-01-qwen3.6-plus.final.md
+  contract: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-RF-laf-hybrid-build-20260703-115948/reflect/post/bf8d8b1a9ced/return-contract.yaml

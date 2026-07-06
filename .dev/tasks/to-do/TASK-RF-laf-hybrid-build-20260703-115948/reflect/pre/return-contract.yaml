@@ -1,0 +1,148 @@
+contract_version: "1.7.0"
+status: partial
+mode: pre
+tier_reached: 2
+report_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-RF-laf-hybrid-build-20260703-115948/reflect/pre/adversarial/merged-verdict.md
+audit_log_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-RF-laf-hybrid-build-20260703-115948/reflect/pre/audit.log
+confidence_calibrated: 0.928
+escalation_rule_matched: 4   # §5.3 rule 4 (S_domains ≥ 3) + §5.1 --depth deep hard override
+onboarding_ran: false
+
+# UC-1 specific
+coverage_pct: 1.0
+coverage_pct_union: 0.97
+coverage_undefined: false
+coverage_degraded: null
+unmapped_requirements: []
+unmapped_requirements_union:
+  - "POST-reflect-auto-fix re-verification gate (PC.6 --fix/--promote mutates after Phase-3 hard gate; condition files not recomputed)"
+  - "cwd-rooted verifier contract (check_boundary.py uses relative globs; tasklist invokes from repo root without cd or __file__ rooting)"
+best_practice_grade: 4
+implementation_coverage_pct: null
+missing_implementations: []
+hierarchy_slice_path: null
+hierarchy_coverage_pct: null
+
+# UC-2 specific — all null/false (PRE mode, no execution)
+tasklist_completion_pct: null
+deviation_count_by_class:
+  authorized: 0
+  necessary: 5   # R1, R3, R4, R5, A1 (downgraded from REGRESSION)
+  drift: 3       # A2 (blocking), Q2 (blocking), R2 (LOW)
+  regression: 0  # all 3 candidates downgraded after adversarial debate
+deviation_register_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-RF-laf-hybrid-build-20260703-115948/reflect/pre/adversarial/merged-verdict.md
+grounding_gaps_path: null
+hunk_to_declaration_map_path: null
+third_party_api_grounding: []
+third_party_api_verified: false
+serena_summary_corroboration: unavailable   # UC-2 only
+verification_ran: false
+verification_invocations: 0
+verification_failures: 0
+verification_regressions_detected: 0
+verification_skip_reason: tool-unavailable   # PRE mode — no execution to verify
+
+# Runtime-surface (UC-2 only) — all zero/false/null
+runtime_surface_requirements: []
+runtime_surface_sweep_ran: false
+runtime_surface_ledger_path: null
+runtime_surface_unreached: 0
+runtime_surface_degraded: false
+unreached_surfaces: []
+
+# Reachability (UC-2 only) — telemetry-only skip (PRE mode)
+reachability_gate_ran: false
+reachability_ledger_path: null
+reachability_requirements_scanned: 0
+reachability_unreachable: 0
+reachability_unproven: 0
+reachability_real_boot_ran: false
+reachability_skip_reason: spec-and-tasklist-absent   # PRE mode — no side-effect-bearing runtime requirements
+
+# Reuse-Miss (UC-2 only) — not applicable in PRE
+reuse_sweep_ran: false
+reuse_audit_path: null
+reuse_miss_blocking: 0
+reuse_miss_advisory: 0
+reuse_verdict_count_by_type: { reuse_by_import: 0, mirror_shape: 0, extract_shared: 0, distinct: 0 }
+reuse_grounding_gap_count: 0
+neighbour_search_sampled: false
+neighbour_search_degraded: false
+max_overlap_score: null
+
+# Input integrity
+input_sha256:
+  tasklist: 8d4dc472540e7b8e2da29af7bf7e3d589a5ac854380751686e72c0ba4d140c0a
+  spec: 02485b1428ef83de2ff1914f6743bcb8ac18b35018234139c42c8c07b6dc323c
+input_tree_sha256: 187679821d8d12a78baca1337448138793cb075c58c2d34703934e121bfe9157
+input_tree_file_count: 8
+input_tree_snapshot_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-RF-laf-hybrid-build-20260703-115948/reflect/pre/artifacts/input-snapshot.yaml
+input_drift_detected: false
+input_drift_diff: null
+
+# Hallucination guard
+citations_total: 38
+citations_revalidated: 38
+citations_dropped: 0
+citations_dropped_extrapolated: 0
+citations_inferred: 0
+citation_budget_policy: full_reread
+evidence_validator_ran: true
+citation_revalidation_at_promotion: false
+zero_drop_flag: true   # §11.2 audit-marker — 38 citations genuinely re-Read, not skipped
+
+# Tier 2 artifacts
+reviewer_cards:
+  - /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-RF-laf-hybrid-build-20260703-115948/reflect/pre/reviewer-cards/card-1-analyzer.md
+  - /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-RF-laf-hybrid-build-20260703-115948/reflect/pre/reviewer-cards/card-2-qa.md
+  - /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-RF-laf-hybrid-build-20260703-115948/reflect/pre/reviewer-cards/card-3-refactorer.md
+adversarial_artifacts_dir: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-RF-laf-hybrid-build-20260703-115948/reflect/pre/adversarial/
+adversarial_convergence_score: 0.71
+adversarial_unavailable: false
+merge_method: adversarial
+t2_model_class_diversity: full
+t2_vendor_diversity: multi
+t2_effective_diversity: full
+calibrator_diversity: full
+
+# Tier 3
+remediation_offered: true   # --remediate set
+remediation_accepted: true   # headless auto-accept for AUTO-FIXABLE registers (Drift/Necessary) per FR-9
+task_file_path: null   # authored in Wave 6 if remediation proceeds
+remediation_task_path: null   # HUMAN-REQUIRED registers present (the 3 blocking findings need human decision on remediation approach) → may emit null
+handoff_memory_key: null
+
+# Asymmetric-cost flags
+cannot_validate_without_user_input: false
+regression_present: false
+unauthorized_deviation_present: true
+blocked_by_low_confidence: false
+spec_is_wrong: false
+user_decision_required: false
+needs_human_decision: false   # the 3 blocking findings have clear remediation paths; not ambiguous
+
+# Per-task verdicts (UC-2 multi-task) — empty for UC-1
+per_task_verdicts: []
+interaction_effects_scanned: false   # UC-2 only
+interaction_effects_findings: 0
+
+# Budget pre-flight
+budget_forced_tier_downgrade: false
+budget_forced_stop: false
+budget_check_skipped: true
+forced_tier: null
+
+# Promotion (UC-2 only) — not applicable in PRE mode
+promotion_action: not-applicable
+promotion_adapter: null
+promotion_source: null
+promotion_destination: null
+promotion_log_path: null
+promotion_gate_passed: null
+promotion_skip_reason: null
+promotion_fail_reason: null
+promotion_override_used: null
+promotion_rollback_command: null
+promotion_checkpoint_path: null
+promotion_cross_fs: false
+promotion_pending: false

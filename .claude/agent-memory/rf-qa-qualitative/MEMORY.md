@@ -1,0 +1,1 @@
+- [QA-gate-sufficiency audit pattern](feedback_qa-gate-sufficiency-audit-pattern.md) — the 3 semantic checks rf-qa's structural PASS cannot reach (filename/path drift, lens agent-type drift, per-file coverage inside a gate)

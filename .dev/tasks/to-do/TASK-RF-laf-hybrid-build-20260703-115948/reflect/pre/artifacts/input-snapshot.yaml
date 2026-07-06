@@ -1,0 +1,22 @@
+input_tree_sha256: 187679821d8d12a78baca1337448138793cb075c58c2d34703934e121bfe9157
+file_count: 8
+input_sha256:
+  tasklist: 8d4dc472540e7b8e2da29af7bf7e3d589a5ac854380751686e72c0ba4d140c0a
+  spec: 02485b1428ef83de2ff1914f6743bcb8ac18b35018234139c42c8c07b6dc323c
+file_list:
+  - path: .dev/releases/current/0.1/design/agent-schemas.md
+    sha256: b862b811c962f1de179c887ee1c4543b19e0263f5177972475de0777cde856cc
+  - path: .dev/releases/current/0.1/design/boundary-contract.md
+    sha256: 8ecf41157d09026da1dbe70eadf599c367cf3db1d25b033ea731e66316ad59db
+  - path: .dev/releases/current/0.1/design/DESIGN.md
+    sha256: 02485b1428ef83de2ff1914f6743bcb8ac18b35018234139c42c8c07b6dc323c
+  - path: .dev/releases/current/0.1/design/kb-formats.md
+    sha256: f8aae312177ad0fbd66b305cdef1f084a46986845c920fe320da923b4a458394
+  - path: .dev/releases/current/0.1/design/safety-rubric.md
+    sha256: 4428c6654c03f84cb961ce367f41135e691d2ae7b43c94e5a2c637a6710e89ac
+  - path: .dev/releases/current/0.1/design/skill-specs.md
+    sha256: 977f3a65c90957e6c6126e53f62fb75fcdbe9b54f0c6922ac082ae4e2d8faa59
+  - path: .dev/releases/current/0.1/design/tier-coordinator.md
+    sha256: 856367812d2653158e9501b28020b6af5180e6ed5a32f67db646b3eb3e5c2d04
+  - path: .dev/tasks/to-do/TASK-RF-laf-hybrid-build-20260703-115948/TASK-RF-laf-hybrid-build-20260703-115948.md
+    sha256: 8d4dc472540e7b8e2da29af7bf7e3d589a5ac854380751686e72c0ba4d140c0a

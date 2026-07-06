@@ -1,0 +1,200 @@
+{
+  "findings": [
+    {
+      "title": "CI runs the checker without upstream, so a PR can alter an adopted file and update VENDOR.md to match",
+      "category": "security",
+      "severity_hint": "high",
+      "file": ".github/workflows/boundary.yml",
+      "line": 27,
+      "line_range_end": 27,
+      "in_diff": true,
+      "evidence": "run: uv run python scripts/check_boundary.py",
+      "why": "The required PR gate invokes verify mode without `--upstream`, and the script explicitly skips Rules B and C in that mode. Rule A only compares each adopted file to the mutable `laf_sha256` stored in the same PR-controlled `VENDOR.md`, so an attacker can edit an adopted body and update the manifest hash in the same change without failing CI. This undermines the boundary contract's main guarantee that adopted files remain equivalent to upstream after the deterministic prefix rewrite.",
+      "recommendation": "Make CI fetch or cache the pinned upstream checkout and run `uv run python scripts/check_boundary.py --upstream <checkout>`. Also verify the upstream checkout matches `VENDOR.md`'s `upstream_sha` and fail if Rules B/C cannot run in PR CI.",
+      "cross_references": [
+        "laf-adaptation/scripts/check_boundary.py:334",
+        "laf-adaptation/scripts/check_boundary.py:370",
+        "laf-adaptation/VENDOR.md:14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "title": "Adopted skill resources are only protected if their manifest rows remain present",
+      "category": "architecture",
+      "severity_hint": "high",
+      "file": "laf-adaptation/scripts/check_boundary.py",
+      "line": 400,
+      "line_range_end": 403,
+      "in_diff": true,
+      "evidence": "# F. Every agents/*.md and skills/**/SKILL.md is listed (or glob-covered) in manifest\nfor rel in disk_agents() + disk_skill_skillmds():\n    if not manifest_covers(rows, rel):\n        errors.append(f\"{rel}: not in VENDOR.md manifest\")",
+      "why": "The repository documents that adopted `resources/**` files are hashed in `VENDOR.md` to strengthen Rules A/B, but verify mode never discovers or requires those resource rows. A PR can modify an adopted resource and remove or corrupt its manifest row; Rule A then has no row to check, and Rule F only enumerates agents plus `SKILL.md` files. This is a concrete boundary bypass for adopted resources such as `skills/story-review/resources/prose-critique/analyze.py`.",
+      "recommendation": "In verify mode, enumerate all files under adopted skill directories and require exact manifest coverage for every existing adopted resource. When `--upstream` is available, also compare the expected upstream resource file set against the manifest and fail on missing/deleted rows.",
+      "cross_references": [
+        "laf-adaptation/CLAUDE.md:68",
+        "laf-adaptation/CLAUDE.md:70",
+        "laf-adaptation/VENDOR.md:66",
+        "laf-adaptation/scripts/check_boundary.py:261"
+      ],
+      "confidence": "high"
+    },
+    {
+      "title": "Manifest paths are trusted without rejecting absolute paths, traversal, or unmanaged prefixes",
+      "category": "security",
+      "severity_hint": "medium",
+      "file": "laf-adaptation/scripts/check_boundary.py",
+      "line": 161,
+      "line_range_end": 166,
+      "in_diff": true,
+      "evidence": "path, cls = cells[0], cells[1]\nif path.lower() == \"path\" or set(path) <= set(\"-: \"):  # header / separator\n    continue\nif cls.upper() not in (\"ADOPTED-CLEAN\", \"ADOPTED-PATCHED\", \"NATIVE\", \"BUILD-NEW\"):\n    continue\nrows.append(Row(path, cls.upper(), _norm_hash(cells[2]), _norm_hash(cells[3])))",
+      "why": "`parse_manifest()` accepts any path string, and verification later reads `REPO / r.path`. Absolute paths or `../` segments can escape `laf-adaptation/`; symlinked tracked files would also be followed by `read_text()`. The workflow does not print file contents, but it still lets PR-controlled manifest rows make CI read and hash arbitrary runner paths or crash on unexpected encodings, and it weakens the assumption that the manifest only describes managed framework files.",
+      "recommendation": "Validate manifest paths before constructing `Row`: require POSIX-style relative paths, reject absolute paths and `..`, restrict to the managed prefixes/classes, and resolve each path with an `is_relative_to(REPO)` check before reading. Consider rejecting symlinks for adopted files.",
+      "cross_references": [
+        "laf-adaptation/scripts/check_boundary.py:330",
+        "laf-adaptation/scripts/check_boundary.py:112",
+        "laf-adaptation/scripts/check_boundary.py:174"
+      ],
+      "confidence": "high"
+    },
+    {
+      "title": "`--upstream` verification does not validate the pinned upstream commit or the recorded upstream hashes",
+      "category": "correctness",
+      "severity_hint": "medium",
+      "file": "laf-adaptation/scripts/check_boundary.py",
+      "line": 345,
+      "line_range_end": 346,
+      "in_diff": true,
+      "evidence": "expected = sha256_text(prefix_rewrite(upstream_blob(upstream_dir, r.path)))\nif r.laf_sha256 != expected:",
+      "why": "Rules B/C use whatever directory is supplied via `--upstream`, but the script never checks that it is the `upstream_sha` recorded in `VENDOR.md`. It also never compares `sha256(upstream_blob)` with each row's `upstream_sha256`, so the upstream hash column can be spoofed or become stale without detection. This makes the proof depend on operator discipline rather than the manifest's recorded provenance.",
+      "recommendation": "Parse `upstream_sha` from `VENDOR.md` and verify the checkout commit before using it, or require an explicit checked commit parameter. For every adopted row, compare `sha256(upstream_blob)` to `upstream_sha256` before computing the prefix-rewritten expected LAF hash.",
+      "cross_references": [
+        "laf-adaptation/VENDOR.md:4",
+        "laf-adaptation/scripts/check_boundary.py:108",
+        "laf-adaptation/scripts/check_boundary.py:248",
+        "laf-adaptation/scripts/check_boundary.py:263"
+      ],
+      "confidence": "high"
+    },
+    {
+      "title": "Rule C is not constrained to the single allowed patched file, `agents/writer.md`",
+      "category": "correctness",
+      "severity_hint": "medium",
+      "file": "laf-adaptation/scripts/check_boundary.py",
+      "line": 351,
+      "line_range_end": 352,
+      "in_diff": true,
+      "evidence": "for r in rows:\n    if r.cls != \"ADOPTED-PATCHED\":\n        continue",
+      "why": "The contract says exactly one file, `agents/writer.md`, may be `ADOPTED-PATCHED`, with one additive adaptation skill line. The verifier accepts any manifest row classified as `ADOPTED-PATCHED` and applies the generic frontmatter-additive check, so another adopted agent could be reclassified and given LAF frontmatter in an upstream-backed verification run. That changes the framework integration surface without tripping the claimed invariant.",
+      "recommendation": "Add an explicit invariant that the set of `ADOPTED-PATCHED` rows is exactly `{ \"agents/writer.md\" }`. Also validate that writer's added lines are exactly the intended graft, not arbitrary `- laf-adaptation:*` additions.",
+      "cross_references": [
+        "laf-adaptation/CLAUDE.md:93",
+        "laf-adaptation/CLAUDE.md:94",
+        "laf-adaptation/VENDOR.md:33",
+        "laf-adaptation/agents/writer.md:12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "title": "Rule C's frontmatter/body comparison is lossy despite claiming byte-identical and additive-only semantics",
+      "category": "correctness",
+      "severity_hint": "medium",
+      "file": "laf-adaptation/scripts/check_boundary.py",
+      "line": 80,
+      "line_range_end": 103,
+      "in_diff": true,
+      "evidence": "lines = text.splitlines()\n...\nbody = \"\\n\".join(lines[i + 1:])\n...\nup_fm = {ln.rstrip() for ln in split_frontmatter(up_text)[0] if ln.strip()}\ncur_fm = {ln.rstrip() for ln in split_frontmatter(cur_text)[0] if ln.strip()}",
+      "why": "`splitlines()` drops line-ending and final-newline information, then the body is reconstructed with `\\n`, so Rule C is not actually byte-identical for the body slice. The frontmatter diff uses sets, which discard ordering and duplicate counts; this matters because `writer.md` deliberately preserves a duplicate `creative-writing-craft` line. If the manifest hash is updated, Rule C can miss removal of one duplicate, reordering, or newline-only drift that the contract says should be preserved verbatim.",
+      "recommendation": "Implement Rule C on exact slices of the original bytes/text, preserving line endings. Use an ordered or multiset diff for frontmatter lines, and specifically assert that upstream duplicate lines remain present with the same multiplicity unless the only delta is the approved writer graft.",
+      "cross_references": [
+        "laf-adaptation/agents/writer.md:7",
+        "laf-adaptation/agents/writer.md:8",
+        "laf-adaptation/CLAUDE.md:95",
+        "laf-adaptation/scripts/check_boundary.py:359"
+      ],
+      "confidence": "high"
+    },
+    {
+      "title": "Malformed manifest rows, invalid hashes, and duplicate paths are silently tolerated",
+      "category": "error-handling",
+      "severity_hint": "medium",
+      "file": "laf-adaptation/scripts/check_boundary.py",
+      "line": 159,
+      "line_range_end": 166,
+      "in_diff": true,
+      "evidence": "if len(cells) < 4:\n    continue\n...\nif cls.upper() not in (\"ADOPTED-CLEAN\", \"ADOPTED-PATCHED\", \"NATIVE\", \"BUILD-NEW\"):\n    continue\nrows.append(Row(path, cls.upper(), _norm_hash(cells[2]), _norm_hash(cells[3])))",
+      "why": "A boundary manifest is a security-relevant input, but the parser skips malformed or unknown-class rows instead of failing closed. `_norm_hash()` also accepts arbitrary non-placeholder strings as hashes, and `by_path = {r.path: r for r in rows}` later collapses duplicate paths for Rules D/E. Silent tolerance makes accidental manifest corruption hard to diagnose and can combine with Rule F's narrow coverage to drop adopted resource checks.",
+      "recommendation": "Make manifest parsing strict: fail on malformed rows after the header, invalid classes, duplicate paths, invalid SHA-256 formats for adopted rows, non-`NO_HASH` values for native/build-new rows, and adopted rows using placeholders.",
+      "cross_references": [
+        "laf-adaptation/scripts/check_boundary.py:143",
+        "laf-adaptation/scripts/check_boundary.py:147",
+        "laf-adaptation/scripts/check_boundary.py:324",
+        "laf-adaptation/VENDOR.md:21"
+      ],
+      "confidence": "high"
+    },
+    {
+      "title": "CI uses broad defaults and unpinned third-party actions for a security gate",
+      "category": "security",
+      "severity_hint": "low",
+      "file": ".github/workflows/boundary.yml",
+      "line": 17,
+      "line_range_end": 23,
+      "in_diff": true,
+      "evidence": "runs-on: ubuntu-latest\nsteps:\n  - name: Checkout\n    uses: actions/checkout@v4\n\n  - name: Set up uv\n    uses: astral-sh/setup-uv@v7",
+      "why": "This workflow is the repository's blocking boundary gate, but it relies on floating major-version action references and omits an explicit `permissions:` block. Floating action tags can move, and default token permissions vary by repository settings. There is no script-injection issue in the `run` line itself, but the supply-chain and least-privilege posture is weaker than expected for an enforcement workflow.",
+      "recommendation": "Add top-level `permissions: { contents: read }` and pin third-party actions to full commit SHAs, with a dependency update process for refreshing pins. Consider pinning the runner image version if reproducibility is important.",
+      "cross_references": [
+        ".github/workflows/boundary.yml:20",
+        ".github/workflows/boundary.yml:23"
+      ],
+      "confidence": "high"
+    },
+    {
+      "title": "NATIVE/BUILD-NEW classification depends on hardcoded name lists and defaults unknown additions to NATIVE",
+      "category": "anti-pattern",
+      "severity_hint": "low",
+      "file": "laf-adaptation/scripts/check_boundary.py",
+      "line": 210,
+      "line_range_end": 218,
+      "in_diff": true,
+      "evidence": "if parts[0] == \"agents\":\n    if name in BUILD_NEW_AGENTS:\n        return \"BUILD-NEW\"\n    return \"NATIVE\"\nif parts[0] == \"skills\" and len(parts) >= 2:\n    sk = parts[1]\n    if sk in BUILD_NEW_SKILLS:\n        return \"BUILD-NEW\"\n    return \"NATIVE\"",
+      "why": "`--init` preserves existing manifest classifications, but newly discovered non-upstream files are classified by closed, hardcoded name sets and otherwise silently become `NATIVE`. That makes provenance depend on script edits rather than a manifest or explicit policy, and it is easy for future BUILD-NEW additions to be mislabeled. This is not an immediate bypass, but it is brittle for a framework whose central architectural concern is provenance clarity.",
+      "recommendation": "Require explicit classification for newly discovered non-upstream agents/skills during `--init`, or keep the allowlist in a documented manifest section that the checker validates. At minimum, warn/fail on unknown non-upstream names instead of defaulting them to `NATIVE`.",
+      "cross_references": [
+        "laf-adaptation/scripts/check_boundary.py:43",
+        "laf-adaptation/scripts/check_boundary.py:46",
+        "laf-adaptation/scripts/check_boundary.py:238",
+        "laf-adaptation/VENDOR.md:79"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "cross_cutting_observations": [
+    {
+      "title": "The current trust root is the PR-controlled manifest rather than the pinned upstream baseline",
+      "category": "architecture",
+      "severity_hint": "high",
+      "affected_files": [
+        "laf-adaptation/scripts/check_boundary.py",
+        "laf-adaptation/VENDOR.md",
+        ".github/workflows/boundary.yml"
+      ],
+      "why": "Most serious bypasses come from the same design issue: default verification trusts `VENDOR.md` as both the policy and the expected hash source while CI skips the upstream-backed proof. That is fine for detecting accidental edits when the manifest is not changed, but it is not sufficient as a PR gate for deliberate or mistaken manifest edits.",
+      "recommendation": "Treat `VENDOR.md` as an input to validate, not as the final authority. CI should validate against the pinned upstream commit, check raw upstream hashes, and fail closed if upstream validation cannot run.",
+      "confidence": "high"
+    },
+    {
+      "title": "The checker's strongest guarantees are implemented only during `--init` or optional upstream-backed runs",
+      "category": "correctness",
+      "severity_hint": "medium",
+      "affected_files": [
+        "laf-adaptation/scripts/check_boundary.py",
+        ".github/workflows/boundary.yml",
+        "laf-adaptation/.githooks/pre-commit"
+      ],
+      "why": "Resource enumeration, upstream collision checks, ADOPTED-CLEAN equivalence, and ADOPTED-PATCHED diff validation all rely on either `--init` or `--upstream`; the everyday CI and pre-commit paths run without that context. This creates a gap between the contract language and what the blocking gate actually enforces.",
+      "recommendation": "Either make upstream-backed verification mandatory for blocking gates or narrow the documented guarantee of default verification. Prefer mandatory upstream-backed CI for PRs, with manifest-only mode reserved for quick local diagnostics.",
+      "confidence": "high"
+    }
+  ],
+  "notes_for_orchestrator": "Reviewed the executable/automation scope only: `laf-adaptation/scripts/check_boundary.py`, `.github/workflows/boundary.yml`, `laf-adaptation/.githooks/pre-commit`, `laf-adaptation/VENDOR.md`, plus boundary-contract references. No code changes were made. Highest-priority remediation is to make CI validate against the pinned upstream baseline and to fail closed on malformed or incomplete manifests."
+}

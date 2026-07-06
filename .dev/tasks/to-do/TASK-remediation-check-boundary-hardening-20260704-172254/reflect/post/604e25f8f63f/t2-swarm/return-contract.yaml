@@ -1,0 +1,71 @@
+contract_version: '1.0'
+status: failed
+job_id: reflect-ensemble
+started: ''
+finished: ''
+elapsed_ms: 0
+caller:
+  skill: null
+  skill_version: null
+  invocation_label: reflect-ensemble
+  kind: cli
+lens: reflect-review
+lens_source: registry
+target:
+  path: ''
+  checksum: ''
+  truncated: false
+  truncation_line_cap: 4000
+workers_requested: 3
+workers_succeeded: 1
+workers_failed: 2
+output_files:
+- index: 0
+  path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-00-kimi-k2.7-code.final.md
+  raw_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-00-kimi-k2.7-code.raw.md
+  meta_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-00-kimi-k2.7-code.meta.json
+  final_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-00-kimi-k2.7-code.final.md
+  model_id: kimi-k2.7-code
+  model_label: kimi-k2.7-code
+  bytes: 184
+  status: proxy_error
+  http_code: 400
+  attempts: 1
+  elapsed_ms: 1061
+- index: 1
+  path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-01-qwen3.6-plus.final.md
+  raw_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-01-qwen3.6-plus.raw.md
+  meta_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-01-qwen3.6-plus.meta.json
+  final_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-01-qwen3.6-plus.final.md
+  model_id: qwen3.6-plus
+  model_label: qwen3.6-plus
+  bytes: 8054
+  status: success
+  http_code: 200
+  attempts: 1
+  elapsed_ms: 91887
+- index: 2
+  path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-02-glm-5.2.final.md
+  raw_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-02-glm-5.2.raw.md
+  meta_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-02-glm-5.2.meta.json
+  final_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-02-glm-5.2.final.md
+  model_id: glm-5.2
+  model_label: glm-5.2
+  bytes: 15919
+  status: parse_error
+  http_code: 200
+  attempts: 1
+  elapsed_ms: 64757
+amalgamation_mode: normalize+merge
+merged_path: null
+caller_metadata:
+  suspect: true
+  tier: T2
+recommended_next_command: /sc:adversarial --compare <existing-reflect-report>,/config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-01-qwen3.6-plus.final.md
+  --suspect-source /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-01-qwen3.6-plus.final.md
+artifacts:
+  manifest_path: ''
+  state_path: ''
+  event_log_jsonl: ''
+  event_log_md: ''
+  done_sentinel: ''

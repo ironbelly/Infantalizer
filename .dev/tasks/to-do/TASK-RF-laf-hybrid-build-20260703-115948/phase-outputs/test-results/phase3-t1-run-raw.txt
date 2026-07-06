@@ -1,0 +1,27 @@
+=== Phase-3 T1 run — artifact capture (2026-07-03 23:51) ===
+
+--- Inv.3 check: 'Grumpy King' (tier-transformed) must be ABSENT from shared kb/canon/ ---
+PASS: no transformed name in shared kb/canon/tolkien/ch-01.md
+shared canon uses SOURCE names: Denethor Éowyn Nazgûl Sauron Théoden 
+tier-1 continuity uses TRANSFORMED names: Grumpy King Grumpy Riders Sad Leader 
+
+--- per-step artifact paths produced ---
+1 analyst:            work/analysis/ch-01.yaml
+3 writer v1:          work/drafts/ch-01-t1-v1.md
+4 critic:             OK
+5 editor:             OK
+6 writer v2:          work/drafts/ch-01-t1-v2.md
+7 continuity-checker: OK
+8 safety-verifier:    work/safety-reports/ch-01-t1.md
+9 reader-sim:         OK
+11 chronicler canon:  kb/adaptations/tolkien/tier-1/chapters/ch-01/canon-delta.md kb/adaptations/tolkien/tier-1/continuity.md kb/adaptations/tolkien/tier-1/decisions.md 
+   shared canon:      kb/canon/tolkien/ch-01.md kb/timeline/tolkien.md 
+
+--- safety verdict block ---
+  result: PASS
+  sections:
+    forbidden_content:       PASS
+
+--- v2.0 tags present in analysis ---
+     16 confidence: CERTAIN
+      3 confidence: PROBABLE

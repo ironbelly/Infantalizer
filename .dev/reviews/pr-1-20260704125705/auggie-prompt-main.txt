@@ -1,0 +1,31 @@
+You are reviewing a code change (PR #1) for the repository at the workspace root (/config/workspace/Infantalizer). Report problems as structured JSON.
+
+## Context
+
+Target: PR #1 "LAF 0.1 — CWS Hybrid Integration (Path C)" on ironbelly/Infantalizer.
+This is an ALL-ADDITIONS first-commit PR introducing the laf-adaptation/ framework — a prompt+YAML-config literary-adaptation system that vendors a patch-clean subset of the upstream "creative-writing-skills" repo and enforces a "boundary contract" that adopted files stay byte-identical to upstream (apart from a deterministic prefix rewrite).
+
+Diff range: main...feature/laf-0.1-cws-hybrid
+Files changed (100): 69 markdown (agent/skill prose), 17 YAML (kb configs + CI), plus the files below. The full diff is at: .dev/reviews/pr-1-20260704125705/inputs/diff.patch
+
+## SCOPE — concentrate your effort here (the only executable/automation code):
+- laf-adaptation/scripts/check_boundary.py  ← THE ENFORCEMENT TOOL. Pure-stdlib Python that parses VENDOR.md's hash manifest and verifies rules A-F (A: adopted files match recorded sha256; B: ADOPTED-CLEAN == upstream-after-prefix-rewrite; C: writer.md diff frontmatter-only+additive; D: the quartet critic/editor/reader-sim/continuity-checker intact + editor never folded; E: no NATIVE/BUILD-NEW filename collides with upstream; F: every agents/*.md + skills/**/SKILL.md is in the manifest). Modes: default verify (exit 1 on violation), --init (writes manifest, needs --upstream), --report (exit 0). Roots paths via Path(__file__).resolve().parents[1].
+- .github/workflows/boundary.yml  ← CI that runs check_boundary.py.
+- laf-adaptation/.githooks/pre-commit  ← opt-in bash hook that runs check_boundary.py.
+- laf-adaptation/VENDOR.md  ← the hash manifest the script parses.
+
+The markdown/YAML prose files are prompt/config content — do NOT line-review them for "bugs"; only flag genuine architecture/consistency/anti-pattern issues in the framework design.
+
+## Focus areas — cover EACH; use codebase retrieval, do not react only to the diff:
+- security: check_boundary.py path handling / manifest parsing (path traversal, unsanitized manifest rows, sha256 spoofing gaps); boundary.yml (script injection, unpinned actions, permissions); pre-commit (unsafe cd/eval). Does the boundary contract have a bypass? Can an attacker alter an adopted body without failing the gate?
+- correctness: does check_boundary.py's rules A-F logic actually enforce what the contract claims? Off-by-one / edge cases in body_of()/frontmatter_line_diff()/prefix_rewrite()/manifest_covers() (the /** glob prefix-match). Does verify-without-upstream (B/C skipped) leave a real gap? Does --init classify NATIVE vs BUILD-NEW soundly? Error handling on malformed VENDOR.md / missing files.
+- architecture: is the boundary-contract enforcement sound end-to-end? Gaps where an adopted file could drift undetected. Manifest-vs-glob coverage (Rule F only globs SKILL.md — are adopted resources/** integrity-checked?). The single-script/ADR-006 constraint.
+- quality: resource handling, robustness, maintainability of check_boundary.py.
+- anti-patterns: coupling/fragility in the enforcement design; the provenance-map hardcoding of NATIVE/BUILD-NEW names.
+
+## Output contract (STRICT): respond with a single JSON object matching:
+{"findings":[{"title":"...","category":"security|correctness|architecture|quality|anti-pattern|error-handling|resource-leak|...","severity_hint":"critical|high|medium|low|nit","file":"<repo-rel>","line":<int>,"line_range_end":<int|null>,"in_diff":<bool>,"evidence":"<verbatim excerpt or null>","why":"<2-4 sentences>","recommendation":"<concrete change>","cross_references":["<path:line>"],"confidence":"high|medium|low"}],"cross_cutting_observations":[{"title":"...","category":"...","severity_hint":"...","affected_files":["..."],"why":"...","recommendation":"...","confidence":"..."}],"notes_for_orchestrator":"..."}
+
+## Quality bar
+- Every finding cites a real file:line. If unverifiable, set confidence "low". Do not invent paths.
+- Highest-signal 3-6 findings per focus area, not exhaustive. Emphasize check_boundary.py.

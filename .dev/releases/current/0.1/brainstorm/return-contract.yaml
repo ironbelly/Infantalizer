@@ -1,0 +1,34 @@
+contract_version: "1.0"
+status: success
+seed_brief_path: .dev/releases/current/0.1/brainstorm/seed-brief.md
+merged_output_path: .dev/releases/current/0.1/brainstorm/merged-requirements.md
+convergence_score: 0.72
+adversarial_artifacts_dir: .dev/releases/current/0.1/brainstorm/adversarial
+domain: architecture
+proposal_count: 3
+enrichment_used:
+  - source: codebase
+    quality_tier: primary
+handoff_action: design
+handoff_output_path: null
+unresolved_conflicts: []
+
+# --- telemetry (non-stable) ---
+decision: "C — Hybrid"
+base_proposal: C
+grafts:
+  - "G1: per-tier canon state (from B, non-optional)"
+  - "G2: sequential multi-tier fallback (from B)"
+  - "G3: quartet-intact invariant (from A)"
+scoring:
+  A_fork: 29
+  B_native: 33
+  C_hybrid: 41
+constraints_surviving: 6
+open_questions_resolved: 12
+agent_spec: "opus:architect:'native adaptation-first coherence',sonnet:analyzer:'reuse mature machinery',haiku:refactorer:'minimal-risk selective adoption'"
+verified_facts:
+  - "chronicler.md unshipped in cw/agents AND agents (canon-extraction greenfield on all paths)"
+  - "no childrens.md/ya.md genre resources in CWS"
+  - "CWS 11th agent is web-researcher, not chronicler"
+  - "LAF ships 4 tier profiles + 2 rule files + 2 concept maps + 4 prompts + 1 template"

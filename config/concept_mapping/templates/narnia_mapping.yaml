@@ -1,0 +1,98 @@
+# Narnia Work Mapping
+# The Lion, the Witch and the Wardrobe — character and concept translations
+#
+# Companion documentation: docs/guides/lion-witch-wardrobe/
+# Structure mirrors templates/tolkien_mapping.yaml. Load after
+# config/concept_mapping/universal_mappings.yaml (most-specific wins).
+
+work_metadata:
+  title: "The Lion, the Witch and the Wardrobe"
+  author: "C.S. Lewis"
+  key_challenges:
+    - "Sacrificial death AND resurrection (Aslan on the Stone Table)"
+    - "Petrification / turning creatures to stone (the White Witch's wand)"
+    - "Betrayal of family for temptation (Edmund and the Turkish Delight)"
+    - "Pitched battle (Beruna)"
+    - "Wartime evacuation frame (the Blitz, children sent away)"
+    - "Christian-allegory layer (adapt the surface story; neither add nor strip the allegory)"
+
+characters:
+  lucy:
+    tier_1: {name: "Lucy", archetype: "Brave Friend", key_moment: "First through the wardrobe - MUST INCLUDE", traits: ["curious", "kind"]}
+    tier_3: {can_show: "Being disbelieved by her siblings, and her steady faith in what she saw"}
+
+  edmund:
+    tier_1: {name: "Edmund", archetype: "Friend Who Makes a Mistake", betrayal: "Accident - got hungry, wandered off, forgot to tell family", redemption: "Says sorry, everyone forgives him - MUST INCLUDE"}
+    tier_3: {name: "Edmund", can_show: "Real betrayal for the treat, its cost, and his genuine redemption"}
+
+  susan:
+    tier_1: {archetype: "Big Helper", traits: ["careful", "caring"]}
+
+  peter:
+    tier_1: {archetype: "The Great Helper", leadership: "Best helper who looks after everyone, not a warrior-king"}
+    tier_3: {can_show: "Leadership tested in battle"}
+
+  aslan:
+    tier_1: {name: "Aslan", archetype: "Wise, Warm Lion Friend", stone_table: "Has a big rest on the table, then wakes up - OMIT binding/shaving/killing", traits: ["warm", "gentle", "strong"]}
+    tier_3: {name: "Aslan", can_show: "His sacrifice, death, and return - name the giving-of-life"}
+
+  white_witch:
+    tier_1: {name: "The Snow Queen", cause: "Grumpy because it was always cold and never Christmas", wand: "A silly wand that makes creatures play statues", omit: ["killing Aslan", "the stone knife"]}
+    tier_3: {name: "The White Witch (Jadis)", can_show: "True menace, real petrification, that she takes Aslan's life"}
+
+  mr_tumnus:
+    tier_1: {name: "Mr. Tumnus", archetype: "Kind Faun Friend", capture: "Has to hold very still (statue game) until warm friends free him", omit: ["arrest", "turned to stone as punishment"]}
+    tier_3: {can_show: "Arrested and petrified for helping Lucy; freed by Aslan"}
+
+  the_beavers:
+    tier_1: {archetype: "Cozy Helper Friends", role: "Give the children a warm meal and lead the way"}
+
+concepts:
+  turkish_delight:
+    tier_1: "The Yummiest Treat (so yummy Edmund forgets everything else)"
+    tier_3: "Enchanted Turkish Delight (addictive, used to control Edmund)"
+
+  the_wardrobe:
+    tier_1: "The Magic Doorway (a cozy coat cupboard that opens into snow)"
+    tier_3: "The Wardrobe (a threshold between worlds)"
+
+  always_winter:
+    tier_1: "The Long Cold Spell (grumpy weather with no Christmas - fixable)"
+    tier_3: "'Always winter and never Christmas' (the Witch's frozen tyranny)"
+
+  petrification:
+    tier_1: "Playing Statues (a wand makes creatures hold still; warm breath un-freezes them)"
+    tier_3: "Turned to Stone (real, frightening; reversed when Aslan breathes on them)"
+
+  the_stone_table:
+    tier_1: "The Big Resting Table (where Aslan has a deep rest and then wakes)"
+    tier_3: "The Stone Table (where Aslan is killed; it cracks when he returns)"
+
+  deep_magic:
+    tier_1: "The Old Promise (a rule that a mistake must be set right - Aslan sets it right)"
+    tier_3: "The Deep Magic and Deeper Magic (the law of sacrifice, and the law that undoes death)"
+
+key_scenes:
+  edmunds_betrayal:
+    tier_1: {name: "Edmund's Big Mistake", framing: "Got carried away by the treat and wandered off; feels sorry; forgiven", omit: ["deliberate betrayal", "danger to siblings"]}
+    tier_3: {approach: "Show the betrayal, the harm, and the earned reconciliation"}
+
+  stone_table:
+    tier_1: {name: "Aslan's Big Rest", framing: "Aslan trades a long rest to fix Edmund's mistake, then wakes up warm and happy", omit: ["binding", "shaving", "the knife", "death"]}
+    tier_3: {approach: "Aslan gives his life for Edmund; he dies and returns by deeper magic"}
+
+  battle_of_beruna:
+    tier_1: {name: "The Big Tidy-Up", framing: "Everyone works together to clean up the mess and wake the statue-friends", omit: ["killing", "weapons"]}
+    tier_3: {approach: "Battle summarized; show stakes and that Aslan turns the tide"}
+
+  the_thaw:
+    tier_1: {name: "Christmas Comes at Last", framing: "The cold melts, Father Christmas visits, everyone is warm - a happy ending"}
+    tier_3: {approach: "The thaw as the Witch's power breaking"}
+
+master_translation_table:
+  - {original: "Aslan's sacrifice and resurrection", tier_1: "A big rest, then waking up", principle: "Death → Rest / Emotional Calibration"}
+  - {original: "The White Witch's cruelty", tier_1: "The grumpy Snow Queen (no Christmas)", principle: "Agency Externalization"}
+  - {original: "Turning creatures to stone", tier_1: "Playing statues (un-frozen by warm breath)", principle: "Nightmare Prevention"}
+  - {original: "Edmund's betrayal", tier_1: "A silly mistake, then sorry", principle: "Betrayal → Accident"}
+  - {original: "The Battle of Beruna", tier_1: "The Big Tidy-Up", principle: "Conflict → Cooperation"}
+  - {original: "Heroism as fighting", tier_1: "Heroism as helping and comforting", principle: "Prosocial Centering"}
