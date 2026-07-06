@@ -20,7 +20,7 @@ scripts or a CLI.
 | Class | What it is | Editing rule |
 |-------|-----------|--------------|
 | **ADOPTED** | CWS files vendored verbatim (patch-clean) from upstream `cw/`. The domain-agnostic review / orchestration / kb machinery. | **Never edit an adopted body.** The only permitted vendor-time transform is the uniform prefix rewrite `creative-writing-skills:` → `laf-adaptation:`. See `VENDOR.md` for the pinned manifest. |
-| **ADOPTED-PATCHED** | Exactly one file: `agents/writer.md`. Adopted body, plus **one** additive `skills:` frontmatter line. | Frontmatter-additive only (`- laf-adaptation:<skill>`); body byte-identical to upstream. |
+| **ADOPTED-PATCHED** | Exactly one file: `agents/writer.md`. Adopted body, plus **one** additive `skills:` frontmatter line. | Frontmatter-additive only (`- laf-adaptation:<skill>`); body text-normalized (LF) identical to upstream. |
 | **NATIVE** | LAF-authored files carrying the domain-specific adaptation spine: tier axis, source-fidelity, transformation rules. `agents/analyst.md`, `agents/safety-verifier.md`; skills `adaptation-tiers`, `adaptation-rules`, `source-fidelity`. | Author freely; not hash-pinned; must not collide with an upstream file name (Rule E). |
 | **BUILD-NEW** | Greenfield in *both* systems: tier-aware canon extraction and cross-tier reconciliation. `agents/chronicler.md`, `agents/tier-coordinator.md`; skill `adaptation-safety`. | Author freely; not hash-pinned; must not collide with an upstream file name (Rule E). |
 
@@ -41,8 +41,8 @@ hash-pins `agents/*.md` and `skills/**/SKILL.md`. Everything else is intentional
 is classified as follows:
 
 - `scripts/` — **NATIVE** tooling. Exactly one script (`check_boundary.py`) per ADR-006; not a runtime.
-- `kb/tiers/` + `kb/adaptation-mapping/` — **NATIVE** carried-verbatim YAML (byte-faithful copies of LAF's
-  `config/`).
+- `kb/tiers/` + `kb/adaptation-mapping/` — **NATIVE** carried-verbatim YAML (text-normalized (LF)
+  faithful copies of LAF's `config/`).
 - `kb/adaptations/<work>/tier-<N>/` — **NATIVE** graft G1.
 - `kb/` adopted layers (`canon/`, `characters/`, `world/`, `timeline/`, `styles/`, `vocab.md`, `issues/`)
   — **ADOPTED** scaffold (runtime-populated).
@@ -55,7 +55,7 @@ These are intentionally outside the Rule-F hash-pin glob: only adopted `agents/*
 `skills/**/SKILL.md` bodies are hash-pinned, because those are the patch-clean, upstream-syncable subset.
 
 **Adopted-provenance count (11 = 10 ADOPTED-CLEAN + 1 ADOPTED-PATCHED).** Of the 15 agents, **11 are
-adopted-provenance**: 10 are ADOPTED-CLEAN (vendored byte-identical after the prefix rewrite) and exactly
+adopted-provenance**: 10 are ADOPTED-CLEAN (vendored text-normalized (LF) identical after the prefix rewrite) and exactly
 **1 is ADOPTED-PATCHED (`agents/writer.md`)** — adopted body plus one additive `skills:` frontmatter line.
 The remaining 4 are 2 NATIVE + 2 BUILD-NEW.
 
@@ -91,14 +91,35 @@ against upstream stays a clean fast-forward as long as adopted bodies never drif
 [`UPSTREAM-SYNC.md`](UPSTREAM-SYNC.md)).
 
 - The **one** demonstration of the contract is `agents/writer.md` (ADOPTED-PATCHED): it gets a single
-  additive line `- laf-adaptation:adaptation-rules` and nothing else. Its body is byte-identical to
-  upstream; even upstream quirks (e.g. its duplicate `creative-writing-craft` skill line) are preserved
+  additive line `- laf-adaptation:adaptation-rules` and nothing else. Its body is text-normalized (LF)
+  identical to upstream; even upstream quirks (e.g. its duplicate `creative-writing-craft` skill line) are preserved
   verbatim, not "fixed".
-- **Enforcement:** `uv run python scripts/check_boundary.py` (verify mode). It exits non-zero on any
-  violation of rules A–F (adopted-hash match, ADOPTED-CLEAN == upstream-after-rewrite, writer diff
-  frontmatter-only+additive, G3 quartet intact + `editor.md` never folded, no NATIVE/BUILD-NEW name
-  collision, every managed file manifested). The pre-commit hook (`.githooks/pre-commit`, opt-in) and CI
-  both run it.
+- **Enforcement:** `uv run python scripts/check_boundary.py` (verify mode, "Mode V"). It exits non-zero
+  on any violation of:
+  - **A** — every adopted file matches its recorded `laf_sha256` (catches any accidental edit).
+  - **A′** (CH-1) — every ADOPTED-CLEAN body re-derives, via the inverse prefix rewrite
+    (`laf-adaptation:` → `creative-writing-skills:`), to its pinned `upstream_sha256`. This re-anchors
+    adopted-file integrity to the **upstream-derived** hash rather than the self-referential
+    `laf_sha256`: a commit that edits an adopted body AND rewrites only its `laf_sha256` row now FAILS
+    (the body no longer matches the pinned `upstream_sha256`). Forging `upstream_sha256` is a loud,
+    review-visible change to a field documented as upstream-derived. Mode V is therefore a
+    **single-field `laf_sha256`-forgery gate**. It does **NOT** catch a **two-field forgery**
+    (rewriting BOTH `laf_sha256` AND `upstream_sha256` to be self-consistent) — that bypasses Mode V
+    by construction and is caught only by Mode U (Rules B/C against a pinned-SHA upstream checkout)
+    plus branch protection + mandatory human review of any `upstream_sha256` diff. See `VENDOR.md`
+    "Hash semantics" for the full honest statement of what Mode V does and does not close.
+  - **C′** (CH-3) — `ADOPTED-PATCHED` is reserved for `agents/writer.md` only.
+  - **D** — G3 quartet intact (`critic`/`editor`/`reader-sim`/`continuity-checker` ADOPTED-CLEAN) and
+    `editor.md` never folded.
+  - **E** — no NATIVE/BUILD-NEW name collides with an upstream file.
+  - **F / F′** (CH-2) — every `agents/*.md` and `skills/**/SKILL.md` is manifested, AND every file
+    under an adopted skill's `resources/**` is manifested.
+  - Parser hardening (CH-6) + path safety (CH-4): malformed / duplicate / bad-hash rows and
+    path-traversal / absolute manifest paths FAIL loud.
+  In **Mode U** (`--upstream <checkout>`), Rules B/C additionally run a full upstream diff, and CH-5
+  asserts the checkout `HEAD` == VENDOR.md's pinned `upstream_sha`. Mode U is the absolute guarantee;
+  it is not (yet) run in CI — see `.github/workflows/boundary.yml` and `VENDOR.md`. The pre-commit hook
+  (`.githooks/pre-commit`, opt-in) and CI both run Mode V.
 - **Enabling the opt-in hook:** `git config core.hooksPath laf-adaptation/.githooks` (run once, from the
   git repo root). To bypass the hook for a single commit: `git commit --no-verify`.
 - **CI location:** the CI workflow lives at the **git repo root** as `.github/workflows/boundary.yml`
@@ -125,7 +146,7 @@ against upstream stays a clean fast-forward as long as adopted bodies never drif
   interpolated at request time (T3 floor, T5 ceiling, conservative midpoint;
   `agency_externalization = FORBIDDEN`) — never stored as a file.**
 - **Carried-verbatim = zero rework.** Port-source YAMLs (`kb/tiers/*.yaml`, `kb/adaptation-mapping/*`,
-  the transformation-rule resources) are byte-faithful copies of LAF's `config/` — including deliberate
+  the transformation-rule resources) are text-normalized (LF) faithful copies of LAF's `config/` — including deliberate
   schema drift (T1-T3 `conflict_to_cooperation`/`death_euphemism` vs T5 `conflict_handling`/
   `death_handling`). Normalization belongs in the *reader* skills (key-tolerant `.get(a) or .get(b)`),
   never in the vendored file.

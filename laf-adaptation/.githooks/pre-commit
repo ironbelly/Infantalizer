@@ -28,6 +28,11 @@ if ! uv run python scripts/check_boundary.py; then
   fail=1
 fi
 
+echo "pre-commit: boundary checker regression tests..."
+if ! uv run python scripts/test_check_boundary.py; then
+  fail=1
+fi
+
 if [ "$fail" -ne 0 ]; then
   echo >&2
   echo "pre-commit: boundary contract FAILED. An adopted file drifted, a manifest row is" >&2

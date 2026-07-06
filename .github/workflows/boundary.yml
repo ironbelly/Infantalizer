@@ -1,10 +1,37 @@
 name: Boundary Contract
 
 # The ONLY CI this framework ships (ADR-006: prompt + YAML-config, not software —
-# no test/build matrix). It runs the boundary-contract gate in verify mode, which
-# needs NO --upstream checkout: rules A (adopted-hash match) / D (quartet intact) /
-# E (no name collision) / F (manifest coverage) work on the vendored tree + the
-# VENDOR.md manifest alone. Blocking: a failure fails the PR / push.
+# no test/build matrix). It runs the boundary-contract gate in verify mode (Mode V),
+# which needs NO --upstream checkout. The rules enforced on the vendored tree +
+# the VENDOR.md manifest alone are:
+#   A  — every adopted file matches its recorded laf_sha256 (catches ANY accidental edit)
+#   A′ — every ADOPTED-CLEAN body re-derives, via the inverse prefix rewrite, to its
+#        pinned upstream_sha256 (CH-1/H1). This re-anchors adopted-file integrity to
+#        the upstream-derived hash, so a commit that edits an adopted body AND rewrites
+#        only its laf_sha256 row FAILS (the body no longer matches the pinned
+#        upstream_sha256). Forging upstream_sha256 is a loud, review-visible change to a
+#        field documented as upstream-derived. Mode V is therefore a SINGLE-FIELD
+#        laf_sha256-forgery gate. It does NOT catch a two-field forgery (rewriting BOTH
+#        laf_sha256 AND upstream_sha256 to be self-consistent) — that bypasses Mode V
+#        by construction and is caught only by Mode U (Rules B/C against a pinned-SHA
+#        upstream checkout) plus branch protection + mandatory human review of any
+#        upstream_sha256 diff. See VENDOR.md "Hash semantics" for the full statement.
+#   C′ — ADOPTED-PATCHED is reserved for agents/writer.md (CH-3/M1)
+#   D  — quartet intact (critic/editor/reader-sim/continuity-checker ADOPTED-CLEAN)
+#   E  — no NATIVE/BUILD-NEW name collides with an upstream file
+#   F  — every agents/*.md and skills/**/SKILL.md is manifested
+#   F′ — every file under an adopted skill's resources/** is manifested (CH-2/H2)
+# Plus parser hardening (CH-6/M4) and path-safety (CH-4/M2): malformed/duplicate/
+# bad-hash rows and path-traversal/absolute manifest paths FAIL loud.
+#
+# What Mode V does NOT do (documented honestly, not over-claimed): it does not check
+# out the upstream, so Rules B/C (full upstream diff) and the absolute
+# upstream-anchored guarantee do not run here. ADOPTED-PATCHED (writer.md) and any
+# literal-bearing body's ABSOLUTE guarantee requires Mode U (`--upstream`), where
+# CH-5/M3 additionally asserts the checkout HEAD == VENDOR.md's pinned upstream_sha.
+# Mode U in CI (Option B) is a deferred follow-up (OQ-4); until then branch
+# protection + human review backstop the residual absolute-guarantee gap.
+# Blocking: a failure fails the PR / push.
 
 on:
   push:
@@ -25,3 +52,7 @@ jobs:
       - name: Boundary contract (verify)
         working-directory: laf-adaptation
         run: uv run python scripts/check_boundary.py
+
+      - name: Boundary checker regression tests
+        working-directory: laf-adaptation
+        run: uv run python scripts/test_check_boundary.py

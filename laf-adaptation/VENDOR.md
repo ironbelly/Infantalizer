@@ -17,6 +17,11 @@ prefix_rewrite: "creative-writing-skills:" -> "laf-adaptation:"   # uniform, det
 - `laf_sha256` is the hash of the on-disk (already-prefix-rewritten) file. Still asserted by Rule A.
 - NATIVE / BUILD-NEW rows carry `—` (NO_HASH) for both columns; an adopted row missing either hash is
   a parse error (CH-6).
+- **Hashes are computed over the LF-normalized text form** (`Path.read_text`), so CRLF and LF versions
+  of the same content hash identically; the contract is **text-normalized, not byte-accurate**. This is
+  by design for a 0.1 prompt+YAML framework whose upstream is LF (see `CRLFNormalizationTests`). A
+  future switch to byte-level hashing is a deliberate, manifest-wide re-vendor (`--init`), not an
+  in-place change.
 
 ### What Mode V catches — and what it does NOT (documented honestly, no over-claim)
 Mode V is a **single-field `laf_sha256`-forgery gate**: it catches a malicious PR that edits an
