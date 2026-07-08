@@ -1,0 +1,48 @@
+You are performing an evidence-based code review of a GitHub Pull Request. The PR is "LAF 0.1 — CWS Hybrid Integration (Path C)" on the Infantalizer repo (PR #1), base=main, head=feature/laf-0.1-cws-hybrid.
+
+This PR introduces a "literary-adaptation framework" (`laf-adaptation/`) built by vendoring a patch-clean subset of an upstream repo and grafting a native adaptation spine onto it, enforced by a Python boundary-contract script that runs in CI.
+
+FOCUS AREAS: correctness, security, anti-patterns, tests/CI, architecture. Depth is "quick" (single pass, high-signal only).
+
+REVIEW TARGET — the executable code surface (these are the ONLY files where real bugs can live; everything else is markdown prose or static YAML data):
+1. laf-adaptation/scripts/check_boundary.py  (709 lines — the boundary-contract enforcer; the security-critical keystone of the whole PR. Hash-verify vendored files, prefix-rewrite checks, additive-only writer check, manifest coverage. This MUST be correct or the entire "patch-clean vendoring" claim is void.)
+2. laf-adaptation/skills/story-review/resources/prose-critique/analyze.py  (309 lines — prose analysis helper)
+3. .github/workflows/boundary.yml  (54 lines — CI that runs check_boundary.py)
+4. laf-adaptation/.githooks/pre-commit  (39 lines — local pre-commit hook)
+5. The YAML config schema files (laf-adaptation/kb/tiers/*.yaml, laf-adaptation/templates/work-mapping-template.yaml, config/age_profiles/*.yaml, config/concept_mapping/*.yaml) — review for schema consistency / cross-file drift, not line-by-line.
+
+WHAT I NEED FROM YOU:
+- Read the actual files on disk (use your codebase-retrieval / read tools). The full diff is at /config/workspace/Infantalizer/.dev/reviews/pr-1-20260705134814/inputs/diff.patch if you want diff context, but GROUND every finding in a real file:line that exists in the working tree right now.
+- For check_boundary.py specifically, scrutinize: the hashing (algorithm, mode, encoding), the prefix-rewrite equivalence check (does it actually prove byte-equality after rewrite? are there normalization pitfalls?), the additive-only writer check (can it be bypassed?), the manifest coverage logic (off-by-one? partial-match? path normalization collisions?), error/exit-code handling, and any path-traversal or path-comparison bugs (os.path vs pathlib, trailing slashes, case sensitivity, symlink handling).
+- Flag CI/workflow issues: does boundary.yml actually fail the build on check_boundary.py non-zero exit? Are Python deps / uv setup correct? Is the pre-commit hook wired correctly and does it run the same check as CI?
+- Flag any security concerns: untrusted input handling, subprocess/shell injection, eval, unsafe YAML load (yaml.load without SafeLoader), hard-coded secrets.
+- Flag anti-patterns: duplicated logic, dead code, swallowed exceptions, mutable default args, broad except.
+
+OUTPUT FORMAT — return STRICT JSON only (no prose before or after), wrapped in a ```json fence. Schema:
+
+```json
+{
+  "findings": [
+    {
+      "title": "short title",
+      "file": "path/relative/to/repo/root",
+      "line": 123,
+      "line_range": [123, 130],
+      "severity": "critical|high|medium|low|nit",
+      "category": "security|correctness|anti-pattern|ci|architecture|tests|docs",
+      "evidence": "the actual code snippet from the cited lines, copied verbatim",
+      "why": "one paragraph on impact",
+      "recommendation": "concrete fix"
+    }
+  ],
+  "architectural_observations": [
+    {"observation": "...", "files": ["path:line", "..."]}
+  ],
+  "uncertain": ["anything you could not ground in a real file:line — list it here instead of fabricating"]
+}
+```
+
+RULES:
+- Every finding MUST cite a file:line that exists. If you cannot find the exact line, put it in "uncertain" — do NOT guess line numbers.
+- Do not invent file paths. If unsure whether a path exists, check.
+- Be honest about uncertainty; high-signal only (quick depth).

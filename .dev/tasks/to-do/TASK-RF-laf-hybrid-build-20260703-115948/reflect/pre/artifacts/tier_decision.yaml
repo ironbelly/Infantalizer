@@ -1,0 +1,50 @@
+# tier_decision.yaml — Wave 2 audit artifact
+
+selected_tier: 2
+fired_rule_number: 4   # §5.1 --depth deep hard override is the binding force; §5.3 rule 4 (S_domains ≥ 3) independently confirms. First-match in §5.3 is rule 4.
+coverage_degraded: null   # parsed-sparse guard NOT fired (parsed_count=16 is substantial; spec is well-labeled)
+surface_unreached: null   # UC-1 PRE mode — runtime-surface sweep is UC-2 only, did not run
+reachability_unreachable: 0   # UC-2 only; UC-1 PRE — no real-boot reachability gate
+
+composite_score: 9.5   # V5 5-signal sum (high end — large scope, many tasks, multi-domain, dense spec, low ambiguity)
+per_signal_breakdown:
+  scope_size: 2          # 151 checklist items, 58 steps — max
+  task_count: 2          # 6 phases + post-completion — max
+  blast_radius: 2        # multi-phase build of a full framework distribution — max
+  spec_density: 2        # 7 spec files, ~88KB total, dense section structure — max
+  ambiguity_signals: 1.5 # low ambiguity (highly prescriptive tasklist) but 4 debate-worthy concerns + 2 spec-internal tensions
+
+escalation_reason: >
+  --depth deep hard override (§5.1) forces T2. Independently confirmed by §5.3:
+  S_domains ≥ 5 (code/infra/docs/config/tests/agent-defs) trips rule 4;
+  S_scope = 151 items ≫ rule-1/rule-2 ceilings;
+  S_dev_density = 0.00 (no unmapped requirements). The calibrated confidence
+  (0.928) is high, so T2 is calibration-confirming not calibration-rescuing —
+  T2 debates the process-add proportionality and PC.6 auto-promote posture,
+  not spec coverage (which is genuinely complete at 1.00 union).
+
+# Rubric inputs
+C_calibrated: 0.928
+S_scope: 151           # tasklist-item count (UC-1)
+S_domains: 5           # code (check_boundary.py), infra (.githooks/CI), docs (CLAUDE/NOTICE/UPSTREAM-SYNC), config (kb YAMLs), agent/skill definitions, tests (boundary runs) — counted as 5 distinct domains
+S_dev_density: 0.00    # 0 unmapped / 45 union requirements
+coverage_pct: 1.00     # parsed-only
+coverage_pct_union: 1.00
+coverage_undefined: false
+regression_candidate_count: 0   # PRE mode — no diff hunks
+
+# Hard overrides in effect
+overrides:
+  - "--depth deep"   # §5.1 → ALWAYS escalate to T2
+
+# T2 composition (per §4 Wave 0 alias routing: ≥3 aliases → 3 reviewers full diversity)
+reviewer_count: 3
+reviewer_rotation_pre_executor_exclusion:
+  models: [opus, sonnet, haiku]   # claude-opus-4-8[1m], gpt-5.5, glm-5.2
+  vendors: [Anthropic, OpenAI, Zhipu]   # multi-vendor
+  personas: [analyzer, qa, refactorer]
+executor_class: null   # PRE mode — no executor (tasklist not yet executed); executor-exclusion rule N/A
+t2_model_class_diversity: full
+t2_vendor_diversity: multi
+t2_effective_diversity: full
+calibrator_diversity: full

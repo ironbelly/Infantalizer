@@ -85,7 +85,13 @@ literary-adaptation-framework/
 ## Documentation
 
 - [**SPEC.md**](docs/SPEC.md) - Complete system specification
-- [**Quick Start Guide**](docs/guides/QUICK_START.md) - Get started in 5 minutes
+- [**User Guides**](docs/guides/) - How-to guides for adapting a book (start here)
+  - [Quick Start](docs/guides/QUICK_START.md) - Get started in 5 minutes
+  - [User Guide](docs/guides/USER_GUIDE.md) - The full analyze → transform → verify walkthrough
+  - [Choosing a Tier](docs/guides/CHOOSING_A_TIER.md) - Pick the right tier before you adapt
+  - [Understanding Transformations](docs/guides/UNDERSTANDING_TRANSFORMATIONS.md) - The *why* behind the rules
+  - [Adding a New Work](docs/guides/ADDING_NEW_WORKS.md) - Map any book for the framework
+  - [The Lion, the Witch and the Wardrobe](docs/guides/lion-witch-wardrobe/) - A complete worked example
 - [**Design Decisions**](docs/design_decisions/) - Why the framework works this way
 
 ## License

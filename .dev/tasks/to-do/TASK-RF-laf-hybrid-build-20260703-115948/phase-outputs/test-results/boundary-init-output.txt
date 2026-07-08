@@ -1,0 +1,4 @@
+--init: wrote 56 manifest rows to VENDOR.md (56 adopted, 0 native, 0 build-new).
+--init: running post-write verification …
+BOUNDARY CONTRACT: PASS — all rules (A-F) satisfied.
+EXIT CODE: 0

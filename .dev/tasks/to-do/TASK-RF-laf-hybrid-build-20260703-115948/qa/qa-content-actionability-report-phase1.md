@@ -1,0 +1,58 @@
+# QA Report — doc-qualitative (ACTIONABILITY lens)
+
+**Topic:** LAF Phase-1 native skill/agent bodies — actionability
+**Date:** 2026-07-03
+**Phase:** doc-qualitative (ACTIONABILITY overlay; adversarial, zero-trust)
+**Fix authorization:** FALSE — report only
+**Fix cycle:** N/A
+
+---
+
+## Overall Verdict: FAIL
+
+Adversarial premise (≥5 actionability gaps) is borne out: **7 findings** — 1 CRITICAL, 4 IMPORTANT, 2 MINOR. Every named check surfaced at least one instruction that cannot be executed without interpretation, or a criterion/contract that is untestable/unresolvable as written.
+
+## Items Reviewed
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | analyst SOURCE ACCESS LEVEL determination + ABORT branch | FAIL | Enum + ABORT emit are concrete, but the *determination rule* (how to pick FULL vs PARTIAL vs MEMORY-BASED) is undefined; ABORT output-schema locator unresolvable (F1, F2, F5) |
+| 2 | safety-verifier tier-gate branches + FAIL→step-3 loop | FAIL | Branches T1-2/T3/T4-5 are concrete and correct; loop names concrete next action (evidence→writer). BUT the skill it must load (`/adaptation-safety`) does not exist (F3); `next: promote\|revise` vs `mode` branch has an unspecified combination (F6) |
+| 3 | adaptation-rules "Applying a rule" 4-step procedure | FAIL | Steps 1-3 executable against real resource data; step 4 heroism subroutine executable. BUT step 2 `<category>.tier_<N>.mode` lookup fails for several categories where the carried data has no `mode:` key (F4) |
+| 4 | adaptation-tiers Interpolation (Tier 4) rule | FAIL | T3-floor/T5-ceiling/conservative-midpoint is executable ONLY for numeric scalar thresholds; undefined for the enum/list/divergent-key thresholds that dominate the profiles (F7 — CRITICAL) |
+| 5 | source-fidelity 5 phases each give an executable action | FAIL | Phases 0,1,3,4 executable; Phase 2 PASS TWO and Phase 0 access-level selection under-specified; output schema locator unresolvable (F1, F5) |
+
+## Summary
+- Checks passed: 0 / 5 (all 5 named checks surfaced ≥1 actionability gap)
+- Checks failed: 5 / 5
+- Critical issues: 1
+- Issues fixed in-place: 0 (report-only)
+- Confidence: Verified 5/5 checks against actual files | Unverifiable 0 | Unchecked 0 | Confidence 100%
+- Tool engagement: Read 8 | Grep 3 (via Bash) | Glob 0 | Bash 3
+
+## Issues Found
+
+| # | Severity | Location | Issue (why not actionable) | Concrete Fix |
+|---|----------|----------|----------------------------|--------------|
+| F7 | **CRITICAL** | `skills/adaptation-tiers/SKILL.md:33-36` (Interpolation) | "for each threshold, choose the value at the T3→T5 midpoint, rounding toward the more conservative (lower) bound when ambiguous" is executable ONLY for numeric scalars (e.g. `violence.level` 4→8 ⇒ 6). But the actual T3/T5 profiles are dominated by **non-numeric, non-parallel** thresholds: `moral_ambiguity` is `{level:4, requires_clear_good_bad:false, permits_villain_complexity:true}` in `tier_3.yaml:35-40` vs `{level:9, full_complexity:true, permits:[tragic_endings,antiheroes,...]}` in `tier_5.yaml:30-33` — different keys, boolean flags, and lists. `linguistic.vocabulary.target_grade_level` is the string `"3-5"` (T3) vs `"10+"` (T5). "The midpoint" and "the more conservative bound" are **undefined operations** on strings, booleans, and lists. An executor cannot derive T4 without inventing a per-key policy the rule never supplies. This is the load-bearing Tier-4 mechanism (CLAUDE.md §3 calls T4 interpolation first-class) and it is non-executable for most fields. | Split the rule by threshold *type*: (a) **numeric scalars** → arithmetic midpoint, floor-round; (b) **enumerated permitted/forbidden lists** → "T4 = T3's permitted set (floor); items unique to T5 are EXCLUDED unless explicitly whitelisted"; (c) **boolean flags** → "T4 inherits T3's value (conservative floor)"; (d) **grade-level strings** → give an explicit mapping table or formula. Enumerate which specific `kb/tiers/tier_3.yaml` / `tier_5.yaml` keys fall in each bucket, or state that only `*.level` integers are interpolated and all other fields inherit T3 verbatim. |
+| F3 | IMPORTANT | `agents/safety-verifier.md:6,31` | The agent's frontmatter declares `skills: - laf-adaptation:adaptation-safety` and the body says "Load `/adaptation-safety` for the 6-section rubric." **`skills/adaptation-safety/` does not exist** (confirmed: `ls` → No such file or directory). The entire tier-gate (check #2) delegates its actual rubric content to a skill that is absent, so a T1-2 run cannot execute the 6 sections. (Note: CLAUDE.md §1 classifies `adaptation-safety` as BUILD-NEW authored in "Phases 1–2" — but this agent body is Phase-1 and already hard-depends on it, so within the Phase-1 deliverable the dependency is a dangling reference.) | Either (a) sequence `adaptation-safety` to land in the same Phase-1 cut as `safety-verifier`, or (b) add an explicit precondition note in the agent body: "REQUIRES skill `adaptation-safety` (BUILD-NEW, Phase-2); until present, safety-verifier is non-operational." Do not ship an agent whose primary procedure loads a nonexistent skill without flagging it. |
+| F4 | IMPORTANT | `skills/adaptation-rules/SKILL.md:22-24` (step 2) | Step 2 says "Look up `<category>.tier_<N>.mode`." For **violence** the carried data (`resources/thematic.md:7-23`, `violence_transformation`) has **no `mode:` key** at any tier — it uses `{target:...}` / `battle`/`attack` sub-keys and only tier_4_5 has `mode: minimal_transformation`. Same for **death_handling** (`strategy:` not `mode:` at T1-3) and **heroism_definition** (`mode:` present but keyed differently than step 2 implies). An executor following step 2 literally will get a missing-key miss on violence/death for T1-3 and not know whether to fall back to `target`/`strategy` or treat it as "no rule." The procedure claims uniformity the data does not have. | Rewrite step 2 to be schema-tolerant per category, mirroring the key-tolerant guidance already present for conflict/death at lines 27-34: e.g. "read `<category>.tier_<N>.mode` if present; else the category's tier row IS the rule payload (`target`/`strategy`/`translations`)." Enumerate which categories carry `mode:` vs which carry a direct payload, so the lookup is deterministic. |
+| F1 | IMPORTANT | `agents/analyst.md:36`; `skills/source-fidelity/SKILL.md:21-23` (Phase 0) | "Determine SOURCE ACCESS LEVEL ∈ {FULL, PARTIAL, MEMORY-BASED, NO-ACCESS}" gives the enum but **no decision rule** for how to classify. When is access PARTIAL vs FULL? MEMORY-BASED is only distinguishable from NO-ACCESS by intent, which is unstated. Two executors given the same `source_path` could pick different levels, and the level drives the ABORT gate (NO-ACCESS) and the mandatory-UNCERTAIN tagging (MEMORY-BASED) — high-consequence branches hinging on an unspecified judgment. | Add an explicit decision procedure: e.g. "FULL = `source_path` exists AND is readable AND non-empty; PARTIAL = exists but truncated/unreadable in part; NO-ACCESS = file missing or empty; MEMORY-BASED = caller explicitly passed no source file / flagged reconstruction." Tie each level to an observable test (Read result / Glob hit / caller flag) so it is executable, not interpretive. |
+| F6 | IMPORTANT | `agents/safety-verifier.md:38-68` (verdict schema vs branch logic) | The verdict block emits BOTH `result: PASS\|FAIL\|N/A` (line 43) and `next: promote\|revise` (line 53) and `mode: blocking\|advisory\|skipped` (line 52). The FAIL→revision branch table (lines 62-68) keys on `mode` first, then `result`. But there is no rule fixing `next` relative to `result`/`mode` — e.g. for T3 advisory FAIL, is `next: promote` or `revise`? The advisory branch "attach report; proceed" implies promote, yet `result` is FAIL. The three fields can be set inconsistently and the consumer contract for `next` under advisory/N-A is unstated. An executor cannot deterministically fill `next`. | Specify `next` as a pure function of `(mode, result)`: e.g. "`next = revise` iff `mode==blocking AND result==FAIL`; else `next = promote`." State it in the body next to the branch table so the emitted verdict is deterministic. |
+| F2 | MINOR | `agents/analyst.md:37,42-43` | ABORT emits "`status: ABORTED` to work/analysis/ch-NN.yaml"; output contract points to "the v2.0 schema documented in `/source-fidelity` (and `skill-specs.md §3.2`)". The `/source-fidelity` schema (SKILL.md:45-69) is present and usable, so this is not fatal — but `skill-specs.md` is **not in the `laf-adaptation/` tree**; it lives at `.dev/releases/current/0.1/design/skill-specs.md` with no path given. An executor working inside `laf-adaptation/` cannot resolve "§3.2" from the citation alone. | Either drop the external `skill-specs.md §3.2` citation (the in-tree `/source-fidelity` schema is authoritative and sufficient) or give the resolvable relative path. Prefer making the in-tree skill the single source of truth. |
+| F5 | MINOR | `skills/source-fidelity/SKILL.md:30-33` (Phase 2 PASS TWO); multiple `§`-citations | Phase 2 PASS TWO "100-150 word summary with overall confidence" is checkable, but "overall confidence" derivation from the per-fact tags is unspecified (min? mode? worst-case?). Also SKILL.md and the resource files cite `kb-formats.md §2.2/§2.3`, `chapter_analysis.md`, `safety-rubric.md §4` — all real but **outside the `laf-adaptation/` subtree** (in `.dev/releases/.../design/` and `prompts/`), with no relative path, so they are not resolvable by an in-tree executor. | (a) State the overall-confidence rule: "overall = lowest tag present across essentials (worst-case)." (b) For the cross-tree `§`-citations, either inline the needed contract or give resolvable paths; otherwise they read as authorities the executor cannot open. |
+
+## Actions Taken
+None — `fix_authorization: false`. All findings are report-only.
+
+## Verification trail (self-audit)
+1. **Factual claims verified against source:** 12+ — skill/agent bodies (5 files fully read); resource data files `thematic.md`, `character.md`, `agency.md`; tier profiles `tier_3.yaml`, `tier_5.yaml`; existence of `adaptation-safety` (absent), `story-memory` (present), `resources/tier_4.md` (present); `linguistic:` key presence in `tier_1/2.yaml`; repo-wide location of all 6 cited spec docs.
+2. **Files read:** `agents/analyst.md`, `agents/safety-verifier.md`, `skills/adaptation-rules/SKILL.md`, `skills/source-fidelity/SKILL.md`, `skills/adaptation-tiers/SKILL.md`, `skills/adaptation-rules/resources/{thematic,character,agency}.md`, `kb/tiers/{tier_3,tier_5}.yaml`; plus `laf-adaptation/CLAUDE.md` (context).
+3. **Why trust this found real gaps:** Every finding cites a specific file:line and a concrete data mismatch (missing `mode:` keys in `thematic.md`; divergent T3/T5 threshold shapes in the yaml; absent `adaptation-safety/` dir confirmed by `ls`; spec docs located outside the subtree by `find`). F7 and F4 in particular were confirmed by reading the ACTUAL carried data the instructions claim to operate on — not by reading the instructions alone.
+4. **Web research:** none performed; not required (all checks are local-file-bound).
+
+## Recommendations
+- Resolve **F7 (CRITICAL)** before Phase-1 sign-off: the Tier-4 interpolation rule is the framework's only mechanism for a whole tier and is non-executable for the majority of threshold fields as written.
+- F3, F4, F1, F6 (IMPORTANT) each block deterministic execution of a named check and must be resolved.
+- F2, F5 (MINOR) — resolve the cross-subtree citation resolvability so an executor scoped to `laf-adaptation/` is self-sufficient.
+
+## QA Complete

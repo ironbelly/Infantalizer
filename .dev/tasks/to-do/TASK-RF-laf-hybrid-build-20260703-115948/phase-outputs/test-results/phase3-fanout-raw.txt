@@ -1,0 +1,19 @@
+=== Phase-3 fan-out (T1/3/5) capture (2026-07-03 23:57) ===
+
+--- per-tier convergence: adapted.md + continuity.md + canon-delta.md present per tier ---
+tier-1: adapted continuity canon-delta analysis.yaml decisions
+tier-3: adapted continuity canon-delta analysis.yaml decisions
+tier-5: adapted continuity canon-delta analysis.yaml decisions
+
+--- tier-coordinator status ---
+status: RECONCILED
+conflicts: []
+
+--- Inv.3 across ALL tiers: transformed name 'Grumpy King' must be ONLY in tier-1, NEVER in shared canon ---
+'Grumpy King' in shared kb/canon/: NONE
+'Grumpy King' locations under kb/adaptations/: tier-1/continuity.md tier-1/chapters/ch-01/canon-delta.md tier-1/chapters/ch-01/adapted.md tier-1/decisions.md 
+
+--- safety verdicts per tier ---
+T1:   result: PASS /   mode: blocking
+T3:   result: PASS /   mode: advisory
+T5: N/A (safety skipped — safety_check is T1-2 only)

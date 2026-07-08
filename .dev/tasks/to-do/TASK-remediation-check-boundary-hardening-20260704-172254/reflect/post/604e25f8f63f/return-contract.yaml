@@ -1,0 +1,31 @@
+contract_version: '1.0'
+status: success
+mode: post
+tier_reached: 1
+reviewer_count: 1
+report_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-remediation-check-boundary-hardening-20260704-172254/reflect/post/604e25f8f63f/t2-swarm/reflect-review-01-qwen3.6-plus.final.md
+audit_log_path: null
+deviation_count_by_class:
+  authorized: 0
+  necessary: 0
+  drift: 0
+  regression: 0
+t2_model_class_diversity: insufficient
+t2_vendor_diversity: null
+adversarial_unavailable: false
+merge_method: single-reviewer-fallback
+adversarial_convergence_score: null
+verification_ran: false
+verification_skip_reason: tool-unavailable
+citations_dropped: 0
+citations_dropped_extrapolated: 0
+input_drift_detected: false
+regression_present: false
+unauthorized_deviation_present: false
+needs_human_decision: false
+user_decision_required: false
+serena_summary_corroboration: unavailable
+degraded_components: []
+reviewer_isolation: disabled
+audit_tree_dirty: false
+reviewer_grounding_root: null
