@@ -1,0 +1,124 @@
+# 10-challenges.yaml — typed challenge taxonomy DERIVED from 20-analysis-work-level.yaml
+# Schema: prep SKILL.md §2 + package-schemas.md §2 (with §2.1 compound-scene reconciliation baked in)
+
+work: tolkien
+derived_from: 20-analysis-work-level.yaml
+
+challenges:
+  - type: mass-warfare
+    governing_rule: conflict_to_cooperation   # key-tolerant (T1–T3); T5 conflict_handling — schema drift is intentional per CLAUDE.md
+    human_judgment_dimension: true             # battle-scope is judgment — gate MUST ask
+    per_tier_strategy:
+      tier_1: "The Big Tidy-Up — reframe the siege as a community pulling together to clean up / push back a 'tide of grumbles'; show the city holding, omit the wet field and splintering spears."
+      tier_3: "Summarize the battle at moderate altitude; show stakes (the city, the king, the despair) without dwelling on the slaughter; keep the outcome (city holds, sun returns)."
+      tier_5: "Preserve — the battle is terrible, spears splinter, the ground runs wet; render with full weight including mass casualties."
+    compound_scene: true                       # siege co-occurs death + emotional + violence (all high) — see compound_scenes below
+    meaning_ref: "Hope against despair — the city holds regardless of battle-scope; the sun returns."
+
+  - type: psychological-collapse           # Denethor
+    governing_rule: emotional_calibration
+    human_judgment_dimension: true             # how much despair to imply — gate MUST ask
+    per_tier_strategy:
+      tier_1: "Sad Leader who 'has closed the windows' — reframe Denethor's break as needing rest / a quiet moment; omit 'All is ended', omit the wall-turning imagery."
+      tier_3: "Imply the despair — Denethor is too sad to answer, the cost is felt; do not narrate the break in detail."
+      tier_5: "Preserve — Denethor has 'looked too long into the dark, and the dark has looked back'; the break is rendered as written."
+    compound_scene: true                       # Denethor's collapse co-occurs emotional + abstract (the pressing will)
+    meaning_ref: "Hope against despair — even the steward's collapse cannot make the city fall; despair is one voice, not the verdict."
+
+  - type: sacrifice-and-return             # Théoden's death in battle (death honor)
+    governing_rule: death_handling
+    human_judgment_dimension: true             # how much of the death to imply — gate MUST ask
+    per_tier_strategy:
+      tier_1: "Théoden 'takes a long rest' after the helping — trade the death for a long rest, warm and peaceful; omit the falling, omit 'did not rise again'."
+      tier_3: "Théoden falls and does not rise — name the death gently, focus on Éowyn's protective interposition rather than the corpse."
+      tier_5: "Preserve — the king falls, struck by the Nazgûl, and does not rise; the death is on the page."
+    compound_scene: false
+    meaning_ref: "Redemptive courage — the king gives his life for the city; the tier changes surface, not meaning."
+
+  - type: petrification-body-horror        # Nazgûl — "cry unmanned brave men"
+    governing_rule: violence                  # direct-payload category; applied MANDATORY
+    human_judgment_dimension: true             # reframe vs restore is a taste threshold — gate MUST ask
+    per_tier_strategy:
+      tier_1: "Grumpy Riders — the dread becomes 'unfriendly shouters'; the paralyzing cry becomes a loud grumble. Reframe, do not restore."
+      tier_3: "Name the Nazgûl and their dread; bound the body-horror (the cry is frightening, no paralysis detail)."
+      tier_5: "Preserve — the cry unmen brave men; the rider is a dark terror whose shadow screams as it is struck down."
+    compound_scene: false
+    meaning_ref: "Fear can be named and still stood against — Éowyn stands; the tier changes the surface of fear, not the act of standing."
+
+  - type: allegory-stance
+    governing_rule: thematic_fidelity          # neither add nor strip the allegory
+    human_judgment_dimension: true             # stance decision — gate MUST ask
+    per_tier_strategy:
+      tier_1: "Do not insert a moral lesson; the hope-against-despair surface stays implicit."
+      tier_3: "Surface the meaning lightly through the outcome (city holds, sun returns), never through added narration."
+      tier_5: "Preserve Tolkien's anti-allegory stance — the meaning is carried by the events, not by authorial gloss."
+    compound_scene: false
+    meaning_ref: "The hope-against-despair meaning is intrinsic to the events; no tier adds an allegorical frame, no tier strips the resonance."
+
+  - type: omission-honor-set
+    governing_rule: thematic_fidelity
+    human_judgment_dimension: true             # what to omit vs preserve — gate MUST ask
+    per_tier_strategy:
+      tier_1: "Omit: the wet field, splintering spears, mass casualties, Denethor's wall-turning, Théoden's fall imagery. Preserve: the city holds, the helper stands, the sun returns."
+      tier_3: "Omit: graphic detail of the slaughter. Preserve: the named deaths, Éowyn's stand, the steward's despair acknowledged."
+      tier_5: "Preserve the chapter as written."
+    compound_scene: false
+    meaning_ref: "The surface reductions at lower tiers MUST leave the hope-against-despair arc intact."
+
+  - type: target-age-nuance
+    governing_rule: adaptation_tiers
+    human_judgment_dimension: true             # precise age band within tier — gate MUST ask
+    per_tier_strategy:
+      tier_1: "Young end of T1 (4–6): war becomes tidy-up, death becomes rest."
+      tier_3: "Older T3 (10–12): battle at altitude, named death, implied despair."
+      tier_5: "Teen/adult: full fidelity to the fixture prose."
+    compound_scene: false
+    meaning_ref: "n/a — the meaning survives every age band; this is a tone-and-detail axis."
+
+  - type: violence-level
+    governing_rule: violence
+    human_judgment_dimension: false            # DETERMINISTIC tier-profile threshold — gate MUST NOT ask
+    per_tier_strategy:
+      tier_1: "none on-page — any violence is reframed away"
+      tier_3: "bounded — stakes clear, gore bounded"
+      tier_5: "preserve — 'the battle was terrible; spears splintered and the ground ran wet'"
+    compound_scene: false
+
+  - type: death-euphemism
+    governing_rule: death_euphemism            # key-tolerant vs death_handling — T1 deterministic
+    human_judgment_dimension: false            # DETERMINISTIC (journey_or_sleep at T1) — gate MUST NOT ask
+    per_tier_strategy:
+      tier_1: "journey_or_sleep — 'a long rest', 'went away on a long adventure'"
+      tier_3: "named, gentle — 'Théoden fell and did not rise'"
+      tier_5: "preserve — the death is on the page, no euphemism"
+    compound_scene: false
+
+compound_scenes:                               # §2.1 reconciliation baked in for each compound scene
+  - scene: "Siege of the Grey City"
+    cooccurring_flags: [death, emotional, violence]
+    reconciliation:                            # from /prep §2.1
+      emotional_core: "The reader must feel that the city's survival is hard-won and uncertain — that hope persisted through real loss, not by escaping it."
+      decomposition:
+        - "mass battlefield violence (host, splintering spears, wet ground)"
+        - "mass death ('many good soldiers had fallen and would not rise')"
+        - "collective grief ('the field was heavy with grief')"
+        - "abstract dread (Sauron's will pressing down)"
+      per_tier:
+        tier_1: "Reframe the whole as a 'Big Tidy-Up' — the city is helped, the unfriendly tide turns back, the sun returns. Omit the slaughter entirely; keep the holding-on."
+        tier_3: "Summarize the battle with stakes clear; name that many fell but do not dwell; foreground Éowyn's stand and the sun's return."
+        tier_5: "Preserve — the battle is terrible, many fall, the field is heavy with grief; the sun returns because the city held."
+      meaning_survives: true                   # hope-against-despair survives at every tier
+
+  - scene: "Théoden's fall and Éowyn's stand"
+    cooccurring_flags: [death, emotional, violence]
+    reconciliation:
+      emotional_core: "The reader must feel that standing-over — the refusal to abandon the fallen — even at the cost of one's own life."
+      decomposition:
+        - "the king's death (struck by the Nazgûl, does not rise)"
+        - "Éowyn's grief and defiance"
+        - "the violence of striking down the rider"
+      per_tier:
+        tier_1: "Théoden takes a long rest; Éowyn 'helps him up'; the rider becomes a grumbler who is shooed away."
+        tier_3: "Théoden falls and does not rise; Éowyn stands over him and strikes the rider; bound the gore, keep the interposition."
+        tier_5: "Preserve — she meets the rider with her sword, the shadow screams and is gone."
+      meaning_survives: true                   # redemptive courage survives at every tier

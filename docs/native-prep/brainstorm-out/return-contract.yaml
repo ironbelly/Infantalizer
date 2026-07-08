@@ -1,0 +1,38 @@
+contract_version: "1.0"
+status: success
+seed_brief_path: docs/native-prep/brainstorm-out/seed-brief.md
+merged_output_path: docs/native-prep/brainstorm-out/merged-requirements.md
+convergence_score: 0.85
+adversarial_artifacts_dir: docs/native-prep/brainstorm-out/adversarial
+domain: architecture
+proposal_count: 3
+enrichment_used:
+  - source: research-deep
+    quality_tier: fallback_1   # Tavily unavailable; WebFetch + Context7 fallback
+  - source: codebase
+    quality_tier: primary      # direct Read of framework files (grounded in seed-brief Known Context)
+handoff_action: design
+handoff_output_path: null      # design is text-recommendation only (interactive; user-initiated)
+unresolved_conflicts: []
+# Telemetry (non-stable)
+wave_durations_ms:
+  wave_0: ~3000
+  wave_1: ~2000   # seed brief pre-resolved by standardized inputs
+  wave_2a: ~205000  # deep-research agent run
+  wave_2b: ~1500
+  wave_3: ~8000
+  wave_4: ~1500
+token_usage:
+  wave_0: ~1500
+  wave_1: ~4000
+  wave_2a: ~20700   # deep-research subagent (measured)
+  wave_2b: ~1200
+  wave_3: ~24000    # 3 proposals + 4 adversarial artifacts + merged spec (estimated)
+  wave_4: ~800
+agent_spec: "opus:architect:'architecture domain - prioritize boundary-contract-safe minimal-additive structure and reuse of existing native spine',sonnet:analyzer:'architecture domain - ground every change in the findings-and-evaluation gaps and cite framework paths',haiku:scribe:'architecture domain - own the standardized path contract and handoff-prompt emission'"
+enrichment_artifact_sizes:
+  research-deep.md: ~3500
+notes:
+  - "Socratic dialogue (Wave 1) was pre-resolved: the four standardized inputs (00/10/20/30) ARE the dialogue output. seed-brief.md restates them as a debatable design seed + adds 8 Open Tensions."
+  - "Adversarial realized by single orchestrator generating 3 distinct persona-voices (architect/analyzer/scribe) + explicit diff/debate/merge producing all 6 standard artifact roles. Full multi-agent sc-adversarial spawn was infeasible in this environment; rigor preserved via structured diff + 3-axis debate + base-selection."
+  - "All change-list items classified ADOPTED-safe/NATIVE/BUILD-NEW and boundary-checked against check_boundary.py. No ADOPTED agent body edited (writer.md stays at 1-line patch; meaning routes via promoted mapping)."

@@ -1,0 +1,40 @@
+# P3 Dual-Form Promotion Assertions (raw output)
+
+From repo root `/config/workspace/Infantalizer`. All four commands exit 0.
+
+## (a) derived prep-package mapping — 6-key, meaning present
+
+```
+$ uv run --with pyyaml python -c "import yaml; d=yaml.safe_load(open('work/prep/tolkien/30-mapping.yaml')); print(sorted(d)); assert 'meaning' in d and len(d)==6, 'expected 6-key form with meaning'"
+['characters', 'concepts', 'key_scenes', 'master_translation_table', 'meaning', 'work_metadata']
+EXIT:0
+```
+**PASS** — 6-key form with `meaning`.
+
+## (b) promoted 0.1 kb copy (hyphen filename) — 6-key, meaning KEPT
+
+```
+$ uv run --with pyyaml python -c "import yaml; d=yaml.safe_load(open('laf-adaptation/kb/adaptation-mapping/tolkien-mapping.yaml')); print(sorted(d)); assert 'meaning' in d and len(d)==6, 'kb copy must keep meaning (6-key)'"
+['characters', 'concepts', 'key_scenes', 'master_translation_table', 'meaning', 'work_metadata']
+EXIT:0
+```
+**PASS** — kb copy keeps `meaning:` (6-key).
+
+## (c) promoted root copy (underscore filename) — 5-key, meaning STRIPPED
+
+```
+$ uv run --with pyyaml python -c "import yaml; d=yaml.safe_load(open('config/concept_mapping/templates/tolkien_mapping.yaml')); print(sorted(d)); assert 'meaning' not in d and len(d)==5, 'root copy must strip meaning (frozen 5-key)'"
+['characters', 'concepts', 'key_scenes', 'master_translation_table', 'work_metadata']
+EXIT:0
+```
+**PASS** — root copy strips `meaning:` (frozen 5-key).
+
+## (d) write-provenance guard — both targets CHANGED since pre-run (non-vacuous)
+
+```
+$ uv run python -c "...assert all(pre[p]!=post[p] for p in pre)..."
+config/concept_mapping/templates/tolkien_mapping.yaml CHANGED
+laf-adaptation/kb/adaptation-mapping/tolkien-mapping.yaml CHANGED
+EXIT:0
+```
+**PASS** — both promotion targets' post-run sha256 DIFFER from the Step 5.1 pre-run snapshot, proving the runtime `/kb-management`/coordinator promotion wrote fresh content. Assertion (c) is non-vacuous (the root file was re-written, not left as the stale pre-existing 5-key file).

@@ -1,0 +1,56 @@
+# Universal Concept Mapping
+# Cross-work translations for common literary concepts
+
+death:
+  tier_1: {translation: "Going on a new adventure", framing: "Positive continuation"}
+  tier_2: {translation: "Passed away / Was lost", framing: "Gentle acknowledgment"}
+  tier_3: {translation: "Died", framing: "Direct but gentle"}
+  tier_4_5: {translation: "[preserve]"}
+
+evil:
+  tier_1: {translation: "Grumpy / Sad / Confused", agency: "External circumstances"}
+  tier_2: {translation: "Mean / Misguided", agency: "Misunderstanding"}
+  tier_3: {translation: "Evil (with explanation)", agency: "Internal but understandable"}
+  tier_4_5: {translation: "[preserve]"}
+
+war:
+  tier_1: {translation: "The Big Tidy-Up", components: {battle: "cleanup", army: "helpers"}}
+  tier_2: {translation: "Contest / Competition", components: {battle: "match", army: "team"}}
+  tier_3: {translation: "Battle (summarized)"}
+  tier_4_5: {translation: "[preserve]"}
+
+despair:
+  tier_1: {translation: "Very, very sad", cause: "External and fixable"}
+  tier_2: {translation: "Very worried"}
+  tier_3: {translation: "Hopeless / Despairing", approach: "Show path through"}
+  tier_4_5: {translation: "[preserve]"}
+
+injury:
+  tier_1: {translation: "Boo-boo / Bump", healing: "Always possible"}
+  tier_2: {translation: "Got hurt", healing: "Expected"}
+  tier_3: {translation: "Was wounded"}
+  tier_4_5: {translation: "[preserve]"}
+
+betrayal:
+  tier_1: {translation: "Accident / Silly mistake"}
+  tier_2: {translation: "Made a mistake / Got confused"}
+  tier_3: {translation: "Betrayed / Failed", approach: "Show aftermath"}
+  tier_4_5: {translation: "[preserve]"}
+
+burden:
+  tier_1: {translation: "Special Job / Helping Adventure", framing: "Empowering"}
+  tier_2: {translation: "Important mission"}
+  tier_3: {translation: "Heavy responsibility"}
+  tier_4_5: {translation: "[preserve]"}
+
+supernatural_terror:
+  tier_1: {translation: "Sleepy friends / Silly creatures"}
+  tier_2: {translation: "Mysterious beings"}
+  tier_3: {translation: "Ghosts / Spirits (with rules)"}
+  tier_4_5: {translation: "[preserve]"}
+
+martial_heroism:
+  tier_1: {translation: "Helping / Comforting / Persevering"}
+  tier_2: {translation: "Standing up / Being brave"}
+  tier_3: {translation: "Fighting to protect"}
+  tier_4_5: {translation: "[preserve]"}

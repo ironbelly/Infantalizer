@@ -1,0 +1,94 @@
+# Tier 1: Preschool Age Profile (3-5 years)
+# Based on Piaget's Preoperational Stage and Kohlberg Stage 1
+
+profile:
+  id: "tier_1_preschool"
+  name: "Preschool"
+  age_range: [3, 5]
+  description: "Full transformation for youngest readers. Maximum safety, minimum complexity."
+
+developmental_basis:
+  piaget_stage: "preoperational"
+  piaget_characteristics:
+    - egocentrism: "Cannot understand others' perspectives"
+    - concrete_thinking: "Only understands through senses and direct experience"
+    - animistic_thinking: "Believes objects have feelings"
+  kohlberg_stage: 1
+  kohlberg_description: "Obedience and punishment orientation"
+
+thresholds:
+  violence:
+    level: 0
+    description: "No violence permitted. All conflict reframed as cooperation."
+    permitted: ["pratfalls", "bumping", "tripping", "being_noisy", "making_messes"]
+    forbidden: ["injury", "death", "weapons", "blood", "fighting"]
+    transformation_target: "cooperative_activity"
+    
+  emotional_complexity:
+    level: 1
+    description: "Simple, labeled emotions only."
+    permitted_emotions: ["happy", "sad", "scared", "grumpy", "tired", "excited", "brave", "kind"]
+    forbidden_states: ["despair", "trauma", "grief", "rage"]
+    
+  moral_ambiguity:
+    level: 0
+    requires_clear_good_bad: true
+    permits_hero_failure: false
+    villain_treatment: "Always redeemable through kindness"
+    
+  narrative_complexity:
+    parallel_plotlines: false
+    flashbacks: false
+    max_named_characters: 8
+    timeline: "strictly_linear"
+
+linguistic:
+  vocabulary:
+    target_grade_level: "K"
+    max_syllables: 2
+    forbidden: ["kill", "die", "dead", "evil", "wound", "blood", "weapon"]
+      
+  sentence_structure:
+    max_clauses: 1
+    passive_voice: false
+    max_words_per_sentence: 12
+    
+  chapter_structure:
+    max_words: 800
+    episodic: true
+    requires_positive_resolution: true
+
+transformation_rules:
+  agency_externalization:
+    mode: "mandatory"
+    principle: "Badness is always a STATE (grumpy, tired) or ACCIDENT, never innate."
+        
+  conflict_to_cooperation:
+    mode: "mandatory"
+    translations:
+      war: "big tidy-up project"
+      battle: "cleanup day"
+      attack: "making noise and mess"
+      
+  death_euphemism:
+    mode: "mandatory"
+    strategy: "journey_or_sleep"
+    translations:
+      death: "going on a new adventure"
+      dying: "needing a very long rest"
+      
+  villain_motivation:
+    mode: "external_state"
+    description: "Villains are grumpy/sad/confused, not evil"
+    
+  heroism_definition:
+    mode: "prosocial_only"
+    heroic_acts: ["helping", "sharing", "comforting", "persevering", "being kind"]
+
+safety:
+  safe_home_schema:
+    requirement: "mandatory"
+    if_violated: "must_be_restored"
+  nightmare_prevention:
+    monsters: "reframe as grumpy/silly creatures"
+    darkness: "temporary, fixed with sunshine"

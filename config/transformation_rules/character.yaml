@@ -1,0 +1,77 @@
+# Character Transformation Rules
+# Archetype mappings and heroism translation by tier
+
+archetype_system:
+  description: "Maps complex characters to age-appropriate archetypes"
+
+tier_1_archetypes:
+  protagonist:
+    name: "Brave Friend on a Special Job"
+    permitted_traits: ["brave", "kind", "helpful", "loyal"]
+    forbidden_traits: ["vengeful", "ambitious", "traumatized"]
+    
+  hero_leader:
+    name: "The Great Helper"
+    permitted_traits: ["kind", "wise", "caring"]
+    authority_source: "helping_ability"  # NOT lineage
+    
+  mentor:
+    name: "The Wise Teacher"
+    permitted_traits: ["calm", "reassuring", "kind"]
+    special_handling:
+      death_resurrection: "Omit - was 'away on long trip'"
+      magic: "Express as wisdom, not power"
+    
+  antagonist:
+    name: "The Grumpy/Messy Character"
+    permitted_traits: ["grumpy", "messy", "noisy", "confused"]
+    forbidden_traits: ["evil", "malicious", "cruel"]
+    motivation_source: "external_state"
+    redemption: "always_possible"
+    
+  female_hero:
+    name: "The Kind Helper"
+    heroism_type: "prosocial_action"  # NOT martial
+    
+  loyal_companion:
+    name: "The Best Friend"
+    role: "Helps protagonist, models friendship"
+
+tier_2_additions:
+  rival:
+    name: "Opposing Team Captain"
+    traits: ["competitive", "determined"]
+    redemption: "Through sportsmanship"
+
+tier_3_unlocks:
+  hero_with_flaws: {permitted: true}
+  complex_villain: {permitted: true}
+  morally_ambiguous: {permitted: true}
+
+tier_4_5:
+  approach: "Preserve original complexity"
+
+heroism_translation:
+  subroutine: |
+    1. IDENTIFY core positive intent
+    2. LOOKUP tier-appropriate expression
+    3. TRANSLATE action preserving intent
+    
+  examples:
+    "slays the enemy":
+      tier_1: "helps the grumpy character feel better"
+      tier_2: "wins the contest"
+      tier_3: "defeats the villain"
+      tier_4_5: "[preserve]"
+    "leads the charge":
+      tier_1: "shows everyone how to help"
+      tier_2: "leads the team"
+      tier_3: "[preserve]"
+
+special_handling:
+  gollum:
+    tier_1: {name: "Silly Creature", traits: ["playful"], ring_event: "accident during game"}
+    tier_3: {full_duality: true}
+  denethor:
+    tier_1: {name: "Sad Leader", cause: "closed windows", omit: ["suicide", "pyre"]}
+    tier_3: {can_show: "despair and consequences"}

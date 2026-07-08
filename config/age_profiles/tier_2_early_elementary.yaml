@@ -1,0 +1,84 @@
+# Tier 2: Early Elementary Age Profile (6-8 years)
+# KEY PARADIGM: Conflict as Contest/Competition
+
+profile:
+  id: "tier_2_early_elementary"
+  name: "Early Elementary"
+  age_range: [6, 8]
+  description: "Violence becomes contest. Death acknowledged gently. Villains misunderstand."
+
+developmental_basis:
+  piaget_stage: "early_concrete_operational"
+  piaget_characteristics:
+    - declining_egocentrism: "Beginning to see others' perspectives"
+    - conservation_emerging: "Understanding properties remain constant"
+  kohlberg_stage: 2
+  kohlberg_description: "Instrumental purpose - 'What's in it for me?'"
+
+thresholds:
+  violence:
+    level: 2
+    description: "Violence becomes structured competition."
+    permitted: ["chasing", "capture", "struggle", "contest", "competition"]
+    forbidden: ["graphic_injury", "death_depicted", "blood"]
+    transformation_target: "rule_bound_competition"
+    
+  emotional_complexity:
+    level: 3
+    permitted_emotions: ["all_tier_1", "worried", "lonely", "proud", "frustrated"]
+    
+  moral_ambiguity:
+    level: 2
+    requires_clear_good_bad: true
+    permits_misunderstanding_conflict: true
+    
+  narrative_complexity:
+    parallel_plotlines: false
+    flashbacks: false
+    max_named_characters: 12
+    subplots: "one_minor_permitted"
+
+linguistic:
+  vocabulary:
+    target_grade_level: "1-2"
+    additions: ["contest", "challenge", "team", "victory"]
+    forbidden: ["kill", "slay", "murder", "blood", "die", "dead"]
+      
+  sentence_structure:
+    max_clauses: 2
+    max_words_per_sentence: 15
+    
+  chapter_structure:
+    max_words: 1200
+    can_end_on_mild_tension: true
+
+transformation_rules:
+  agency_externalization:
+    mode: "mandatory"
+    softening: "permits_misunderstanding_as_cause"
+        
+  conflict_to_cooperation:
+    mode: "contest"
+    translations:
+      war: "great contest"
+      battle: "big challenge"
+      army: "team"
+      enemy: "opposing team"
+      
+  death_euphemism:
+    mode: "gentle_acknowledgment"
+    can_say: ["passed away", "was lost", "didn't come back"]
+      
+  villain_motivation:
+    mode: "misunderstanding"
+    villains_are: "confused, bad at following rules"
+    
+  heroism_definition:
+    mode: "prosocial_with_competition"
+    heroic_acts: ["tier_1_acts", "playing_fair", "good_sportsmanship"]
+
+contest_paradigm:
+  principles:
+    - "Conflict is a contest with rules"
+    - "Cheating/unfairness is the real 'evil'"
+    - "Good sportsmanship is heroic"

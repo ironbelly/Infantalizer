@@ -1,0 +1,48 @@
+LAF Adaptation Framework (laf-adaptation)
+=========================================
+
+This distribution contains files vendored from a third-party open-source project.
+
+Vendored component: creative-writing-skills
+-------------------------------------------
+Portions of this distribution — specifically the files classed ADOPTED-CLEAN and
+ADOPTED-PATCHED in VENDOR.md (the agents under agents/ and the skills under
+skills/, excluding the LAF-authored NATIVE and BUILD-NEW files) — are vendored
+from the "creative-writing-skills" project:
+
+    Upstream repository: https://github.com/haowjy/creative-writing-skills
+    Vendored at commit:  3338495f0fabf778720effdda9386ab56d4ebf6e
+    Vendored on:         2026-07-03
+
+(VENDOR.md is the authoritative record of the pinned upstream_sha and the per-file
+manifest; if this NOTICE and VENDOR.md ever disagree on the SHA, VENDOR.md wins.)
+
+These vendored files are carried UNMODIFIED except for a single deterministic,
+uniform prefix rewrite applied at vendoring time:
+
+    "creative-writing-skills:"  ->  "laf-adaptation:"
+
+and, for the single file agents/writer.md (classed ADOPTED-PATCHED), one additive
+frontmatter skill line ("- laf-adaptation:adaptation-rules"). No adopted file body
+is edited. See VENDOR.md and boundary-contract for the exact contract.
+
+License of the vendored files
+-----------------------------
+The vendored creative-writing-skills files are licensed under the Apache License,
+Version 2.0. A verbatim copy of that license accompanies this distribution as
+LICENSE-CWS (see also http://www.apache.org/licenses/LICENSE-2.0). The upstream
+project ships no NOTICE file of its own and names no individual copyright holder;
+copyright in the vendored files is held by the creative-writing-skills authors.
+
+    Copyright (c) the creative-writing-skills authors.
+    Licensed under the Apache License, Version 2.0.
+
+LAF-authored files (NOT covered by the above attribution)
+---------------------------------------------------------
+All files classed NATIVE or BUILD-NEW in VENDOR.md — the adaptation spine
+(agents/analyst.md, agents/safety-verifier.md; skills adaptation-tiers,
+adaptation-rules, source-fidelity), the greenfield components
+(agents/chronicler.md, agents/tier-coordinator.md; skill adaptation-safety), the
+native kb layers, templates/, scripts/check_boundary.py, and the root docs
+(CLAUDE.md, VENDOR.md, NOTICE, UPSTREAM-SYNC.md) — are authored by LAF and are NOT
+part of the upstream creative-writing-skills project or its Apache-2.0 attribution.

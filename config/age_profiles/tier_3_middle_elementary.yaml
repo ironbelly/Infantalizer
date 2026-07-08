@@ -1,0 +1,87 @@
+# Tier 3: Middle Elementary Age Profile (9-11 years)
+# KEY TRANSITION TIER: Moral ambiguity and complexity become permitted
+
+profile:
+  id: "tier_3_middle_elementary"
+  name: "Middle Elementary"
+  age_range: [9, 11]
+  description: "TRANSITION TIER. Complexity permitted. Death can be named. Moral ambiguity introduced."
+
+developmental_basis:
+  piaget_stage: "concrete_operational"
+  piaget_characteristics:
+    - conservation: "Understands properties remain constant"
+    - decentration: "Can consider multiple aspects simultaneously"
+    - reversibility: "Can mentally reverse operations"
+  kohlberg_stage: 3
+  kohlberg_description: "Good boy/nice girl orientation"
+  moral_capabilities:
+    - "Can understand others' intentions matter"
+    - "Can appreciate that good people can do bad things"
+
+# MAJOR THRESHOLD SHIFTS FROM TIER 1-2
+thresholds:
+  violence:
+    level: 4
+    description: "Battle scenes permitted but summarized."
+    permitted: ["battle_summarized", "injury_implied", "peril", "conflict"]
+    forbidden: ["graphic_gore", "torture", "prolonged_suffering"]
+    
+  emotional_complexity:
+    level: 5
+    permitted: ["all_tier_2", "grief", "betrayal_feelings", "moral_conflict", "regret"]
+    forbidden: ["suicidal_ideation", "detailed_trauma"]
+    
+  moral_ambiguity:
+    level: 4
+    requires_clear_good_bad: false  # KEY CHANGE
+    permits_villain_complexity: true
+    permits_hero_failure: true
+    still_requires: "consequences for choices"
+    
+  narrative_complexity:
+    parallel_plotlines: true  # NOW PERMITTED
+    flashbacks: true  # NOW PERMITTED
+    max_named_characters: 20
+
+linguistic:
+  vocabulary:
+    target_grade_level: "3-5"
+    can_introduce: ["grief", "betray", "sacrifice", "honor", "destiny"]
+      
+  sentence_structure:
+    max_clauses: 3
+    max_words_per_sentence: 20
+    
+  chapter_structure:
+    max_words: 2500
+    episodic: false
+    permits: ["cliffhangers", "subplots", "delayed_resolution"]
+
+# KEY CHANGES IN TRANSFORMATION RULES
+transformation_rules:
+  agency_externalization:
+    mode: "optional"  # KEY CHANGE from mandatory
+        
+  conflict_to_cooperation:
+    mode: "optional"  # KEY CHANGE
+      
+  death_euphemism:
+    mode: "direct_but_gentle"  # KEY CHANGE
+    can_say: ["died", "death", "killed"]
+    focus_on: "emotional_impact_and_meaning"
+      
+  villain_motivation:
+    mode: "can_be_internal"  # KEY CHANGE
+    requirements: ["motivation must be understandable"]
+    
+  heroism_definition:
+    mode: "includes_defense"  # KEY CHANGE
+    heroic_acts: ["tier_2_acts", "defending_others", "sacrifice"]
+
+tier_transition_summary:
+  major_changes:
+    - {from: "Clear good/bad required", to: "Shades of gray permitted"}
+    - {from: "Euphemisms only", to: "'Died' acceptable"}
+    - {from: "External causes mandatory", to: "Internal flaws permitted"}
+    - {from: "Hero failure forbidden", to: "Permitted with growth"}

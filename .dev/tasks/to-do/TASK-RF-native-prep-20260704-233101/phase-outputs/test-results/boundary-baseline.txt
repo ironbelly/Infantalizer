@@ -1,0 +1,91 @@
+# Boundary Baseline (pre-P0)
+
+Captured before any P0 changes, from repo root `/config/workspace/Infantalizer`.
+
+## Command 1: `uv run python laf-adaptation/scripts/check_boundary.py --report 2>&1`
+
+```
+laf-adaptation/ provenance summary (from VENDOR.md)
+====================================================
+  ADOPTED-CLEAN    55
+  ADOPTED-PATCHED  1
+  NATIVE           5
+  BUILD-NEW        3
+  TOTAL rows       64
+----------------------------------------------------
+  [ADOPTED-CLEAN  ] agents/brainstormer.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] agents/character-sim.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] agents/continuity-checker.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] agents/critic.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] agents/editor.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] agents/muse.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] agents/outliner.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] agents/reader-sim.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] agents/style-creator.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] agents/web-researcher.md  (hash-pinned)
+  [ADOPTED-PATCHED] agents/writer.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-research/SKILL.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-craft/SKILL.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-craft/resources/genre/fantasy.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-craft/resources/genre/horror.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-craft/resources/genre/litfic.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-craft/resources/genre/mystery.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-craft/resources/genre/romance.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-craft/resources/genre/thriller.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-craft/resources/prose-writing.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-craft/resources/scene-construction.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-craft/resources/style-analysis.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-modes/SKILL.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/creative-writing-modes/resources/prose-modes.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/grill-with-docs/SKILL.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/intent-modeling/SKILL.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/kb-management/SKILL.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/llm-writing/SKILL.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/shared-dao/SKILL.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-memory/SKILL.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-memory/resources/fact-extraction.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-memory/resources/story-context.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-memory/resources/story-reference-writing.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-memory/resources/story-reference-writing/reference-modes.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-memory/resources/writing-artifacts.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-memory/resources/writing-issues.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/SKILL.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/copyedit.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/developmental-edit.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/editorial-review.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/line-edit.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/proofreading.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/prose-critique.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/prose-critique/analyze.py  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/prose-critique/antipatterns.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/prose-critique/baseline.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/prose-critique/character.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/prose-critique/continuity.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/prose-critique/prose.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/prose-critique/structure.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/prose-critique/voice.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/story-review/resources/reader-sim-signal.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/writing-principles/SKILL.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/writing-principles/resources/citations.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/writing-principles/resources/failure-modes.md  (hash-pinned)
+  [ADOPTED-CLEAN  ] skills/writing-staffing/SKILL.md  (hash-pinned)
+  [NATIVE         ] agents/analyst.md  (not pinned)
+  [NATIVE         ] agents/safety-verifier.md  (not pinned)
+  [NATIVE         ] skills/adaptation-rules/**  (not pinned)
+  [NATIVE         ] skills/adaptation-tiers/**  (not pinned)
+  [NATIVE         ] skills/source-fidelity/**  (not pinned)
+  [BUILD-NEW      ] agents/chronicler.md  (not pinned)
+  [BUILD-NEW      ] agents/tier-coordinator.md  (not pinned)
+  [BUILD-NEW      ] skills/adaptation-safety/**  (not pinned)
+```
+
+Baseline counts: NATIVE=5, ADOPTED-CLEAN=55, ADOPTED-PATCHED=1, BUILD-NEW=3, TOTAL=64 — matches research/06.
+
+## Command 2: `uv run python laf-adaptation/scripts/check_boundary.py 2>&1` (Mode V)
+
+```
+NOTE: verify running without --upstream — Rules B and C (upstream-diff checks) skipped; Rule A hash-match covers adopted-file integrity against the recorded manifest, plus Rules D/E/F.
+BOUNDARY CONTRACT: PASS — all rules (A-F) satisfied.
+```
+
+Mode-V final line begins `BOUNDARY CONTRACT: PASS` — tree is green before P0 begins.

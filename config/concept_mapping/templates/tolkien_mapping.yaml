@@ -1,0 +1,109 @@
+# Tolkien Work Mapping — root 5-key form (frozen schema)
+# Promoted by /prep STAGE 7 dual-form transform from work/prep/tolkien/30-mapping.yaml
+# Source: laf-adaptation/source/tolkien/ch-01.txt (259 words, FULL access)
+# Form: top-level meaning: STRIPPED; per-entry _confidence: STRIPPED — validates against the shipped 5-key root schema.
+
+work_metadata:
+  title: "The Lord of the Rings"
+  author: "J.R.R. Tolkien"
+  key_challenges:
+    - "mass-warfare"
+    - "psychological-collapse"
+    - "sacrifice-and-return"
+    - "petrification-body-horror"
+    - "allegory-stance"
+    - "omission-honor-set"
+    - "target-age-nuance"
+
+characters:
+  sauron:
+    tier_1: {name: "The Grumpy King", archetype: "Offstage Grump", cause: "No sunshine", eye: "Grumpy King's window"}
+    tier_2: {name: "Sauron", can_show: "A far-off grump sending gloom; menace implied"}
+    tier_3: {name: "Sauron", can_show: "True menace — the will pressing down", source: "the black tower far to the east"}
+    tier_5: {name: "Sauron", preserve: "Offstage; his will presses cold and patient from the black tower"}
+
+  denethor:
+    tier_1: {name: "The Sad Leader", cause: "Closed the windows", omit: ["All is ended", "turned his face to the wall", "looked too long into the dark"]}
+    tier_2: {name: "Denethor", can_show: "A sad leader who gave up; consequences softened"}
+    tier_3: {name: "Denethor", can_show: "Despair acknowledged, consequences implied"}
+    tier_5: {name: "Denethor", preserve: "Something in him had already broken; he looked too long into the dark and the dark looked back; 'All is ended'"}
+
+  theoden:
+    tier_1: {name: "Old King Théoden", archetype: "Brave Old Helper", end: "Took a long rest after the helping"}
+    tier_2: {name: "Théoden", can_show: "Brave old king who leads the charge and falls"}
+    tier_3: {name: "Théoden", can_show: "Leads the charge, falls, does not rise"}
+    tier_5: {name: "Théoden", preserve: "Led his men down against the host; struck from his horse; fell and did not rise again"}
+
+  eowyn:
+    tier_1: {name: "Éowyn", heroic_moment: "Stood over Théoden and helped him", witch_king: "OMIT — shooed a grumbler"}
+    tier_2: {name: "Éowyn", can_show: "Stood over Théoden and stood up to a frightening rider"}
+    tier_3: {name: "Éowyn", can_show: "Stood over Théoden and struck the rider down"}
+    tier_5: {name: "Éowyn", preserve: "Met the rider with her sword and struck it down; the shadow screamed and was gone"}
+
+  nazgul:
+    tier_1: {name: "Grumpy Riders", dread: "Loud grumble"}
+    tier_2: {name: "The Nazgûl", can_show: "Frightening dark riders whose cry chills; dread implied"}
+    tier_3: {name: "The Nazgûl", can_show: "Dark riders whose cry is frightening; bound the paralysis"}
+    tier_5: {name: "Nazgûl", preserve: "Dark riders whose cry unmanned brave men; struck the king from his horse"}
+
+concepts:
+  the_grey_city:
+    tier_1: "The Grey City (the city that held)"
+    tier_2: "The Grey City (a city under threat that held)"
+    tier_3: "The Grey City (a city under siege that held)"
+    tier_5: "The Grey City"
+
+  saurons_shadow:
+    tier_1: "A big grumble covering the sun"
+    tier_2: "A shadow over the city; an offstage dread"
+    tier_3: "A shadow over the world, the weight of an offstage will"
+    tier_5: "The dark lord's shadow lay over the world like a drawn curtain; his will pressing down, cold and patient"
+
+  the_host:
+    tier_1: "A tide of grumbles"
+    tier_2: "A great host drawn up against the city"
+    tier_3: "A host come against the city"
+    tier_5: "His host advanced in a tide of iron"
+
+  the_long_dark:
+    tier_1: "Closed windows (needs a rest)"
+    tier_2: "A long sadness that swallowed him"
+    tier_3: "The dark that looked back"
+    tier_5: "He had looked too long into the dark, and the dark had looked back"
+
+key_scenes:
+  siege_of_the_grey_city:
+    challenges: ["mass-warfare", "psychological-collapse", "omission-honor-set"]
+    tier_1: {name: "The Big Tidy-Up", framing: "Helpers push the grumbles back; the city held; the sun came back", omit: ["splintering spears", "wet ground", "mass death", "Denethor wall-turning"]}
+    tier_2: {approach: "Summarize the battle softly; the city is threatened and holds; the dread lifted"}
+    tier_3: {approach: "Summarize the battle at altitude; show stakes; foreground Éowyn's stand and the sun's return"}
+    tier_5: {approach: "Preserve — the battle is terrible, the field runs wet, the city holds, the sun returns"}
+
+  theodens_fall_and_eowyns_stand:
+    challenges: ["sacrifice-and-return", "petrification-body-horror", "death-euphemism"]
+    tier_1: {name: "The Helper Stands", theoden_end: "Took a long rest", rider: "Shooed a grumbler"}
+    tier_2: {approach: "Théoden falls and does not rise; Éowyn stands over him and drives the rider off"}
+    tier_3: {approach: "Théoden falls and does not rise; Éowyn stands over him and strikes the rider; bound gore"}
+    tier_5: {approach: "Preserve — she met the rider with her sword; the shadow screamed and was gone"}
+
+  denethors_collapse:
+    challenges: ["psychological-collapse"]
+    tier_1: {name: "The Sad Leader Has a Rest", omit: ["All is ended", "wall-turning"]}
+    tier_2: {approach: "Imply the despair softly; Denethor too sad to carry on"}
+    tier_3: {approach: "Imply the despair; Denethor too sad to answer"}
+    tier_5: {approach: "Preserve — 'All is ended'; turned his face to the wall"}
+
+  the_sun_returns:
+    challenges: ["allegory-stance"]
+    tier_1: {name: "The Sun Came Back", framing: "After the helping, the sun came back over the smoke"}
+    tier_2: {approach: "The sun climbs above the smoke and finds the city still standing"}
+    tier_3: {approach: "The sun climbed above the smoke and found the city still standing"}
+    tier_5: {approach: "Preserve — 'The sun, when at last it climbed above the smoke, found the Grey City still standing.'"}
+
+master_translation_table:
+  - {original: "the dark lord's shadow lay over the world like a drawn curtain", tier_1: "A big grumble covered the sun", tier_3: "A shadow over the world", tier_5: "Preserve", principle: "Agency Externalization"}
+  - {original: "his host advanced upon the Grey City in a tide of iron",         tier_1: "A tide of grumbles came",       tier_3: "A host came against the city",  tier_5: "Preserve", principle: "Conflict → Cooperation"}
+  - {original: "the dark had looked back",                                       tier_1: "Closed windows",                tier_3: "The dark looked back",          tier_5: "Preserve", principle: "Emotional Calibration"}
+  - {original: "Théoden fell, and did not rise again",                           tier_1: "Took a long rest",              tier_3: "Fell and did not rise",         tier_5: "Preserve", principle: "Death Euphemism (T1)"}
+  - {original: "the horns of the mountain-riders sounded",                       tier_1: "The helpers' song",             tier_3: "The mountain-riders' horns",    tier_5: "Preserve", principle: "Heroism as Helping (T1)"}
+  - {original: "the field was heavy with grief",                                 tier_1: "Friends were tired",            tier_3: "The field was heavy with grief",tier_5: "Preserve", principle: "Emotional Calibration"}

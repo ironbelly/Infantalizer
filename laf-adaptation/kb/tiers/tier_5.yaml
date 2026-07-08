@@ -1,0 +1,87 @@
+# Tier 5: Young Adult Age Profile (15-17 years)
+# KEY PARADIGM: Minimal Transformation - Preserve Author Intent
+
+profile:
+  id: "tier_5_young_adult"
+  name: "Young Adult"
+  age_range: [15, 17]
+  description: "Minimal transformation. Focus on accessibility, not sanitization."
+
+developmental_basis:
+  piaget_stage: "formal_operational"
+  piaget_characteristics:
+    - abstract_reasoning: "Full capacity for abstract thought"
+    - hypothetical_thinking: "Can reason about counterfactuals"
+    - metacognition: "Can think about thinking"
+  kohlberg_stage: 5
+  kohlberg_description: "Social contract orientation"
+
+thresholds:
+  violence:
+    level: 8
+    description: "Full violence permitted. Focus on meaning."
+    forbidden: ["gratuitous_sexual_violence", "torture_pornography"]
+    
+  emotional_complexity:
+    level: 9
+    permitted: ["full_spectrum", "trauma_portrayed", "despair_explored"]
+    requirement: "meaningful_treatment"
+    
+  moral_ambiguity:
+    level: 9
+    full_complexity: true
+    permits: ["tragic_endings", "antiheroes", "no_clear_right_answer"]
+    
+  narrative_complexity:
+    parallel_plotlines: true
+    flashbacks: true
+    unreliable_narrator: true
+    irony: "full_range"
+
+linguistic:
+  vocabulary:
+    target_grade_level: "10+"
+    approach: "preserve_original"
+    archaic_handling: "footnote_optional"
+      
+  sentence_structure:
+    approach: "preserve_author_voice"
+    
+  chapter_structure:
+    approach: "preserve_original"
+
+transformation_rules:
+  agency_externalization:
+    mode: "forbidden"
+    reason: "Patronizing; undermines character complexity"
+    
+  conflict_handling:
+    mode: "preserve"
+    
+  death_handling:
+    mode: "preserve"
+    
+  villain_motivation:
+    mode: "preserve"
+    full_complexity: true
+    
+  heroism_definition:
+    mode: "full_spectrum"
+
+adaptation_philosophy:
+  core_principle: "Adaptation means accessibility, not sanitization."
+  when_to_intervene:
+    - "Genuinely archaic language"
+    - "Historical context needed"
+    - "Cultural references now obscure"
+  when_not_to_intervene:
+    - "Difficult themes"
+    - "Moral complexity"
+    - "Character deaths"
+
+supplementary_approach:
+  recommended:
+    - "Character guide for large casts"
+    - "Timeline for complex chronology"
+    - "Context notes for historical background"
+    - "Discussion questions for themes"

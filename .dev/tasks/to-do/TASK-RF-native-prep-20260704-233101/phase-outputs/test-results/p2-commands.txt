@@ -1,0 +1,24 @@
+# P2 Command Well-Formedness Gate (raw output)
+
+From repo root `/config/workspace/Infantalizer`.
+
+## `ls .claude/commands/laf/`
+
+```
+prep.md
+rewrite.md
+```
+
+## `grep -c '^description:' .claude/commands/laf/prep.md .claude/commands/laf/rewrite.md`
+
+```
+.claude/commands/laf/rewrite.md:1
+.claude/commands/laf/prep.md:1
+```
+
+## `grep -c '^argument-hint:' .claude/commands/laf/prep.md .claude/commands/laf/rewrite.md`
+
+```
+.claude/commands/laf/rewrite.md:1
+.claude/commands/laf/prep.md:1
+```
