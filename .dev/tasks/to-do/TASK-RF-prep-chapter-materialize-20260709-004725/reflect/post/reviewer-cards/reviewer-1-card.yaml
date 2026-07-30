@@ -1,0 +1,32 @@
+reviewer: 1
+persona: analyzer
+model_class: reflect-reviewer (read-only allowlist; L1)
+lens: boundary-contract + hard invariants
+self_confidence: 0.82
+calibrated: true
+findings:
+  - id: A
+    summary: "--source-mode not forwarded in command delegation (prep.md:8-9)"
+    class_reviewer: Drift
+    class_calibrated: Drift
+    calibrated_confidence: 0.95
+    verification: CONFIRMED
+  - id: B
+    summary: "prep-cordinator write-scope (:43) says 'ONLY under work/prep/' but STAGE 0 writes source/<slug>/"
+    class_reviewer: Regression
+    class_calibrated: Drift   # downgraded: contradicts an INTERNAL self-statement, not a spec AC (§10.5)
+    calibrated_confidence: 0.88
+    verification: CONFIRMED
+  - id: C
+    summary: "test_check_boundary.py = second script (ADR-006)"
+    class_reviewer: Regression
+    class_calibrated: DROP-out-of-scope
+    calibrated_confidence: 0.03
+    verification: REFUTED (tracked in HEAD, prior commit e728ddc; boundary check PASSes with it present)
+per_invariant:
+  frozen_readset_unchanged: PASS
+  no_9th_package_file: PASS
+  sole_script_new_skill_adds_no_code: PASS (skill is prompt+YAML; the flagged 2nd script is pre-existing/out-of-scope)
+  vendor_single_native_row_emdash: PASS
+  no_adopted_body_edited: PASS
+  claude_mirror_source_mode: PASS (symlink target not observable read-only — orchestrator confirmed ../../laf-adaptation/skills/chapter-materialize)

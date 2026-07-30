@@ -65,7 +65,7 @@ is not hash-pinned. **Prefer adding a NATIVE skill** over dropping a file inside
 standalone NATIVE skill keeps the adopted skill's tree patch-clean and honors the boundary contract; a
 new file inside an adopted dir muddies the upstream-sync boundary even though it is technically permitted.
 
-**Why VENDOR.md has more rows (64) than the Rule-F glob set (31).** The Rule-F *coverage* requirement is
+**Why VENDOR.md has more rows (68) than the Rule-F glob set (31).** The Rule-F *coverage* requirement is
 the 31-file glob (`agents/*.md` + `skills/**/SKILL.md`). The VENDOR.md manifest is broader: it also hashes
 adopted skill `resources/**` files (needed for Rules A/B upstream-diff integrity), so the manifest carries
 **more rows than Rule-F's coverage set**. Rule F asserts every managed file is *manifested*; it does not

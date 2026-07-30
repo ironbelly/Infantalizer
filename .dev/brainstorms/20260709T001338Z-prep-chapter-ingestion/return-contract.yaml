@@ -1,0 +1,23 @@
+contract_version: "1.0"
+status: success
+seed_brief_path: .dev/brainstorms/20260709T001338Z-prep-chapter-ingestion/seed-brief.md
+merged_output_path: .dev/brainstorms/20260709T001338Z-prep-chapter-ingestion/merged-requirements.md
+convergence_score: 0.86
+adversarial_artifacts_dir: .dev/brainstorms/20260709T001338Z-prep-chapter-ingestion/adversarial/
+domain: architecture
+proposal_count: 3
+enrichment_used:
+  - source: codebase
+    quality_tier: primary
+  - source: research-light
+    quality_tier: skipped
+handoff_action: none
+handoff_output_path: .dev/brainstorms/20260709T001338Z-prep-chapter-ingestion/rewrite-brainstorm-prompt.md
+unresolved_conflicts:
+  - "Manifest is authoritative for the chapter set but is NOT in the frozen rewrite_phase_reads — deferred to the rewrite brainstorm (RQ1)."
+  - "Work-level analysis vs deferred-uncertain chapters — sequencing left to implementation (R2)."
+telemetry:
+  models: [claude-opus-4-8, gpt-5.5, glm-5.2]
+  personas: [architect, analyzer, refactorer]
+  base_selection: refactorer
+  agent_spec: "opus:architect:'systems design + boundary-contract fidelity',sonnet:analyzer:'edge cases + split mechanism + source-fidelity risk',haiku:refactorer:'minimal-diff reuse + backward compat'"

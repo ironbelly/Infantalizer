@@ -1,0 +1,167 @@
+# 30-mapping.yaml — derived work-mapping (6-KEY 0.1 form, with top-level meaning:)
+# Derived by /prep STAGE 4 from work/prep/narnia/20-analysis-work-level.yaml + 10-challenges.yaml
+# Source: Books/LWW/The Lion, the Witch and the Wardrobe, by C. S. Lewis.html (216,957 bytes, FULL access)
+# Effective confidence per entry = min(text_confidence, context_confidence).
+
+meaning:                                       # 6th key — 0.1-only extension (R10)
+  value: "A Christian redemption allegory, widely received as mapping the Passion, Atonement, and Resurrection onto Narnia: Aslan's voluntary, substitutionary sacrifice of himself in the traitor Edmund's place, his resurrection on the third dawn by a Deeper Magic older than the enemy's knowledge, and his triumphant defeat of evil — the Deep Magic / Deeper Magic echoing Law and Gospel. Intertwined: a coming-of-age / faith-and-betrayal-and-forgiveness theme (Edmund's fall and restoration; the children's growth into just rulers), the virtue of truthful belief (Lucy) over cynical disbelief, and childlike wonder at a magical reality just beyond the ordinary world. STANCE (allegory-as-reception): Lewis himself denied strict allegory and called the work a 'supposal' (Aslan is Christ incarnate within Narnia, not a cipher), but the allegorical reading dominates reader reception and the text's structure carries it unambiguously. Therefore: do NOT strip the sacrificial-redemption structure, the Deep/Deeper Magic, or the betrayal-forgiveness arc at any tier; at T3+ the allegorical resonance (Aslan = Christ; Stone Table = Passion/Resurrection; Deep/Deeper Magic = Law/Gospel) MAY be named openly as the work's dominant reception; at T1–T2 it stays implicit (Aslan = the good great Lion who helps) — no doctrine is imposed on the youngest readers."
+  text_confidence: CERTAIN
+  context_confidence: PROBABLE
+  confidence: PROBABLE                          # = min(text, context)
+
+work_metadata:
+  title: "The Lion, the Witch and the Wardrobe"
+  author: "C. S. Lewis"
+  key_challenges:                               # sourced from 10-challenges.yaml types
+    - "sacrifice-and-return"
+    - "allegory-stance"
+    - "omission-honor-set"
+    - "target-age-nuance"
+    - "mass-warfare"
+    - "petrification-body-horror"
+    - "psychological-collapse"
+
+characters:
+  aslan:
+    tier_1: {name: "Aslan", archetype: "The Great Helper (the good great Lion)", sacrifice: "Went away on a long adventure for Edmund and came back at dawn", death: "OMIT — journey/long adventure", magic: "Expressed as goodness and warmth that wakes sleeping friends"}
+    tier_2: {name: "Aslan", can_show: "The great good Lion who passes away gently in Edmund's place and returns at dawn; a brave, kind, powerful friend"}
+    tier_3: {name: "Aslan", can_show: "Killed in Edmund's place and resurrected at dawn by a deeper magic; the willing sacrifice is named and its meaning honoured (shaving/muzzle off-page). At this tier the Christological resonance (Aslan = Christ, the Stone Table = Passion/Resurrection) may be named openly as the work's dominant reception."}
+    tier_5: {name: "Aslan", preserve: "The great Lion, son of the Emperor-Beyond-the-Sea; shaved, muzzled, mocked, and slain on the Stone Table with the stone knife; resurrected at dawn when the Table cracks; breathes life back into the stone statues; slays the Witch. The Christological resonance is openly acknowledged at this tier (the Passion/Resurrection echo)."}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  white_witch:
+    tier_1: {name: "The Grumpy Witch", archetype: "The Grumpy/Messy Character", cause: "Always grumpy; wants everything cold and quiet; no sunshine allowed", end: "Goes away for good", petrification: "Turns friends into 'very long naps' until Aslan wakes them"}
+    tier_2: {name: "The White Witch", can_show: "A mean antagonist who doesn't understand kindness; turns creatures to stone; the opposing side in the contest"}
+    tier_3: {name: "The White Witch (Jadis)", can_show: "The self-styled Queen who keeps Narnia in winter; turns creatures to stone; claims Edmund under the Deep Magic; a real antagonist with understandable (if cruel) hunger for power"}
+    tier_5: {name: "The White Witch (Jadis)", preserve: "Self-styled Queen of Narnia, half Jinn via Lilith and half giantess; keeps eternal winter with no Christmas; turns the living to stone; claims traitors under the Deep Magic; binds, shaves, and slays Aslan; slain by Aslan at Beruna"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  edmund:
+    tier_1: {name: "Edmund", archetype: "The Mixed-Up Friend", betrayal: "Was grumpy and mixed-up; made a mean choice", redemption: "Feels better after a hug from Aslan; helps bravely", wounds: "OMIT"}
+    tier_2: {name: "Edmund", can_show: "Ashamed of a mean choice (tempted by treats) who earns his way back; plays a brave, fair turn against the Witch"}
+    tier_3: {name: "Edmund", can_show: "Betrayed by the enchanted Turkish Delight and his own spite; repents; has an unrecorded private talk with Aslan; breaks the Witch's wand and is wounded — shame and redemption named"}
+    tier_5: {name: "Edmund", preserve: "Tempted and turned by enchanted Turkish Delight; betrays his siblings; rescued; the private conversation with Aslan stays unrecorded; breaks the Witch's wand, is terribly wounded, healed by Lucy's cordial; crowned King Edmund the Just"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  lucy:
+    tier_1: {name: "Lucy", archetype: "Brave Friend / The Kind Helper", gift: "A special helping bottle that makes boo-boos better", truthfulness: "Believed when it mattered"}
+    tier_2: {name: "Lucy", can_show: "The truthful youngest sibling, first into Narnia; her healing cordial and her belief in doing right"}
+    tier_3: {name: "Lucy", can_show: "First to enter Narnia and befriend Tumnus; receives the healing cordial; witnesses Aslan's death and resurrection; truthful belief as virtue"}
+    tier_5: {name: "Lucy", preserve: "First through the wardrobe; befriends Mr. Tumnus; receives the healing fire-flower cordial and dagger from Father Christmas; witnesses the sacrifice and resurrection; heals Edmund; crowned Queen Lucy the Valiant"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  peter:
+    tier_1: {name: "Peter", archetype: "The Great Helper", wolf: "Helped shoo away a grumbly creature", battle: "Helped in the Big Tidy-Up"}
+    tier_2: {name: "Peter", can_show: "The brave eldest sibling who wins a brave contest against a frightening creature and leads his side"}
+    tier_3: {name: "Peter", can_show: "Eldest sibling; receives sword Rhindon; slays the wolf Fenris Ulf ('Fenris-Bane'); leads Aslan's army at Beruna"}
+    tier_5: {name: "Peter", preserve: "Eldest sibling; receives sword Rhindon and shield; slays the wolf Fenris Ulf (knighted Sir Peter Fenris-Bane); leads the army; crowned High King Peter the Magnificent"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  susan:
+    tier_1: {name: "Susan", archetype: "The Kind Helper", gift: "A special horn to call for help"}
+    tier_2: {name: "Susan", can_show: "The gentle, careful sibling; her horn and her calm"}
+    tier_3: {name: "Susan", can_show: "Second-eldest; receives bow, quiver, and ivory horn from Father Christmas; told she will not fight; witnesses the sacrifice and resurrection"}
+    tier_5: {name: "Susan", preserve: "Second-eldest sibling; receives bow, quiver, and ivory horn; told she is not to fight in battle; witnesses Aslan's death and resurrection; crowned Queen Susan the Gentle"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  mr_tumnus:
+    tier_1: {name: "Mr. Tumnus", archetype: "The Best Friend (a kind faun)", rescue: "Turned into a 'long nap' and woken up by Aslan"}
+    tier_2: {name: "Mr. Tumnus", can_show: "Lucy's faun friend who was turned to stone and restored; a friend who did the right thing"}
+    tier_3: {name: "Mr. Tumnus", can_show: "The Faun who repents of the Witch's errand and rescues Lucy; arrested for treason; turned to stone; restored by Aslan"}
+    tier_5: {name: "Mr. Tumnus", preserve: "A Faun; originally in the Witch's pay to kidnap Humans; repents and rescues Lucy; arrested for treason; turned to stone; restored by Aslan"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+concepts:
+  the_wardrobe_threshold:                        # the portal — fixture-grounded
+    tier_1: "A magic cupboard that goes to a snowy land"
+    tier_2: "A magical wardrobe that is the door into Narnia"
+    tier_3: "The wardrobe — the portal between wartime England and Narnia"
+    tier_5: "The wardrobe — the threshold between the Professor's spare room and the lantern-lit snowy wood of Narnia; it returns you to the same hour you left"
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  eternal_winter:                                # the Witch's enchantment
+    tier_1: "Always winter and no fun — always snowing, never Christmas (until the sun came back)"
+    tier_2: "An endless cold winter with no Christmas, that the Witch's magic keeps"
+    tier_3: "The Witch's enchantment of eternal winter with no Christmas, broken by Aslan's coming and Father Christmas's arrival"
+    tier_5: "The White Witch's enchantment — eternal winter and always winter, never Christmas; the Deep Magic of her reign, thawing only as Aslan draws near"
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  the_deep_magic:                                # the abstract law — allegorical machinery (allegory-as-reception: nameable at T3+)
+    tier_1: "OMIT (a grown-up rule) — Aslan just knew how to help"
+    tier_2: "A rule the Witch thought gave her Edmund (lightly: a rule that said mean choices have a cost)"
+    tier_3: "The Deep Magic from the Dawn of Time — the law that gives the Witch a right to a traitor's blood; at this tier its echo of Law (the claim that must be satisfied) may be named openly as the allegorical resonance"
+    tier_5: "The Deep Magic from the Dawn of Time — the immutable law by which every traitor is the Witch's lawful prey and she has a right to a kill; preserve as written (the allegorical echo of Law is openly acknowledged at this tier)"
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  the_deeper_magic:                              # the reversal — allegorical machinery (allegory-as-reception: nameable at T3+)
+    tier_1: "OMIT — Aslan just came back because he was good"
+    tier_2: "Something deeper than the Witch knew that let Aslan come back (lightly)"
+    tier_3: "The Deeper Magic from before the Dawn of Time — when a willing, guiltless victim dies in a traitor's stead, Death works backwards; at this tier its resonance with Grace and the Resurrection may be named openly"
+    tier_5: "The Deeper Magic from before the Dawn of Time — 'when a willing victim who had committed no treachery was killed in a traitor's stead, Death itself would start working backwards'; preserve as written (the Resurrection echo is openly acknowledged at this tier)"
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  petrification_to_stone:                        # the Witch's living-death
+    tier_1: "A 'very long nap' / frozen like ice until Aslan wakes you"
+    tier_2: "Turned to stone — an enchantment Aslan can undo"
+    tier_3: "Turned to stone by the Witch — a living death reversed by Aslan's breath; the courtyard of statues and the restoration"
+    tier_5: "The Witch turns the living to stone (a courtyard of statues, including the lion the dwarf dressed and mocked); Aslan's breath restores each one"
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+key_scenes:
+  lucy_enters_narnia:                            # the portal wonder — Ch. I-II
+    challenges: ["omission-honor-set"]
+    tier_1: {name: "Lucy Finds the Snowy Land", framing: "Lucy steps through the cupboard into a snowy wood and meets a kind faun friend; wonder and friendship only"}
+    tier_2: {approach: "Lucy enters Narnia through the wardrobe and befriends Mr. Tumnus, who chooses to help her"}
+    tier_3: {approach: "Lucy enters Narnia at the lamp-post and meets Mr. Tumnus; the Faun's conflict (the Witch's errand vs. his conscience) is named"}
+    tier_5: {approach: "Preserve — the lamp-post, the snowy wood, the faun's cave, the temptation-and-repentance of Mr. Tumnus"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  edmunds_betrayal:                              # Ch. IV — Turkish Delight
+    challenges: ["psychological-collapse", "omission-honor-set"]
+    tier_1: {name: "Edmund Makes a Mean Choice", framing: "Edmund was grumpy and mixed-up and told the grumpy Witch where his friends were; omit the enchanted-treat hold and the lie"}
+    tier_2: {approach: "Edmund is tempted by treats and makes a mean choice (cheating); ashamed; the cost is felt softly"}
+    tier_3: {approach: "Edmund is turned by the enchanted Turkish Delight and his spite; he betrays his siblings and later denies Narnia; the moral weight named"}
+    tier_5: {approach: "Preserve — the enchanted Turkish Delight, the extraction of the promise, Edmund's betrayal and his lying denial of Narnia to the others"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  aslans_sacrifice:                              # COMPOUND — Ch. XIV — see 10-challenges compound_scenes
+    challenges: ["sacrifice-and-return", "psychological-collapse", "allegory-stance", "death-euphemism"]
+    tier_1: {name: "Aslan's Long Adventure", framing: "Aslan goes away on a long adventure for Edmund's sake; friends wait; he comes back at dawn", omit: ["the stone knife", "the shaving/muzzle", "the mockery", "the Deep Magic claim"]}
+    tier_2: {approach: "Aslan passes away gently in Edmund's place; Susan and Lucy keep watch; the cruelty off-page"}
+    tier_3: {approach: "Name the death (killed in Edmund's place) and the meaning (he chose it); omit the shaving/muzzle/mockery detail; the vigil honoured. The Passion echo (Aslan = Christ, the Stone Table = the Cross) may be named openly at this tier."}
+    tier_5: {approach: "Preserve — the Deep Magic claim, the shaving of the mane, the muzzle, the mockery, the stone knife, the death on the Table"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  aslans_resurrection:                           # COMPOUND — Ch. XV — see 10-challenges compound_scenes
+    challenges: ["sacrifice-and-return", "allegory-stance"]
+    tier_1: {name: "Aslan Comes Back", framing: "At dawn Aslan is back — joyful, the long adventure over; the wonder and play survive"}
+    tier_2: {approach: "Aslan returns at the dawn; the sense that something deeper than the Witch knew made it possible, lightly"}
+    tier_3: {approach: "The Deeper Magic named; the Table cracks and Aslan returns at dawn. The Resurrection echo may be named openly at this tier as the work's dominant reception."}
+    tier_5: {approach: "Preserve — the mice gnaw the bonds, the Stone Table cracks, the Deeper Magic reversal, the dawn resurrection"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  the_battle_of_beruna:                          # COMPOUND — Ch. XVI–XVII — see 10-challenges compound_scenes
+    challenges: ["mass-warfare", "violence-level", "petrification-body-horror", "death-euphemism"]
+    tier_1: {name: "The Big Tidy-Up", framing: "Helpers push the messy tide back; Peter helps; the grumpy Witch goes away for good; the land is free", omit: ["all wounding", "the wand-breaking as combat", "Aslan killing the Witch"]}
+    tier_2: {approach: "A hard contest Peter's side wins; Edmund plays a brave turn; the Witch is finally beaten"}
+    tier_3: {approach: "Summarize the battle at altitude; name Edmund breaking the wand and his wounding, and Aslan ending the Witch; bound the carnage"}
+    tier_5: {approach: "Preserve — clashing metal, battle-axes, Edmund shatters the wand and is terribly wounded, Aslan leaps on the Witch and kills her, the enemy routed"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+  coronation_and_return:                         # the golden reign + wardrobe return — Ch. XVII
+    challenges: ["omission-honor-set", "target-age-nuance"]
+    tier_1: {name: "The Friends Are Made Kings and Queens, Then Home", framing: "The four friends are crowned helpers and rule happily, then find their way back through the cupboard to the very same day"}
+    tier_2: {approach: "The children are crowned at Cair Paravel, reign well, and return through the wardrobe to the same hour"}
+    tier_3: {approach: "Crowned at Cair Paravel (the prophecy of the four thrones fulfilled); the golden reign; the return through the wardrobe to the same hour they left"}
+    tier_5: {approach: "Preserve — the coronation (Peter the Magnificent, Susan the Gentle, Edmund the Just, Lucy the Valiant), the long golden reign, the White Stag hunt, the rediscovery of the lamp-post, the return to the same day and hour, the Professor's belief"}
+    _confidence: {text: CERTAIN, context: PROBABLE, eff: PROBABLE}
+
+master_translation_table:
+  - {original: "Aslan was bound, shaved, muzzled, mocked, and killed on the Stone Table with a stone knife", tier_1: "Aslan went away on a long adventure for Edmund and came back at dawn", tier_3: "Aslan was killed in Edmund's place and returned at dawn", tier_5: "Preserve", principle: "Death Euphemism (T1) + Sacrifice-and-return", _confidence: {eff: PROBABLE}}
+  - {original: "the White Witch turned the living to stone", tier_1: "Turned friends into a very long nap / froze them like ice", tier_3: "Turned creatures to stone — Aslan's breath undoes it", tier_5: "Preserve", principle: "Petrification-body-horror (reframe vs restore)", _confidence: {eff: PROBABLE}}
+  - {original: "the Battle of Beruna — clashing metal, battle-axes, the enemy killed in the first charge", tier_1: "The Big Tidy-Up — helpers push the messy tide back", tier_3: "The battle, summarized at altitude; Edmund's brave turn", tier_5: "Preserve", principle: "Conflict → Cooperation (T1)", _confidence: {eff: PROBABLE}}
+  - {original: "Edmund broke the Witch's wand and was terribly wounded", tier_1: "Edmund helped bravely (omit wounding)", tier_3: "Edmund broke the Witch's wand and was hurt", tier_5: "Preserve", principle: "Heroism as Helping (T1) + violence-level", _confidence: {eff: PROBABLE}}
+  - {original: "Peter slew the wolf Fenris Ulf with his sword", tier_1: "Peter helped shoo a grumbly creature", tier_3: "Peter fought off the wolf", tier_5: "Preserve", principle: "Heroism as Helping (T1)", _confidence: {eff: PROBABLE}}
+  - {original: "the Deep Magic from the Dawn of Time gives the Witch a right to a kill", tier_1: "OMIT (a grown-up rule)", tier_3: "The Deep Magic — the law the Witch claimed (its echo of Law may be named openly)", tier_5: "Preserve", principle: "Allegory-stance (allegory-as-reception)", _confidence: {eff: PROBABLE}}
+  - {original: "the Deeper Magic from before the Dawn of Time — Death works backwards", tier_1: "OMIT — Aslan came back because he was good", tier_3: "The Deeper Magic — a willing innocent's death reverses (the Grace/Resurrection echo may be named openly)", tier_5: "Preserve", principle: "Allegory-stance (allegory-as-reception)", _confidence: {eff: PROBABLE}}
+  - {original: "eternal winter and always winter, never Christmas", tier_1: "Always winter and no fun — snowing, never Christmas", tier_3: "The Witch's endless winter with no Christmas, breaking as Aslan nears", tier_5: "Preserve", principle: "Emotional Calibration", _confidence: {eff: PROBABLE}}

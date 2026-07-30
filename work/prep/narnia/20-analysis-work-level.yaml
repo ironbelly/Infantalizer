@@ -1,0 +1,89 @@
+status: OK
+metadata:
+  work: "The Lion, the Witch and the Wardrobe"
+  work_slug: narnia
+  author: "C. S. Lewis"
+  granularity: work
+  source_access: FULL
+  confidence: CERTAIN
+essentials:
+  title:
+    value: "The Lion, the Witch and the Wardrobe (A Story for Children)"
+    confidence: CERTAIN
+  structure_overview:
+    value: "17 chapters (Roman I 'Lucy Looks into a Wardrobe' through XVII 'The Hunting of the White Stag'), plus a title page, a dedication to Lucy Barfield, and a CONTENTS list. Whole-work arc: four evacuated children enter Narnia through a wardrobe, the land is under the White Witch's eternal-winter enchantment, the great Lion Aslan returns, Edmund's betrayal and rescue, Aslan's voluntary sacrifice at the Stone Table and resurrection via the Deeper Magic, the defeat of the Witch in battle, the crowning of the four children as Kings and Queens at Cair Paravel, a long prosperous reign, and a return through the wardrobe to the same instant they left."
+    confidence: CERTAIN
+  opening_sentence:
+    value: "Once there were four children whose names were Peter, Susan, Edmund and Lucy."
+    confidence: CERTAIN
+  closing_sentence:
+    value: "And that is the very end of the adventures of the wardrobe. But if the Professor was right it was only the beginning of the adventures of Narnia."
+    confidence: CERTAIN
+characters:
+  - {name: "Peter Pevensie", role: "Eldest of the four siblings; receives sword Rhindon and shield from Father Christmas; knighted 'Sir Peter Fenris-Bane' after slaying the wolf Fenris Ulf; leads Aslan's army; crowned High King Peter the Magnificent at Cair Paravel.", confidence: CERTAIN}
+  - {name: "Susan Pevensie", role: "Second-eldest sibling; receives bow, quiver, and ivory horn from Father Christmas; told she will not fight in battle; crowned Queen Susan the Gentle.", confidence: CERTAIN}
+  - {name: "Edmund Pevensie", role: "Third sibling; betrayed by enchanted Turkish Delight to the White Witch; betrays his siblings; rescued; has private talk with Aslan; breaks the Witch's wand in battle; knighted; crowned King Edmund the Just.", confidence: CERTAIN}
+  - {name: "Lucy Pevensie", role: "Youngest sibling; first to enter Narnia and meet Mr. Tumnus; receives a healing cordial (fire-flower juice) and dagger from Father Christmas; witnesses Aslan's death and resurrection; crowned Queen Lucy the Valiant.", confidence: CERTAIN}
+  - {name: "Aslan", role: "The great Lion; the King, son of the Emperor-Beyond-the-Sea; returns to Narnia to end the Witch's winter; voluntarily sacrifices himself in Edmund's place at the Stone Table; resurrected by the Deeper Magic; defeats the Witch; crowns the children.", confidence: CERTAIN}
+  - {name: "The White Witch (Jadis)", role: "Self-styled Queen of Narnia; not human (half Jinn via Lilith, half giantess per Mr. Beaver); keeps Narnia in eternal winter with no Christmas; turns living creatures to stone; claims Edmund under the Deep Magic; kills Aslan; slain by Aslan in battle.", confidence: CERTAIN}
+  - {name: "Mr. Tumnus", role: "A Faun; Lucy's first friend in Narnia; originally in the Witch's pay to kidnap Humans but repents and rescues Lucy; arrested for treason; turned to stone; restored by Aslan.", confidence: CERTAIN}
+  - {name: "Mr. Beaver", role: "Talking beaver; guides the children to Aslan; first announces 'Aslan is on the move'; carries the token of Lucy's handkerchief.", confidence: CERTAIN}
+  - {name: "Mrs. Beaver", role: "Mr. Beaver's wife; sews and feeds the children at the dam; packs supplies for the flight to the Stone Table.", confidence: CERTAIN}
+  - {name: "The Professor (Digory)", role: "Old man with shaggy white hair in whose country house the children are evacuated; applies logic to argue Lucy is truthful; believes their story on return; foreshadows further Narnia adventures.", confidence: PROBABLE}
+  - {name: "Father Christmas", role: "Arrives once the Witch's magic weakens; gives the children their gifts (sword/shield, bow/horn, cordial/dagger); declares 'Aslan is on the move' and the Witch's magic is weakening.", confidence: CERTAIN}
+  - {name: "Fenris Ulf", role: "Chief of the Witch's Secret Police; a grey wolf; signs Tumnus's arrest notice; killed by Peter, earning Peter the name 'Fenris-Bane'.", confidence: CERTAIN}
+  - {name: "The Dwarf (Witch's driver)", role: "The Witch's dwarf servant who drives her sledge, sharpens the knife, binds Edmund/Aslan, and is disguised as a boulder.", confidence: CERTAIN}
+  - {name: "Giant Rumblebuffin", role: "A good giant turned to stone in the Witch's courtyard; restored by Aslan; smashes the castle gates open.", confidence: CERTAIN}
+  - {name: "Mrs. Macready", role: "The Professor's housekeeper; dislikes children; her house tour inadvertently drives all four children into the wardrobe.", confidence: CERTAIN}
+events:
+  - {seq: 1, event: "Four siblings (Peter, Susan, Edmund, Lucy) are evacuated from London during wartime air-raids to an old Professor's country house.", confidence: CERTAIN}
+  - {seq: 2, event: "During a rainy exploratory day, Lucy steps into an old wardrobe and emerges in a snowy wood (Narnia) under a lamp-post, where she meets the Faun Mr. Tumnus.", confidence: CERTAIN}
+  - {seq: 3, event: "Tumnus, originally ordered by the White Witch to kidnap any Human, repents and guides Lucy safely back to the lamp-post; she returns to the spare room moments after leaving.", confidence: CERTAIN}
+  - {seq: 4, event: "Lucy's siblings disbelieve her; on a later hide-and-seek day Edmund enters the wardrobe alone and meets the White Witch, who feeds him enchanted Turkish Delight and extracts a promise to bring his siblings to her, then encounters Lucy but later denies Narnia to the others, betraying Lucy.", confidence: CERTAIN}
+  - {seq: 5, event: "The Professor reasons (logic: lies, madness, or truth) that Lucy is truthful; the children are subsequently chased into the wardrobe by Mrs. Macready's tour and all four enter Narnia together.", confidence: CERTAIN}
+  - {seq: 6, event: "The children find Tumnus's cave ransacked and a notice of his arrest for treason signed by Fenris Ulf; a friendly robin leads them until Mr. Beaver appears and, by Lucy's handkerchief as token, guides them to his dam-house.", confidence: CERTAIN}
+  - {seq: 7, event: "Mr. Beaver announces 'Aslan is on the move' and the prophecies (Adam's flesh and bone on the Cair Paravel thrones; Aslan will end the Witch's reign); Edmund slips away to betray the others to the Witch.", confidence: CERTAIN}
+  - {seq: 8, event: "Edmund reaches the Witch's castle, passes its courtyard of stone statues, and informs her of Aslan's coming; the Witch sets out on her sledge with Edmund and orders Fenris Ulf to kill any at the Beavers' and lie in wait at the Stone Table.", confidence: CERTAIN}
+  - {seq: 9, event: "The Beavers and three children flee by night; they meet Father Christmas, whose arrival (and Aslan's) breaks the Witch's endless winter: the snow thaws, spring erupts, the Witch's sledge fails, and she forces the bound Edmund to walk.", confidence: CERTAIN}
+  - {seq: 10, event: "The Witch, encountering a party gifted by Father Christmas, turns them all to stone and strikes Edmund; meanwhile the others reach the Stone Table hilltop and meet Aslan, who welcomes them.", confidence: CERTAIN}
+  - {seq: 11, event: "Peter saves Susan from the wolf Fenris Ulf, killing it; Aslan knights him 'Sir Peter Fenris-Bane'; Aslan's rescue party saves Edmund from being murdered by the Witch just as she sharpens her knife.", confidence: CERTAIN}
+  - {seq: 12, event: "The White Witch confronts Aslan and claims Edmund under the Deep Magic ('every traitor belongs to me as my lawful prey... I have a right to a kill'); Aslan privately agrees to a pact with her and she renounces the claim on Edmund's blood.", confidence: CERTAIN}
+  - {seq: 13, event: "That night Susan and Lucy follow Aslan to the Stone Table; he is bound, shaved of his mane, muzzled, mocked, and killed by the Witch's stone knife in Edmund's place; the Witch's horde then marches to war.", confidence: CERTAIN}
+  - {seq: 14, event: "At dawn, field mice gnaw Aslan's bonds and the Stone Table cracks; Aslan is resurrected by the Deeper Magic ('when a willing victim who had committed no treachery was killed in a traitor's stead... Death itself would start working backwards').", confidence: CERTAIN}
+  - {seq: 15, event: "Aslan carries the girls on his back, leaps the wall of the Witch's castle, and breathes life back into all the stone statues (including Mr. Tumnus and Giant Rumblebuffin), who smash the gates open.", confidence: CERTAIN}
+  - {seq: 16, event: "Aslan's host races to the Battle of Beruna where Peter's army is hard-pressed; Edmund breaks the Witch's wand but is terribly wounded; Aslan leaps upon the Witch and kills her, and the enemy is routed.", confidence: CERTAIN}
+  - {seq: 17, event: "Lucy heals Edmund (and others) with her cordial; Aslan crowns the four children on the thrones of Cair Paravel; after a long, golden reign they pursue the White Stag, rediscover the lamp-post, and tumble back through the wardrobe into the same day and hour they left, where the Professor believes their tale.", confidence: CERTAIN}
+summary:
+  text: "During wartime air-raids, four siblings (Peter, Susan, Edmund, Lucy) are evacuated to an old Professor's country house. Exploring a dusty wardrobe, Lucy stumbles into Narnia, a land held in the White Witch's enchantment of eternal winter with no Christmas, where she befriends the Faun Mr. Tumnus, who risks his life to spare her. Edmund, bewitched by the Witch's enchanted Turkish Delight, becomes her tool and betrays the others. When all four enter Narnia fleeing the housekeeper, talking Beavers guide them toward the returning great Lion Aslan, son of the Emperor-Beyond-the-Sea, whose coming breaks the winter into spring. The Witch claims Edmund under the immutable Deep Magic that gives her 'a right to a kill' for every traitor; Aslan secretly bargains with her and allows himself to be shaved, bound, mocked, and slain on the Stone Table in Edmund's stead. At dawn, field mice gnaw his bonds and the Table cracks: a Deeper Magic, older than the Witch's knowledge, resurrects the willing, guiltless victim. Restored, Aslan revives the Witch's petrified victims and races to the Battle of Beruna, where Edmund shatters the Witch's wand and Aslan slays her. The four are crowned at Cair Paravel, reign in a golden age, then return through the wardrobe to the very hour they left, the Professor quietly believing them."
+  confidence: PROBABLE
+transformation_flags:
+  violence:
+    instances: 6
+    severity: med
+    note: "Peter's killing of the wolf Fenris Ulf (sword through the heart, blood and heat and hair described); the Witch binding, shaving, muzzling, kicking, hitting, and spitting on Aslan; the Witch preparing to slit Edmund's throat (knife sharpened); the Battle of Beruna (clashing metal, battle-axes, crushing, the Witch fighting Peter with her stone knife); Edmund wounded and bloody and smashing the Witch's wand; Aslan leaping on and killing the Witch. Presented in a children's-book register (restrained, not graphic), hence med rather than high."
+  death:
+    instances: 4
+    severity: high
+    note: "Aslan is murdered on the Stone Table in Edmund's place (the explicit killing, described as sacrifice); the White Witch is killed by Aslan in battle; Fenris Ulf is killed by Peter; many of the enemy are killed in the first charge ('most of the enemy had been killed'). The Witch also 'turns to stone' numerous living creatures, a kind of living death. Aslan's death and resurrection is the high-severity emotional and thematic centre."
+  emotional:
+    instances: 7
+    severity: high
+    note: "Aslan's willing sacrifice, the shaving/muzzling/mockery, and Susan and Lucy's vigil over his dead body (crying till they could cry no more) are the high point; also Lucy's first misery at being disbelieved, Edmund's shame and repentance, the children's reunion with the restored Tumnus, Aslan's quiet slipping away at the coronation, and the bittersweet return through the wardrobe."
+  abstract:
+    instances: 5
+    severity: high
+    note: "The Deep Magic from the Dawn of Time and the Deeper Magic from before the Dawn of Time (the metaphysical law governing treachery, blood-debt, and resurrection via a willing innocent victim); the prophecies of Cair Paravel's four thrones and 'Adam's flesh and Adam's bone'; the Witch's enchantments (eternal winter, turning to stone, the enchanted Turkish Delight); Aslan as son of the Emperor-Beyond-the-Sea. This is the explicit allegorical machinery of the novel and must be neither added to nor stripped."
+meaning:
+  value: "A Christian redemption allegory layered beneath a fairy-tale adventure: Aslan's voluntary, substitutionary sacrifice of himself in the traitor Edmund's place, his resurrection on the third dawn by a deeper law older than the enemy's knowledge, and his triumphant defeat of evil map onto the Passion, Atonement, and Resurrection of Christ (Aslan as the Christ-figure, son of the Emperor-Beyond-the-Sea = God the Father). Intertwined is a coming-of-age / faith-and-betrayal-and-forgiveness theme: Edmund's fall (temptation, betrayal) and restoration, the children's growth into just and magnanimous rulers ('once a king or queen in Narnia, always a king or queen'), and the virtue of truthful belief (Lucy) over cynical disbelief. The frame also affirms childlike wonder and the existence of a magical reality just beyond the ordinary world. Adaptations must neither add explicit religious content the text keeps veiled NOR strip the sacrificial-redemption structure, the Deep/Deeper Magic, or the moral arc of betrayal-forgiveness."
+  confidence: CERTAIN
+compound_scene: true
+compound_scenes:
+  - {scene: "The Stone Table - Aslan's sacrifice and murder (Ch. XIV 'The Triumph of the Witch')", cooccurring_flags: [violence, death, emotional, abstract], severity: high}
+  - {scene: "The Stone Table - Aslan's resurrection (Ch. XV 'Deeper Magic from before the Dawn of Time')", cooccurring_flags: [death, emotional, abstract], severity: high}
+  - {scene: "The Battle of Beruna (Ch. XVI-XVII)", cooccurring_flags: [violence, death, emotional], severity: high}
+  - {scene: "The Witch's courtyard and the Christmas party - creatures turned to stone (Ch. IX, XI)", cooccurring_flags: [violence, abstract], severity: med}
+uncertainties:
+  - "The Professor's first name (Digory Kirke) is not stated in this text; it is known from later Chronicles but is an inference, not source-grounded here - tagged PROBABLE for the character entry. The role and behaviour described are all directly sourced."
+  - "Exact wording of the closing 'sentence' is taken as the final two declarative sentences of narrative prose ('And that is the very end... beginning of the adventures of Narnia.'), which is the actual close of the story; the Project Gutenberg tail matter ('[End of...]', 'The End') is paratext, not the novel's prose."
+  - "ISO-8859-1 decoding of the HTML was clean and fully readable; no parsing ambiguity affected any extracted fact. The HTML entity &mdash; (em dash) appears throughout dialogue and was read as such."
+  - "Character-role summaries condense events that span multiple chapters; every condensation traces to text already read but the one-line summaries are analyst syntheses."

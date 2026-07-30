@@ -1,0 +1,1 @@
+../../laf-adaptation/agents/character-sim.md

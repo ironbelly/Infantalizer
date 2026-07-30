@@ -1,0 +1,21 @@
+reviewer: 3
+persona: refactorer
+model_class: reflect-reviewer (read-only allowlist; L1)
+lens: manifest-schema fidelity + cross-artifact coherence + non-restatement
+self_confidence: 0.90
+calibrated: true
+checks:
+  manifest_schema_fidelity: PASS (SKILL.md:224-272 — all §5 fields present)
+  failure_table_16_rows_3_cols: PASS (SKILL.md:192-209)
+  boundary_rules_5_layers_confidence_mirror_no_placeholder: PASS (boundary-rules.yaml:9,25,44,66,80,96; mirror non-authoritative :93-95)
+  confidence_rule_verbatim_single_signal_capped: PASS (SKILL.md:115-123)
+  cross_artifact_coherence_chain: GAP (command does not forward --source-mode → finding A)
+  non_restatement_package_readset_paths: PASS
+  s15_seams_out_of_scope: PASS (no 4th read-set entry; granularity=work preserved)
+findings:
+  - id: A
+    summary: "--source-mode not forwarded in command delegation (prep.md:8-9)"
+    class_calibrated: Drift
+    calibrated_confidence: 0.95
+    verification: CONFIRMED
+self_confidence_note: "did NOT raise write-scope finding B; did NOT raise the out-of-scope C false positive"

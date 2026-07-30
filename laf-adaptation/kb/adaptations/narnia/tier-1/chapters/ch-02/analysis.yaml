@@ -1,0 +1,47 @@
+# Step 1 — analyst (NATIVE) output. Produced by executing /source-fidelity v2.0 on source/narnia/ch-02.txt.
+# SOURCE ACCESS: FULL (file exists, readable, non-empty, readable end-to-end) — analysis proceeds; NOT ABORTED.
+status: OK
+metadata:
+  work: narnia
+  chapter: "02"
+  source_access: FULL
+  confidence: PROBABLE     # overall = worst-case across essentials (title is PROBABLE — not named in-chapter)
+essentials:
+  title:            {value: "The Lion, the Witch and the Wardrobe", confidence: PROBABLE}   # not stated within the chapter text; inferred from work-level context
+  chapter_title:    {value: "What Lucy Found There", confidence: CERTAIN}
+  opening_sentence: {value: '"Good evening," said Lucy.', confidence: CERTAIN}
+  closing_sentence: {value: '"I''m here," she shouted. "I''m here. I''ve come back, I''m all right."', confidence: CERTAIN}
+characters:
+  - {name: "Lucy", role: "youngest child; polite, truthful, and kind — meets and befriends the Faun, is nearly betrayed to the Witch, forgives him, and returns home safely", confidence: CERTAIN}
+  - {name: "Mr. Tumnus", role: "the Faun from ch-01, here named; hospitable and charming, in the pay of the White Witch as a kidnapper of Humans; repents rather than hand Lucy over and escorts her safely back to the lamp-post", confidence: CERTAIN}
+  - {name: "the White Witch", role: "off-page antagonist named by Tumnus; keeps Narnia in eternal winter ('always winter and never Christmas'); has ordered Tumnus to capture any Human; threatens cruel punishments for disobedience", confidence: CERTAIN}
+  - {name: "Tumnus's father", role: "off-page; a good old Faun whose grey-bearded portrait hangs over the mantelpiece; invoked by Tumnus as the standard he has failed ('He would never have done a thing like this')", confidence: CERTAIN}
+events:
+  - {seq: 1, event: "Lucy greets the Faun; he bows, confirms she is a 'Daughter of Eve' (a human girl) — the first Human he has ever seen — and introduces himself as Tumnus.", confidence: CERTAIN}
+  - {seq: 2, event: "Tumnus tells Lucy she is in the land of Narnia (all that lies between the lamp-post and Cair Paravel); Lucy explains she came through the wardrobe in the spare room, which Tumnus mishears as the far land of 'Spare Oom' and the city of 'War Drobe'.", confidence: CERTAIN}
+  - {seq: 3, event: "Because it is winter and cold, Tumnus invites Lucy to tea at his cave; she accepts on condition she cannot stay long, and they walk arm-in-arm under his umbrella.", confidence: CERTAIN}
+  - {seq: 4, event: "They reach Tumnus's cave — a warm, cosy, firelit home of reddish stone with a carpet, two chairs, a dresser, a mantelpiece bearing his father's portrait, and a shelf of books.", confidence: CERTAIN}
+  - {seq: 5, event: "Tumnus lays a wonderful tea (boiled eggs, sardines on toast, buttered toast, honey toast, sugar-topped cake) and tells Lucy wonderful tales of forest life — midnight dances with Nymphs and Dryads, hunting the milk-white Stag, feasting with Red Dwarfs, and summer visits from Silenus and Bacchus when the streams ran with wine.", confidence: CERTAIN}
+  - {seq: 6, event: "Tumnus plays a strange straw flute whose tune makes Lucy want to cry, laugh, dance, and sleep at once; hours pass before she rouses and says she must go home.", confidence: CERTAIN}
+  - {seq: 7, event: "Tumnus breaks down weeping, calling himself a bad Faun; he confesses he has taken service in the pay of the White Witch — who keeps Narnia in eternal winter, 'always winter and never Christmas'.", confidence: CERTAIN}
+  - {seq: 8, event: "Tumnus confesses he is a kidnapper: the Witch has ordered him to catch any Son of Adam or Daughter of Eve and hand them over; Lucy is the first he has met, and he had planned to lull her to sleep at tea and betray her.", confidence: CERTAIN}
+  - {seq: 9, event: "Tumnus describes the punishments the Witch would inflict for disobedience (tail cut off, horns sawn off, beard plucked, hoofs transformed, or being turned to stone until the four thrones at Cair Paravel are filled).", confidence: CERTAIN}
+  - {seq: 10, event: "Having come to know Lucy, Tumnus repents and resolves he cannot give her up; he leads her quietly back through the spy-filled wood (even some trees are the Witch's), keeping to the darkest places, to the lamp-post.", confidence: CERTAIN}
+  - {seq: 11, event: "At the lamp-post Lucy can see the distant daylight of the wardrobe door; she forgives Tumnus, shakes his hand, hopes he won't get into trouble, and lets him keep her handkerchief.", confidence: CERTAIN}
+  - {seq: 12, event: "Lucy runs to the light, feels coats and wooden boards replace branches and snow, tumbles out of the wardrobe into the same empty room, and calls to the others that she is back and all right.", confidence: CERTAIN}
+summary:
+  text: "Lucy and the Faun — now named Mr. Tumnus — strike up a warm acquaintance at the lamp-post; he confirms she is a Human ('Daughter of Eve'), tells her she is in Narnia, and invites her home to tea. At his cosy firelit cave he lays a splendid tea and tells enchanting tales of forest life before playing a flute so bewitching that Lucy loses hours to it. Rousing at last, she says she must go home — and Tumnus dissolves into tears, confessing that he is in the pay of the White Witch (who holds Narnia in endless winter, always winter and never Christmas) and has been ordered to kidnap any Human he meets and hand them to her. Lucy is the first, and he had meant to lull her asleep and betray her. But having come to know her as a friend, he repents, cannot go through with it, and leads her quietly back through the spy-ridden wood to the lamp-post. Lucy forgives him, they part with a handshake, and she runs back to the wardrobe, tumbling into the same empty room to call out that she has returned safe."
+  confidence: PROBABLE
+transformation_flags:
+  violence:  {instances: 0, severity: low}    # no on-page violence; only Tumnus's recited list of the Witch's threatened punishments (hypothetical, off-page, directed at himself) and the abstract threat of petrification
+  death:     {instances: 0, severity: low}    # no death event in this chapter
+  emotional: {instances: 2, severity: moderate}   # Tumnus's breakdown/weeping + his confession of the kidnap-errand; Lucy's fright ("turning very white") at learning she is the intended victim — both resolve safely (she is forgiven-forgiving and returns home unharmed)
+  abstract:  {instances: 1, severity: moderate}   # the moral machinery: the Witch's-pay errand + temptation-and-repentance (Tumnus torn between the Witch's orders and his conscience); the Witch's eternal-winter enchantment is named but off-page
+meaning:
+  value: "The temptation-and-repentance beat that turns hospitality into moral crisis: a charming host, secretly enlisted by evil, is redeemed not by force but by the simple act of coming to know his intended victim as a friend — 'I hadn't known what Humans were like before I met you.' Friendship and truthful kindness (Lucy's) melt a betrayal already in motion; conscience overrides the enemy's orders at real personal cost (Tumnus knowingly risks the Witch's punishment). It seeds the work's larger redemption/forgiveness arc in miniature (a sinner confesses, repents, and is freely forgiven) and establishes the White Witch's eternal-winter tyranny and Narnia's yearning for the four thrones to be filled. Childlike wonder (the cave, the tea, the tales, the flute) frames the crisis without dispelling it."
+  confidence: PROBABLE
+compound_scene: false      # no single scene carries >=2 HIGH-severity transformation_flags; the confession is emotionally/abstractly MODERATE (resolved safely), not a violence/death payload like the Stone Table or Beruna
+uncertainties:
+  - "The work title 'The Lion, the Witch and the Wardrobe' is not stated within the chapter text; inferred from the work-level mapping (narnia), so essentials.title is tagged PROBABLE rather than CERTAIN."
+  - "The White Witch and Tumnus's father are named/described only through Tumnus's dialogue in this chapter (off-page); their CERTAIN tag is for what the chapter text asserts Tumnus SAYS about them, not independent narration."
+  - "The chapter's closing line is Lucy's return call; confirmed as the genuine end of Chapter II by the source file's structure, though not marked by an explicit end-of-chapter marker."
