@@ -121,6 +121,7 @@ columns and is rejected loud by the parser (CH-6) rather than silently dropped.
 | agents/prep-cordinator.md | NATIVE | — | — |
 | skills/prep/** | NATIVE | — | — |
 | skills/thematic-fidelity/** | NATIVE | — | — |
+| skills/chapter-materialize/** | NATIVE | — | — |
 | agents/chronicler.md | BUILD-NEW | — | — |
 | agents/tier-coordinator.md | BUILD-NEW | — | — |
 | skills/adaptation-safety/** | BUILD-NEW | — | — |

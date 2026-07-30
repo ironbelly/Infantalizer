@@ -6,6 +6,21 @@ Layout: `source/<work>/ch-<NN>.txt` — one chapter per file, UTF-8.
   as an external/provisioned, read-only reference (DESIGN.md §2, §6).
 - Nothing in `source/` is transformed in place; the pipeline writes adaptations under `work/` and `kb/`.
 
+## Materialization outputs (Stage 0)
+
+`/laf:prep` Stage 0 (owned by `prep-cordinator`, procedure in `laf-adaptation:chapter-materialize`)
+materializes chapters from a folder / monolith / adopt-set and writes two source-side outputs per work:
+
+- `source/<slug>/chapter-manifest.yaml` — the confidence-tagged provenance sidecar (per-chapter id, order,
+  title, output hash, provenance, split/title/order confidence, plus mode, normalization events, omitted
+  matter, `ambiguous_splits`, and `review.status`). It is a `source/` sidecar, NOT a numbered prep-package
+  file and NOT in the rewrite read-set.
+- `source/<slug>/.raw/` — the retained original inputs (HTML/PDF/etc.) kept as the fidelity anchor.
+
+`source/` stays read-only-after-materialize: materialization adds NEW files (chapters, manifest, `.raw/`),
+never edits existing chapter bodies in place. Existing hand-provisioned sets (`narnia/ch-01..04.txt`,
+`tolkien/ch-01.txt`) are adopted with zero re-split.
+
 ## Provisioning contract (Phase-3 proof, DESIGN.md §7 Phase 3)
 
 The Phase-3 hard gate runs on "one Tolkien chapter." Because Tolkien is **not public domain** (do NOT

@@ -18,6 +18,13 @@ All output paths and the rewrite-phase read-set are defined ONCE in `resources/p
 by reference; never restate a path literally in this skill, in a command, or in the agent body. The package
 lives at `work/prep/<work-slug>/` and contains the 8 fixed-name files `00`–`70` defined there.
 
+> **Stage 0 note.** A new **Stage 0: Source Materialization** (owned by `prep-cordinator`, procedure in
+> `laf-adaptation:chapter-materialize`) precedes the §3 two-track analysis: it materializes the canonical
+> `source/<slug>/ch-<NN>.txt` set from a folder / monolith / adopt-set and emits a confidence-tagged
+> `source/<slug>/chapter-manifest.yaml`. The manifest is a `source/` **sidecar** — NOT a 9th package file
+> and NOT a `rewrite_phase_reads` member (the 8 fixed-name `00`–`70` files above are unchanged). Non-CERTAIN
+> splits route to the existing §5 question gate and §6 greenlight; no new gate is added.
+
 ## §2 Challenge taxonomy
 
 The typed challenge set, each with: `type`, `governing_rule` (the `/adaptation-rules` or tier-profile rule
@@ -123,3 +130,6 @@ it (`muse` reads `30-mapping.yaml`'s inline per-entry confidence).
 
 - `resources/path-contract.md` — the single source of truth for the package layout, promotion targets,
   rewrite-phase read-set, and write-ownership.
+- `laf-adaptation:chapter-materialize` — the Stage-0 boundary-detection + normalization procedure that
+  materializes `source/<slug>/ch-<NN>.txt` + the `chapter-manifest.yaml` sidecar (dispatched inline by
+  `prep-cordinator` before §3).

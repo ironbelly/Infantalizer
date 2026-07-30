@@ -1,0 +1,30 @@
+contract_version: "1.0"
+status: success
+seed_brief_path: .dev/brainstorms/rewrite-chapter-ingestion/seed-brief.md
+merged_output_path: .dev/brainstorms/rewrite-chapter-ingestion/merged-requirements.md
+convergence_score: 0.86
+adversarial_artifacts_dir: .dev/brainstorms/rewrite-chapter-ingestion/adversarial
+domain: architecture
+strategy: systematic
+depth: deep
+proposal_count: 3
+enrichment_used:
+  - source: codebase
+    quality_tier: primary
+handoff_action: none
+handoff_output_path: null
+unresolved_conflicts: []
+# Telemetry block
+agent_spec: "opus:architect:'prioritize maintainability and extension scaffolding for architecture domain',opus:analyzer:'focus on root-cause analysis and evidence-based reasoning for architecture',haiku:refactorer:'focus on technical debt, simplification, and minimal-risk transformation paths'"
+merge_base: B
+grafts: [C-read-set-two-group-framing, C-minimal-surface, C-provenance-note, A-extension-framing, A-partial-WARN, B-uncertainty-propagation, B-AND-predicate, B-T4T5-safety-skip-fix]
+base_softened: [B-D3-partial-set-hard-halt-to-WARN-intersect]
+adversarial_status: pass
+enrichment_artifact_sizes:
+  codebase-context.md: 6129
+  merged-requirements.md: 26263
+  seed-brief.md: 12395
+next_steps:
+  - "/sc:design @.dev/brainstorms/rewrite-chapter-ingestion/merged-requirements.md  # author the chapter-iterate skill body"
+  - "/sc:tasklist @.dev/brainstorms/rewrite-chapter-ingestion/merged-requirements.md  # sprint planning"
+  - "/sc:implement  # direct execution; then: uv run python scripts/check_boundary.py"

@@ -1,0 +1,78 @@
+merge_method: adversarial
+base_variant: reviewer-1-card (analyzer — widest invariant coverage)
+convergence_score: 0.88
+status: success
+depth: standard
+rounds: "R1 + R2 + R2.5 invariant probe"
+
+merged_verdict: PASS-with-deviations
+
+rationale: >-
+  All AC1-AC7 are covered with grounded file:line evidence (3-reviewer agreement). All 6 hard
+  boundary-contract invariants PASS, and the load-bearing AC6 boundary check was verified LIVE at
+  exit 0 ("BOUNDARY CONTRACT: PASS"). The ensemble surfaced two real, confirmed Drift deviations
+  (A: --source-mode not forwarded in command delegation; B: prep-cordinator ## Write scope
+  contradicts its own STAGE 0 source-side writes) and one false-positive that was DROPPED
+  (C: test_check_boundary.py is pre-existing / out of this task's changeset). No Regression survives:
+  the sole Regression candidate (B) was downgraded to Drift because it contradicts an INTERNAL agent
+  self-statement, not a spec acceptance criterion, and the authoritative write-ownership source
+  (path-contract §5) is correct. Because two unauthorized Drift items are present, the verdict is
+  PASS-with-deviations, not a clean PASS.
+
+deviation_count_by_class:
+  authorized: 0
+  necessary: 0
+  drift: 2        # Finding A + Finding B (both CONFIRMED, both internal-coherence Drift)
+  regression: 0
+
+confirmed_deviations:
+  - id: A
+    class: Drift
+    calibrated_confidence: 0.95
+    file: .claude/commands/laf/prep.md
+    line: "8-9"
+    summary: >-
+      Command delegation instructs "Pass the positional title and, if present, --source <path>" but
+      does NOT instruct forwarding the new --source-mode flag, even though line 3 advertises it, lines
+      26-29 document its semantics, and prep-cordinator.md:38 expects a source_mode value from it.
+    failure_scenario: >-
+      An operator who runs `/laf:prep "Work" --source Books/LWW/ --source-mode folder` to resolve the
+      both-present ambiguity: the command's delegation text does not pass --source-mode to the
+      coordinator, so the operator override can be silently dropped and the run HALTs at the mode
+      question anyway — defeating the documented override path.
+    remediation: >-
+      Edit .claude/commands/laf/prep.md lines 8-9 (and mirror the canonical source per the .claude
+      mirroring convention) to instruct forwarding --source-mode to prep-cordinator. NOTE: this is a
+      NATIVE mirror file; the fix is a documentation/prompt edit, boundary-clean.
+  - id: B
+    class: Drift
+    calibrated_confidence: 0.88
+    file: laf-adaptation/agents/prep-cordinator.md
+    line: "43"
+    summary: >-
+      The `## Write scope` section says "Write ONLY under work/prep/<work-slug>/, and (on greenlight)
+      to the two promotion targets" but STAGE 0 (lines 54-55) requires the coordinator to write
+      source/<slug>/ch-<NN>.txt + chapter-manifest.yaml, and path-contract §5 assigns those writes to
+      prep-cordinator (Stage 0). The write-scope paragraph was not extended to include the new
+      Stage-0 source-side write ownership.
+    failure_scenario: >-
+      A future editor (or the coordinator reasoning about its own constraints) reads `## Write scope`
+      literally, concludes source/<slug>/ writes are out of scope, and second-guesses or refuses the
+      Stage-0 materialization writes that AC1/AC3 require.
+    remediation: >-
+      Edit laf-adaptation/agents/prep-cordinator.md:43 `## Write scope` to add the Stage-0 source-side
+      write ownership (source/<slug>/ch-<NN>.txt, chapter-manifest.yaml, .raw/*) as authorized by
+      path-contract §5. NATIVE file (laf_sha256 = —), boundary-clean prompt edit.
+
+dropped_findings:
+  - id: C
+    reason: >-
+      test_check_boundary.py is tracked in HEAD and was committed in a PRIOR commit (e728ddc
+      "Remediate LAF boundary contract findings"). It is NOT part of this task's changeset, it is a
+      test file, and the live boundary-contract check passes at exit 0 with it present. Both reviewers
+      that raised it explicitly hedged provenance. Out of audit scope — false positive relative to the
+      changeset under review.
+    dropped_by: orchestrator git verification + Wave-3C blind calibration (calibrated confidence 0.03)
+
+unresolved_conflicts: 0
+unaddressed_invariants: []

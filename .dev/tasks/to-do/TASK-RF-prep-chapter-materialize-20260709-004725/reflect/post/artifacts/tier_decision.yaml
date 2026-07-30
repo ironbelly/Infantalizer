@@ -1,0 +1,22 @@
+selected_tier: 2
+fired_rule_number: 6          # §5.3 rule 6: calibrated C (0.78) < 0.85 -> ESCALATE
+pre_calibration_provisional_tier: 1   # rule 2 would have STOPped at T1 on the SELF-REPORTED 0.93, but the rubric consumes the CALIBRATED score
+calibrated_confidence: 0.78
+self_reported_confidence: 0.93
+coverage_degraded: null
+surface_unreached: null
+composite_score: 2.0
+per_signal_breakdown:
+  scope_size: 1               # 8 files (BOM)
+  task_count: 1               # single MDTM task
+  blast_radius: 0             # prompt+YAML framework; sole script byte-unchanged
+  spec_density: 0             # S_dev_density ~= 0
+  ambiguity_signals: 0        # coverage_pct = 1.0; boundary check PASS
+escalation_reason: >-
+  Wave 1D blind calibration (confidence-calibrator, formation-context stripped) re-graded the Tier-1
+  reflection card at C=0.78 (vs self-reported 0.93), below the 0.85 rubric floor. The calibrator flagged
+  that the card ASSERTS the AC6 boundary-contract pass and the "no adopted-body edit" invariant rather than
+  SHOWING that evidence inside the card. Per §5.2 the rubric consumes the CALIBRATED score, so §5.3 rule 6
+  (C < 0.85 -> ESCALATE) fires. This is the anti-anchoring mechanism working as designed.
+depth_flag: standard
+depth_forces_t2: false        # standard did not force T2; the calibrated-confidence rubric did (rule 6)

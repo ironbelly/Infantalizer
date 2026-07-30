@@ -1,0 +1,69 @@
+card_type: tier1-single-agent-reflection
+mode: post
+work_unit: TASK-RF-prep-chapter-materialize-20260709-004725
+spec: .dev/brainstorms/20260709T001338Z-prep-chapter-ingestion/merged-requirements.md
+run_id: 20260709T163452Z-prepchmat
+
+# --- Coverage map (spec AC -> grounded artifact) ---
+coverage:
+  AC1_mode_ab_identical:
+    verdict: covered
+    evidence: "laf-adaptation/skills/chapter-materialize/SKILL.md:218 (AC1 'identical' scope note: chapter TEXT identical across Mode A/B; manifest provenance legitimately differs)"
+  AC2_both_present_halts:
+    verdict: covered
+    evidence: "SKILL.md:54-69 (Stage 0.2 rule 2 negative guard + rule 4 ambiguity HALT-ask for split+monolith Books/LWW case)"
+  AC3_mode_c_zero_resplit:
+    verdict: covered
+    evidence: "SKILL.md:166-176 (Mode C adopt zero re-split; narnia ch-01..04 + tolkien ch-01 adopt untouched); VENDOR.md:124 NATIVE row"
+  AC4_no_noncertain_write_single_signal_capped:
+    verdict: covered
+    evidence: "SKILL.md:126-136 (Stage 0.4 deferred-write invariant) + SKILL.md:115-123 (confidence rule: single-signal capped at PROBABLE, CERTAIN requires >=2 agreeing signals)"
+  AC5_per_chapter_confidence_provenance_normalization:
+    verdict: covered
+    evidence: "SKILL.md:242-262 (manifest schema: every chapter row carries title/split/order confidence + provenance + needs_human_review; normalization_events with source_fidelity_risk)"
+  AC6_boundary_green_readset_unchanged_no_9th_no_2nd_script:
+    verdict: covered
+    evidence: "LIVE: uv run python scripts/check_boundary.py -> exit 0, 'BOUNDARY CONTRACT: PASS'; read-set 3-path git-diff grep NONE; check_boundary.py git-diff empty; symlink resolves ../../laf-adaptation/skills/chapter-materialize"
+  AC7_greenlight_gated_on_ambiguity:
+    verdict: covered
+    evidence: "SKILL.md:138-144 (Stage 0.5 routes deferred/needs_human_review items into existing §5 gate; greenlight cannot reach CONFIRMED while unresolved; NO new gate machinery)"
+
+# --- BOM (spec §11, 8 files) all present + grounded ---
+bom_verified:
+  - laf-adaptation/skills/chapter-materialize/SKILL.md          # NEW NATIVE
+  - laf-adaptation/skills/chapter-materialize/resources/boundary-rules.yaml  # NEW NATIVE
+  - laf-adaptation/agents/prep-cordinator.md                    # +skills line + STAGE 0 (grounded lines 12,21,38,50-53,78-81)
+  - laf-adaptation/skills/prep/SKILL.md                         # +Stage-0 note (grounded lines 21-22,133)
+  - laf-adaptation/skills/prep/resources/path-contract.md       # +§5 rows +§6; §4 read-set BYTE-UNCHANGED (verified)
+  - laf-adaptation/source/README.md                            # +manifest +.raw (grounded lines 14,18,20)
+  - .claude/commands/laf/prep.md                               # +--source-mode (2 occurrences)
+  - laf-adaptation/VENDOR.md                                   # +1 NATIVE row line 124 (em-dashes, single glob row)
+
+# --- Deviation taxonomy (4 categories) ---
+deviations:
+  authorized: []
+  necessary: []
+  drift: []
+  regression: []
+grounding_gaps: []
+
+# --- Checklist completion ---
+checklist:
+  total: 37
+  checked: 35
+  unchecked: 2
+  unchecked_items:
+    - "Step 7.3 (line 334): the independent reflection gate itself — in-progress right now (this run); expected-open, NOT incomplete work"
+    - "Step 7.4 (line 350): mark task Done — gated on 7.3 completing; expected-open by construction"
+  assessment: "All 35 implementation/validation/QA items resolved. The 2 open items are the reflection gate (this run) and its dependent done-flip; neither is unfinished feature work. tasklist_completion of substantive work = 1.0."
+
+# --- Self-reported confidence (pre-calibration) ---
+self_confidence: 0.93
+self_confidence_rationale: >-
+  Every AC has a grounded file:line citation; the load-bearing AC6 boundary contract was verified
+  LIVE (exit 0) not inferred; the frozen read-set and sole-script invariants were checked by git-diff
+  and confirmed unchanged; all 8 BOM files are present and coherent across the spine chain. No
+  contradicted acceptance criterion, no unmapped hunk, no regression. Residual 0.07 reflects
+  onboarding_status=not_bootstrapped (fresh Serena project, no prior memory to ground against) and
+  that this is a documentation/prompt-framework audit where "faithful semantic coverage" carries
+  inherent interpretive latitude the AC6 script cannot mechanically close.

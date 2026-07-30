@@ -1,0 +1,50 @@
+contract_version: "1.7.0"
+status: success
+mode: pre
+tier_reached: 2
+report_path: /config/workspace/Infantalizer/.dev/tasks/to-do/TASK-RF-prep-chapter-materialize-20260709-004725/reflect/pre/report.md
+run_id: 20260709T014058Z-prechmat
+confidence_calibrated: 0.90
+escalation_rule_matched: null   # --depth deep hard override (no rubric eval)
+
+# UC-1 coverage
+coverage_pct: 1.00
+coverage_pct_union: 1.00
+coverage_undefined: false
+coverage_degraded: null
+unmapped_requirements: []
+unmapped_requirements_union: []
+best_practice_grade: 5   # 4/5 pre-remediation; 5/5 after F1 fix
+requirements_extracted: 74
+requirements_covered: 74
+
+# Deviations
+deviation_count_by_class:
+  authorized: 0
+  necessary: 0
+  drift: 1        # F1 (remediated in-place, Wave 6)
+  regression: 0
+regression_present: false
+needs_human_decision: false
+user_decision_required: false
+
+# Tier 2 ensemble
+reviewer_cards: [reviewer-coverage, reviewer-boundary-contract]
+merge_method: adversarial
+adversarial_convergence_score: 0.86
+adversarial_unavailable: false
+t2_model_class_diversity: degraded   # env-alias distinct model classes not guaranteed
+calibrator_diversity: degraded
+
+# Evidence
+citations_total: 12
+citations_dropped: 0
+evidence_validator_ran: true
+
+# Remediation (--remediate)
+remediation_offered: true
+remediation_accepted: true
+remediation_summary: "F1 (Step 5.2 byte-unchanged grep over-broad) fixed in-place: narrowed alternation to the 3 read-set path tokens; excluded rewrite_phase_reads token."
+remediation_task_path: null   # fix applied directly, no corrective MDTM authored
+
+degraded_components: [env-aliases]

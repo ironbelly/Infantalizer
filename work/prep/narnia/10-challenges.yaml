@@ -1,0 +1,152 @@
+# 10-challenges.yaml — typed challenge taxonomy DERIVED from 20-analysis-work-level.yaml
+# Schema: prep SKILL.md §2 + package-schemas.md §2 (with §2.1 compound-scene reconciliation baked in)
+
+work: narnia
+derived_from: 20-analysis-work-level.yaml
+
+challenges:
+  - type: sacrifice-and-return                       # Aslan's death + resurrection (death honor)
+    governing_rule: death_handling                    # key-tolerant (T1–T3 death_euphemism); T5 death_handling — schema drift is intentional per CLAUDE.md
+    human_judgment_dimension: true                    # how much of the death to imply — gate MUST ask
+    per_tier_strategy:
+      tier_1: "Aslan 'goes away on a long adventure' / 'takes a very long rest' — trade the killing for a journey; omit the shaving, the muzzle, the mockery, and the stone knife entirely. The return is a joyful homecoming, not a theology."
+      tier_2: "Aslan 'passes away' gently and the dawn brings him back; the sacrifice is felt as a sad thing he chose to do, but the killing is off-page and unnamed."
+      tier_3: "Name the death gently — Aslan is killed in Edmund's place and returns at dawn — but foreground the meaning (he chose this) over the cruelty; the shaving/muzzle stay off-page."
+      tier_5: "Preserve — Aslan is shaved, bound, muzzled, mocked, and slain on the Stone Table with the stone knife, and returns at dawn when the Table cracks. Render with full weight; the death is the thematic centre."
+    compound_scene: true                              # Stone Table sacrifice co-occurs death + emotional + violence + abstract — see compound_scenes
+    meaning_ref: "Redemptive substitution — the willing, guiltless victim dies in the traitor's stead and returns; the tier changes the surface of the death, never the act of standing in for another."
+
+  - type: allegory-stance                             # the Christian redemption allegory vs Lewis's "supposal"
+    governing_rule: thematic_fidelity                 # neither add nor strip the allegory
+    human_judgment_dimension: true                     # stance decision — gate asked; ANSWERED = allegory-as-reception (greenlight override)
+    stance: allegory-as-reception                      # Lewis's 'supposal' noted authorially, but the allegorical reading dominates reception and the text's structure carries it; named openly at T3+
+    per_tier_strategy:
+      tier_1: "Do not surface the allegory; Aslan is simply the good, great Lion who helps. The rescue/return is felt as a story event, not as theology. No added moral."
+      tier_2: "Aslan's choice to take Edmund's place is felt as a brave, kind act; the deeper meaning stays implicit — a noble deed, not a sermon."
+      tier_3: "Surface the meaning openly through events (the willing sacrifice, the return): the allegorical resonance (Aslan = Christ; the Stone Table = Passion/Resurrection; the Deep/Deeper Magic = Law/Gospel) MAY be named openly as the work's dominant reception — the book is widely read this way and the structure carries it. Lewis's 'supposal' caveat may be noted."
+      tier_5: "Preserve and openly acknowledge the allegorical resonance — Aslan's incarnation, sacrifice, and resurrection render as written; the Passion/Atonement/Resurrection echo is named, not imposed as cipher-mapping and not stripped."
+    compound_scene: false
+    meaning_ref: "The redemption meaning is carried by the events and is the work's dominant reception; no tier strips the sacrificial-return structure the text asserts, and at T3+ the allegorical resonance is named openly rather than kept veiled."
+
+  - type: omission-honor-set                          # what MUST be omitted vs preserved at low tiers
+    governing_rule: thematic_fidelity
+    human_judgment_dimension: true                    # what to omit vs preserve is judgment — gate MUST ask
+    per_tier_strategy:
+      tier_1: "Omit: the killing, the shaving/muzzle/mockery, the Witch turning creatures to stone, the battle violence, Edmund's wounds. Preserve: the wardrobe wonder, friendship with Tumnus, Aslan's goodness, the spring returning, the coronation, the safe return home."
+      tier_2: "Omit: the on-page killing and the battle gore. Preserve: the betrayal and its cost, the gentle sacrifice, Aslan's return, the defeat of the Witch at the level of contest."
+      tier_3: "Omit: only the graphic cruelty (shaving/muzzle/mockery detail). Preserve: the named sacrifice and return, the named battle with stakes, Edmund's wounding and healing, the allegorical weight."
+      tier_5: "Preserve the novel as written."
+    compound_scene: false
+    meaning_ref: "Surface reductions at lower tiers MUST leave the redemption-and-return arc and the betrayal-forgiveness arc intact."
+
+  - type: target-age-nuance
+    governing_rule: adaptation_tiers
+    human_judgment_dimension: true                    # precise age band within tier — gate MUST ask
+    per_tier_strategy:
+      tier_1: "Young end of T1 (4–6): wonder and friendship; death → journey; battle → tidy-up; the Witch → a grumpy/messy character."
+      tier_2: "Older T2 (7–8): betrayal as a contest/cheating; sacrifice acknowledged gently; the Witch as a mean antagonist who doesn't understand."
+      tier_3: "Older T3 (10–11): the Deep/Deeper Magic named; sacrifice and return named gently; battle at altitude with stakes; moral ambiguity of Edmund's betrayal permitted."
+      tier_5: "Teen/adult (15–17): full fidelity to Lewis's prose and the supposal's theological resonance."
+    compound_scene: false
+    meaning_ref: "n/a — the meaning survives every age band; this is a tone-and-detail axis."
+
+  - type: mass-warfare                                # the Battle of Beruna (battle-scope)
+    governing_rule: conflict_to_cooperation           # key-tolerant (T1–T3); T5 conflict_handling — schema drift is intentional per CLAUDE.md
+    human_judgment_dimension: true                    # how much battle to show is judgment — gate MUST ask
+    per_tier_strategy:
+      tier_1: "The Big Tidy-Up — the clash becomes helpers pushing back a tide of grumbles; the Witch's host is a noisy, messy crowd; Peter helps; omit the killing and the wounding."
+      tier_2: "A contest/challenge — Peter's side wins a hard contest against the opposing team; Edmund 'plays a brave turn'; the stakes (the land, the friends) are felt, the violence is not."
+      tier_3: "Summarize the battle at altitude; show stakes (Narnia, the children, the Witch's reign) without dwelling on gore; Edmund's breaking of the wand and his wounding are named, the carnage is not."
+      tier_5: "Preserve — clashing metal, battle-axes, the Witch fighting with her stone knife, Edmund terribly wounded, Aslan leaping on the Witch; render with full weight."
+    compound_scene: true                              # Beruna co-occurs violence + death + emotional — see compound_scenes
+    meaning_ref: "The land is freed and the Witch's reign ends regardless of battle-scope; the tier changes the surface of the fight, not the liberation."
+
+  - type: petrification-body-horror                   # the Witch turning creatures to stone
+    governing_rule: violence                          # direct-payload category; applied MANDATORY; the courtyard of statues
+    human_judgment_dimension: true                    # reframe vs restore is a taste threshold — gate MUST ask
+    per_tier_strategy:
+      tier_1: "Statues become 'friends who are having a very long nap' or 'frozen like ice until the sun comes'; Aslan 'wakes them up'. Reframe the petrification as a reversible sleep, never a death. Omit the lion turned to stone and mocked."
+      tier_2: "Creatures are 'turned to stone' (named) but framed as an enchantment Aslan can undo; the courtyard is a sad place of frozen friends, not a charnel house."
+      tier_3: "Name the turning-to-stone and the Witch's cruelty; the restoration by Aslan's breath is the hopeful counterpoint; bound the horror (no dwelling on the tableau)."
+      tier_5: "Preserve — the courtyard of stone statues (including the lion the Witch's dwarf dressed and mocked), Aslan's breath restoring each; render as written."
+    compound_scene: false
+    meaning_ref: "Petrification is reversible and the restoration is the point — fear named and overcome, not escaped; the tier changes the surface of the horror, not Aslan's undoing of it."
+
+  - type: psychological-collapse                      # Edmund's shame/despair; the children's fear
+    governing_rule: emotional_calibration
+    human_judgment_dimension: true                    # how much despair to imply — gate MUST ask
+    per_tier_strategy:
+      tier_1: "Edmund is 'grumpy and mixed-up' and then 'feels better after a hug from Aslan'; fear becomes worry that resolves quickly. Omit the bondage, the Witch striking him, the walking through the snow bound."
+      tier_2: "Edmund is ashamed of a mean choice and earns his way back; the fear of the Witch is a frightening-but-bounded worry; consequences softened."
+      tier_3: "Edmund's shame and repentance are named and felt; the private talk with Aslan stays off-page (as in the source) but its weight is honoured; fear is real and survivable."
+      tier_5: "Preserve — Edmund bound, struck, forced to walk through the snow; his repentance and the unrecorded private conversation with Aslan carry full weight."
+    compound_scene: false
+    meaning_ref: "Shame and fear are survivable and lead to restoration, not ruin; the tier changes the surface of despair, not its redemption."
+
+  - type: violence-level                              # DETERMINISTIC
+    governing_rule: violence                          # direct-payload category; deterministic tier-profile threshold
+    human_judgment_dimension: false                   # DETERMINISTIC tier-profile threshold — gate MUST NOT ask
+    per_tier_strategy:
+      tier_1: "none on-page — all violence reframed as cooperation/mess; weapons removed entirely (no sword Rhindon, no stone knife, no wand as weapon)."
+      tier_2: "structured contest/chase — Peter's wolf-fight becomes a brave struggle/contest; the battle becomes a hard challenge; no blood, no injury detail."
+      tier_3: "bounded — stakes clear, gore bounded; Peter slays the wolf and Edmund breaks the wand, named without dwelling."
+      tier_5: "preserve — the sword through the wolf's heart, the stone knife, the wand, the battle-axes; 'the battle was terrible.'"
+    compound_scene: false
+
+  - type: death-euphemism                             # DETERMINISTIC
+    governing_rule: death_euphemism                   # key-tolerant vs death_handling; T1 deterministic (journey_or_sleep)
+    human_judgment_dimension: false                   # DETERMINISTIC (journey_or_sleep at T1) — gate MUST NOT ask
+    per_tier_strategy:
+      tier_1: "journey_or_sleep — Aslan 'goes on a long adventure' and comes back; the Witch 'goes away for good'; Fenris Ulf 'goes to sleep'."
+      tier_2: "gentle_acknowledgment — 'passed away', 'was lost', 'didn't come back' (Aslan and the Witch)."
+      tier_3: "direct_but_gentle — 'killed', 'died', 'slain' permitted, focus on emotional impact and meaning."
+      tier_5: "preserve — the death is on the page, no euphemism; 'dead', 'killed', 'slain'."
+    compound_scene: false
+
+compound_scenes:                                      # §2.1 reconciliation baked in for each compound scene
+  - scene: "The Stone Table — Aslan's sacrifice and murder (Ch. XIV)"
+    cooccurring_flags: [death, emotional, violence, abstract]
+    reconciliation:                                   # from /prep §2.1
+      emotional_core: "The reader must feel that Aslan chose to suffer and die in Edmund's place out of love — that the rescue is real, costly, and freely given, not a spectacle of cruelty."
+      decomposition:
+        - "the killing itself (the stone knife, death on the Table)"
+        - "the cruelty before death (shaving the mane, the muzzle, the mockery, the binding)"
+        - "the emotional weight (Susan and Lucy's vigil; Aslan's withdrawal and loneliness)"
+        - "the abstract frame (the Deep Magic that demands a traitor's blood; the substitution)"
+      per_tier:
+        tier_1: "Reframe as Aslan going away on a long adventure for Edmund's sake and coming back at dawn — the love and the return survive; the cruelty and the knife are omitted. Friends wait and rejoice."
+        tier_2: "Aslan passes away gently in Edmund's place and the dawn brings him back; the sacrifice is felt, the cruelty off-page; Susan and Lucy's watch and joy stay."
+        tier_3: "Name the death (Aslan is killed in Edmund's place) and the return; keep the meaning (he chose it) foregrounded; omit the shaving/muzzle/mockery detail. Susan and Lucy's vigil is honoured."
+        tier_5: "Preserve — shaving, muzzle, mockery, the stone knife, the Table cracking at dawn; the substitution and the Deeper Magic rendered with full weight."
+      meaning_survives: true                          # redemptive substitution survives at every tier
+
+  - scene: "The Stone Table — Aslan's resurrection (Ch. XV)"
+    cooccurring_flags: [death, emotional, abstract]
+    reconciliation:
+      emotional_core: "The reader must feel the shock and joy of the reversal — that a deeper law overturned death because the victim was willing and guiltless. Hope reborn out of grief."
+      decomposition:
+        - "the reversal of death (the Table cracks, the mice, the dawn)"
+        - "the emotional release (Susan and Lucy's grief turning to wonder)"
+        - "the abstract frame (the Deeper Magic from before the Dawn of Time)"
+      per_tier:
+        tier_1: "Aslan comes back at dawn, joyful — 'the long adventure is over'; the wonder and play survive, the law-mechanism is omitted."
+        tier_2: "Aslan returns at the dawn; the joy and the sense that something deeper than the Witch knew made it possible stay, lightly."
+        tier_3: "The Deeper Magic is named ('a deeper magic, from before the Dawn of Time'); the Table cracks and Aslan returns; the meaning of the reversal is honoured. Under allegory-as-reception, the Resurrection echo may be named openly at this tier as the dominant reception."
+        tier_5: "Preserve — 'when a willing victim who had committed no treachery was killed in a traitor's stead, Death itself would start working backwards'; the Table cracks, the dawn, the joy."
+      meaning_survives: true                          # hope-reborn-out-of-grief survives at every tier
+
+  - scene: "The Battle of Beruna (Ch. XVI–XVII)"
+    cooccurring_flags: [violence, death, emotional]
+    reconciliation:
+      emotional_core: "The reader must feel that the liberation of Narnia is hard-won and costly — that Edmund's bravery turns the tide and Aslan's arrival is the decisive relief — without the scene becoming a spectacle of slaughter."
+      decomposition:
+        - "mass battlefield violence (clashing metal, battle-axes, crushing)"
+        - "Edmund's heroic wounding (breaking the Witch's wand; struck down)"
+        - "mass death ('most of the enemy had been killed'; the first charge)"
+        - "Aslan's decisive intervention (leaping on the Witch)"
+      per_tier:
+        tier_1: "Reframe as the Big Tidy-Up — helpers push the messy tide back, Peter helps, the grumpy Witch 'goes away for good', and the land is free. Omit all wounding and killing."
+        tier_2: "A hard contest Peter's side wins; Edmund plays a brave turn; the Witch is finally beaten; stakes felt, violence not."
+        tier_3: "Summarize the battle at altitude; name Edmund's brave breaking of the wand and his wounding, and Aslan's ending the Witch; bound the carnage, keep the liberation."
+        tier_5: "Preserve — Edmund shatters the wand and is terribly wounded, Aslan leaps upon the Witch and kills her, the enemy is routed with heavy loss; render as written."
+      meaning_survives: true                          # the liberation survives at every tier

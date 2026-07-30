@@ -72,11 +72,18 @@ work/prep/<slug>/10-challenges.yaml
 It also confirms `work/prep/<slug>/50-greenlight.md` shows `status: CONFIRMED` before handing to `muse`.
 It does **not** read `70-traceability.md` (human/greenlight audit only).
 
+> **Note.** The Stage-0 `source/<slug>/chapter-manifest.yaml` is a `source/` **sidecar**, deliberately NOT in
+> `rewrite_phase_reads`: the rewrite phase discovers chapters by the `source/<slug>/ch-<NN>.txt` naming
+> convention, not by reading the manifest. This read-set stays exactly the three files above (no 4th entry).
+
 ## 5. Write-ownership
 
 | Path | Written by |
 |---|---|
 | `work/prep/<slug>/*` | `prep-cordinator` (prep phase) |
+| `source/<slug>/ch-<NN>.txt` | `prep-cordinator` (Stage 0) |
+| `source/<slug>/chapter-manifest.yaml` | `prep-cordinator` (Stage 0) |
+| `source/<slug>/.raw/*` | `prep-cordinator` (Stage 0) |
 | `kb/adaptation-mapping/<slug>-mapping.yaml` | `prep-cordinator` performs the §3 dual-form transform on greenlight (prep phase); `/kb-management` registers the kb copy |
 | `config/concept_mapping/templates/<slug>_mapping.yaml` | `prep-cordinator` performs the §3 dual-form transform on greenlight (prep phase) |
 | `kb/canon/*`, `kb/adaptations/<slug>/tier-*/…` | `chronicler` (rewrite phase — NOT the prep phase) |
@@ -89,3 +96,23 @@ the operator that performs the §3 dual-form transform on greenlight: it applies
 strip / `_confidence` strip / hyphen-vs-underscore rules defined in §3, writing both promoted files itself.
 `/kb-management` provides the kb-lifecycle write (the registry acceptance of the promoted mapping); it does
 not itself perform the 6-key↔5-key transform.
+
+## 6. Source-side chapter manifest
+
+Stage 0 (owned by `prep-cordinator`, procedure in `laf-adaptation:chapter-materialize`) emits a source-side
+provenance sidecar co-located with the chapters it indexes:
+
+```
+source/<slug>/chapter-manifest.yaml
+```
+
+- **Schema:** `schema_version: laf.chapter_manifest.v1` — per-chapter id / order / title / output hash /
+  provenance / split / title / order confidence, plus mode / normalization-policy / omitted-matter / `ambiguous_splits`
+  / `review.status` records. The full field list is defined in the `chapter-materialize` skill (the single
+  source of the schema); it is not restated here.
+- **Not a package file.** It is **not** one of the fixed 8 `00`–`70` numbered package files (§2), and it is
+  **not** a `rewrite_phase_reads` member (§4). The rewrite phase discovers chapters by the
+  `source/<slug>/ch-<NN>.txt` convention.
+- **Retention.** The original raw inputs are retained under `source/<slug>/.raw/` as the fidelity anchor
+  (materialized chapters only; adopted sets may have no `.raw/`) — read-only after materialize; new files
+  only, never in-place edits.

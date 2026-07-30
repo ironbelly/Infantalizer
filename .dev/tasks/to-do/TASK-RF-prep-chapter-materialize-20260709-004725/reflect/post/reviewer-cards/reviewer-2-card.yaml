@@ -1,0 +1,33 @@
+reviewer: 2
+persona: qa
+model_class: reflect-reviewer (read-only allowlist; L1)
+lens: AC1-AC7 coverage + operational correctness
+self_confidence: 0.84
+calibrated: true
+ac_coverage:
+  AC1: covered (SKILL.md:218-222)
+  AC2: covered (SKILL.md:57-69)
+  AC3: covered (SKILL.md:166-176)
+  AC4: covered (SKILL.md:117-136)
+  AC5: covered (SKILL.md:246-261)
+  AC6: covered-static; execution deferred to orchestrator live run (PASS exit 0 confirmed by orchestrator)
+  AC7: covered (SKILL.md:140-144; prep-cordinator.md:122-126)
+findings:
+  - id: A
+    summary: "--source-mode not forwarded in command delegation"
+    class_calibrated: Drift
+    calibrated_confidence: 0.95
+    verification: CONFIRMED
+  - id: B
+    summary: "coordinator write-scope contradiction with STAGE 0 source writes"
+    class_calibrated: Drift
+    calibrated_confidence: 0.88
+    verification: CONFIRMED
+  - id: C
+    summary: "test_check_boundary.py second script"
+    class_calibrated: DROP-out-of-scope
+    calibrated_confidence: 0.03
+    verification: REFUTED
+positive_findings:
+  - "chapter-materialize dispatched INLINE; analyst NOT repurposed as splitter (prep-cordinator.md:78-80,102-105)"
+  - "mode-detect precedence explicit + conservative (SKILL.md:47-69)"

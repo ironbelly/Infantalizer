@@ -1,0 +1,2 @@
+- [LAF boundary contract invariants](laf-boundary-contract.md) — hard invariants any LAF prep/rewrite task build must preserve (8-file package, frozen read-set, sole script)
+- [LAF .claude mirror is symlink not copy](laf-claude-mirror-symlink.md) — editing laf-adaptation source auto-updates .claude; only new skill dirs need a new symlink

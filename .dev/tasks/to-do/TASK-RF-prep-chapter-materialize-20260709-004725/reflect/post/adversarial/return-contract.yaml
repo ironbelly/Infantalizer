@@ -1,0 +1,10 @@
+merged_output_path: .dev/tasks/to-do/TASK-RF-prep-chapter-materialize-20260709-004725/reflect/post/adversarial/merged-verdict.yaml
+convergence_score: 0.88
+artifacts_dir: .dev/tasks/to-do/TASK-RF-prep-chapter-materialize-20260709-004725/reflect/post/adversarial/
+status: success
+base_variant: "reviewer-1-card:analyzer"
+unresolved_conflicts: 0
+fallback_mode: false
+failure_stage: null
+invocation_method: skill-direct
+unaddressed_invariants: []

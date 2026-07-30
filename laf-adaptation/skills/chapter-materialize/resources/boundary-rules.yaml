@@ -1,0 +1,99 @@
+# resources/boundary-rules.yaml — declarative signal ruleset for chapter-materialize.
+# ADR-006: DATA ONLY, no runtime. The MODEL reads and applies these patterns inline;
+# check_boundary.py does NOT read this file and remains the sole script (a validator only).
+# Five top-level keys mirror the five evidence layers (spec §6.1–§6.5), plus a confidence_rule mirror.
+schema_version: laf.boundary_rules.v1
+
+# Layer 1 — TOC / anchor map (spec §6.1)
+# TOC list items that link to in-document anchors are the strongest structural signal when present.
+toc_anchor_map:
+  html_anchor_patterns:
+    - '<a\s+[^>]*href="#(chap(?:ter)?[_-]?\d+)"'   # e.g. <a href="#chap01"> / <a href="#chapter-1">
+    - '<a\s+[^>]*href="#(c\d+)"'                    # e.g. <a href="#c17">
+    - '<a\s+[^>]*href="#([IVXLC]+)"'                 # roman-numeral anchor ids, e.g. href="#XVII"
+  toc_list_container_hints:
+    - 'id="toc"'
+    - 'class="contents"'
+    - 'class="toc"'
+    - 'id="table-of-contents"'
+    - '<nav[^>]*epub:type="toc"'
+  min_entries_to_trust: 2
+
+# Layer 2 — body heading map (spec §6.2) — roman / arabic / spelled
+# A heading only counts when it stands alone on its own structural line; a heading-like
+# string embedded in a poem, quote, or sentence is rejected (spec §7 "Boundary inside poem/quote").
+body_heading_map:
+  roman:
+    pattern: '^\s*(?:CHAPTER|Chapter)\s+(M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3}))\.?\s*$'
+    examples: ['CHAPTER I', 'CHAPTER XVII', 'Chapter IV']
+  arabic:
+    pattern: '^\s*(?:CHAPTER|Chapter)\s+(\d{1,3})\.?\s*$'
+    examples: ['Chapter 1', 'CHAPTER 17', 'Chapter 3']
+  spelled:
+    pattern: '^\s*(?:CHAPTER|Chapter)\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve|Thirteen|Fourteen|Fifteen|Sixteen|Seventeen|Eighteen|Nineteen|Twenty(?:[-\s](?:One|Two|Three|Four|Five|Six|Seven|Eight|Nine))?)\.?\s*$'
+    examples: ['Chapter One', 'Chapter Seventeen', 'Chapter Twenty-One']
+  html_heading_hints:
+    - '<h1'
+    - '<h2 class="chapter"'
+    - '<h2 class="chapter-title"'
+    - '<h3 class="chap"'
+  case_insensitive: true
+  must_be_isolated_line: true       # spec §7 "Boundary inside poem/quote" — reject non-structural matches
+
+# Layer 3 — filename map (Mode A) — NATURAL sort, never lexicographic (spec §6.3)
+filename_map:
+  sort: natural                     # ch-2 before ch-10; NEVER lexicographic
+  ordinal_extract_patterns:
+    - '-(\d+)\.(?:html?|txt)$'       # e.g. "...copy-4.html" -> 4 ; "book-1.htm" -> 1
+    - '(?:ch|chap|chapter)-?0*(\d+)' # e.g. "ch-07", "chapter12", "chap-3"
+    - '^0*(\d+)\.(?:html?|txt)$'     # e.g. "1.htm", "10.htm", "17.html"
+  canonical_output_pattern: 'ch-<NN>.txt'   # zero-padded; order == numeric id
+  # ignore_globs is a HINT only: it catches *copy*-suffixed duplicates, but a byte-identical BASE
+  # monolith named WITHOUT a "copy" token (e.g. "...Lewis.html") will NOT glob-match here. Such
+  # duplicates are de-duplicated by the sha256 tie-break (SKILL.md "Duplicate-monolith canonical pick"),
+  # NOT by glob alone — the hash rule is authoritative. Do not try to glob-match the base monolith.
+  # Canonical-pick tie-break (must match SKILL.md "Duplicate-monolith canonical pick" verbatim in intent):
+  # byte-identity is resolved by sha256 (only same-sha256 files are duplicates); among duplicates pick
+  # the canonical by shortest filename, then lexicographic order on ties (un-suffixed base wins over "copy N").
+  ignore_globs:                     # non-chapter files / duplicate monoliths handled by Layer 5
+    - 'copy*.html'
+    - '* copy*.html'
+    - '*index*.htm*'
+    - '*toc*.htm*'
+    - '.DS_Store'
+
+# Layer 4 — content sanity (spec §6.4)
+content_sanity:
+  must_start_with_expected_heading: true
+  # min_body_chars and plausible_length_range are two DIFFERENT thresholds, intentionally not equal:
+  #   - min_body_chars (500) is the HARD non-empty floor: a body below this is rejected outright as
+  #     front/back matter or a TOC stub (not a real chapter). Failing it = drop the candidate.
+  #   - plausible_length_range.min_chars (1500) is the SANITY band floor: a body that clears the hard
+  #     floor but falls BELOW the sanity band is still a candidate, but is flagged PROBABLE/UNCERTAIN
+  #     and surfaced (short-but-real chapters exist; below-band is a soft signal, not a rejection).
+  # So min_body_chars (hard reject) <= plausible_length_range.min_chars (soft flag) by design.
+  min_body_chars: 500               # HARD non-empty floor (reject below); see comment above
+  plausible_length_range: { min_chars: 1500, max_chars: 120000 }   # SANITY band (below-band => PROBABLE/flag)
+  ranges_must_not_overlap: true
+
+# Layer 5 — count reconciliation (spec §6.5)
+count_reconciliation:
+  sources: [toc, body_heading, filename]
+  rule: all_present_counts_must_agree_else_gate
+  on_mismatch: raise_ambiguous_split          # → §5 question gate
+  # Mode A completeness guard: a filename count ALONE (no TOC, no whole-work body-heading count) cannot
+  # certify the split is COMPLETE (a partial 4-of-17 export looks internally consistent). When Mode A has
+  # NO corroborating expected-count signal, treat chapter-set COMPLETENESS as UNCERTAIN and raise an
+  # ambiguous_split gate item: "possible incomplete split; operator confirm partial scope."
+  mode_a_completeness:
+    requires_corroborating_expected_count: true   # a TOC count OR a cross-checkable whole-work heading count
+    on_single_source_count_only: raise_ambiguous_split   # completeness = UNCERTAIN; blocks greenlight until operator confirms scope
+    gate_message: "possible incomplete split; operator confirm partial scope"
+
+# Confidence rule mirror (spec §6, lines 170–173).
+# NOTE: this is a CONVENIENCE MIRROR only. The AUTHORITATIVE copy lives in SKILL.md
+# `### Confidence rule (load-bearing)`. Keep the two in sync; SKILL.md wins on any drift.
+confidence_rule:
+  CERTAIN_requires_min_agreeing_signals: 2    # AND no contradiction
+  single_signal_cap: PROBABLE                 # a single-signal boundary is NEVER CERTAIN
+  uncertain_triggers: [missing_signal, contradictory_signal, manual_repair, pdf_garble]

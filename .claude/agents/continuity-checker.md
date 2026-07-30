@@ -1,0 +1,1 @@
+../../laf-adaptation/agents/continuity-checker.md
